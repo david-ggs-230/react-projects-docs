@@ -9,8 +9,8 @@ React Tutorial with Typescript documentation
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: React Projects with Typescript
    :numbered:
    
-   tut01-create-reactjs-app
+   react-app-ts/tut01-create-reactjs-app
    
