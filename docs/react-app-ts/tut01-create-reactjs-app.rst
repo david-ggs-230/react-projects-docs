@@ -1,5 +1,11 @@
 .. _tut01-create-reactjs-app:
 
+.. role:: custom-color-primary
+   :class: sd-text-primary
+   
+.. role:: custom-color-primary-bold
+   :class: sd-text-primary sd-font-weight-bold
+   
 .. rst-class:: title-center h1
    
 
@@ -26,20 +32,20 @@ Create a ReactJS Project with Vite
     
     - Create a folder for the ReactJS projects:
         
-        - Create Directory for React Projects ::
+        - Create a folder for React Projects ::
             
             mkdir <react-projects-folder>
             
-        - Move inside the folder::
+        - Move inside the folder ::
             
             cd  <react-projects-folder>
-        
+            
     - Create ReactJS App with Vite ::
         
-        # npm
-        npm create vite@latest <new-react-app-name> -- --template react-ts
-        # yarn
-        yarn create vite <new-react-app-name> --template react-ts
+        # npm: create vite@latest <new-react-app-name> -- --template react-ts
+        create vite@latest tut01-create-reactjs-app -- --template react-ts
+        # yarn create vite <new-react-app-name> --template react-ts
+        yarn create vite tut01-create-reactjs-app --template react-ts
         
 ==================================================================================================
 Build and Run
@@ -49,7 +55,7 @@ Build and Run
     :linenos:
     
     # Move inside the <new-react-app-name> folder
-    cd  <new-react-app-name>
+    cd tut01-create-reactjs-app
     # Run dev:  npm run dev <or> yarn dev
     npm run dev
     # Build the React App: npm run build <or> yarn build
@@ -99,5 +105,15 @@ Sources and Demos
 **************************************************************************************************
     
     - Sources: https://github.com/david-ggs-230/react-projects/tree/main/react-projects-with-typescript/tut01-create-reactjs-app
-    - Demo site: https://david-ggs-230.github.io/react-projects/react-projects-with-typescript/tut01-create-reactjs-app/
+    - Live Demo: https://david-ggs-230.github.io/react-projects/react-projects-with-typescript/tut01-create-reactjs-app/
+    - Screenshot
+        
+        .. figure:: images/tut01/tut01-create-react-app-vite-homepage.png
+           :align: center
+           :class: sd-my-2
+           :width: 50%
+           :alt: Create a React App with Vite
+           
+           :custom-color-primary-bold:`Create a React App with Vite`
+    
     

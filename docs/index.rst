@@ -13,4 +13,5 @@ React Tutorial with Typescript documentation
    :numbered:
    
    react-app-ts/tut01-create-reactjs-app
+   react-app-ts/tut02-writing-markup-with-jsx
    
