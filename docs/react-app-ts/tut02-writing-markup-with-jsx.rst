@@ -71,6 +71,10 @@ Rendering with JSX
 ==================================================================================================
 Create a ReactJS Project with Vite
 ==================================================================================================
+
+--------------------------------------------------------------------------------------------------
+Create a ReactJS Project
+--------------------------------------------------------------------------------------------------
     
     - Create a ReactJS Project ::
         
@@ -80,6 +84,113 @@ Create a ReactJS Project with Vite
         
         cd tut02-writing-markup-with-jsx
         
+    - Install the dependencies 
+        
+        .. code-block:: sh
+          :linenos:
+          
+          yarn install
+          
+--------------------------------------------------------------------------------------------------
+ESLint and Prettier Configuration
+--------------------------------------------------------------------------------------------------
+    
+    - Install the ``EditorConfig`` extension for VS Code if you haven't already.
+    - Add .editorconfig (https://editorconfig.org) to the root of the project ::
+        
+        root = true
+        
+        [*]
+        indent_style = space
+        indent_size = 2
+        end_of_line = lf
+        insert_final_newline = true
+        trim_trailing_whitespace = true
+        
+    - Reload VS Code (open the command palette, find and use ``Reload Window``).
+    - Install dependencies ::
+        
+        yarn add --dev prettier eslint-plugin-prettier eslint-config-prettier  eslint-plugin-react 
+        
+    - Modify the eslint.config.js file with following contents:
+        
+        .. code-block:: cfg
+          :caption: contents of eslint.config.js
+          :linenos:
+          
+          import js from "@eslint/js";
+          import globals from "globals";
+          import reactHooks from "eslint-plugin-react-hooks";
+          import reactRefresh from "eslint-plugin-react-refresh";
+          import tseslint from "typescript-eslint";
+          import react from "eslint-plugin-react";
+          import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
+          
+          export default tseslint
+            .config(
+              { ignores: ["dist"] },
+              {
+                //extends: [js.configs.recommended, ...tseslint.configs.recommended],
+                extends: [
+                  js.configs.recommended,
+                  ...tseslint.configs.recommendedTypeChecked,
+                ],
+                files: ["**/*.{ts,tsx}"],
+                languageOptions: {
+                  ecmaVersion: 2020,
+                  globals: globals.browser,
+                  parserOptions: {
+                    project: ["./tsconfig.node.json", "./tsconfig.app.json"],
+                    tsconfigRootDir: import.meta.dirname,
+                  },
+                },
+                settings: {
+                  react: {
+                    version: "detect",
+                  },
+                },
+                plugins: {
+                  "react-hooks": reactHooks,
+                  "react-refresh": reactRefresh,
+                  react: react,
+                },
+                rules: {
+                  ...reactHooks.configs.recommended.rules,
+                  "react-refresh/only-export-components": [
+                    "warn",
+                    { allowConstantExport: true },
+                  ],
+                  ...react.configs.recommended.rules,
+                  ...react.configs["jsx-runtime"].rules,
+                },
+              },
+            )
+            .concat(eslintPluginPrettier);
+          
+    - Edit the eslint scripts in the package.json file: 
+        
+        .. code-block:: cfg
+          :caption: contents of eslint.config.js
+          :linenos:
+          
+          "scripts": {
+            ... ,
+            "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+            "lint:fix": "eslint src --ext ts,tsx --fix",
+          },
+          
+    - Run ESLint:
+        
+        .. code-block:: sh
+          :linenos:
+          
+          yarn lint
+          yarn lint:fix
+          
+--------------------------------------------------------------------------------------------------
+Create Project Contents
+--------------------------------------------------------------------------------------------------
+    
     - Create the src/list-styles.css file with the following contents
         
         .. code-block:: sh
@@ -168,14 +279,14 @@ Create a ReactJS Project with Vite
           function App() {
             const [count, setCount] = useState(0);
             const titleElement = <>The Rules of JSX</>;
-            const textContent= "JSX Expressions";
+            const textContent = "JSX Expressions";
             const classNames = "red-color bg-blue";
             const person = {
-              name: 'George Bush',
+              name: "George Bush",
               theme: {
-                backgroundColor: 'black',
-                color: 'pink'
-              }
+                backgroundColor: "black",
+                color: "pink",
+              },
             };
             function handleClick() {
               setCount((count) => count + 1);
@@ -191,7 +302,9 @@ Create a ReactJS Project with Vite
                   <li>
                     <strong>Attributes in JSX</strong>
                     <div>
-                      <div>&lt;div className="red-color"&gt;Red&lt;/div&gt;</div>
+                      <div>
+                        &lt;div className=&quot;red-color&quot;&gt;Red&lt;/div&gt;
+                      </div>
                       <div className="red-color">Red</div>
                     </div>
                   </li>
@@ -204,14 +317,15 @@ Create a ReactJS Project with Vite
                   <li>
                     <strong>JavaScript Expressions</strong>
                     <div>
-                      <div>const classNames="red-color bg-blue"</div>
+                      <div>const classNames=&quot;red-color bg-blue&quot;</div>
                       <div>
                         &lt;div className=&#123; classNames &#125;&gt;Red&lt;/div&gt;
                       </div>
                       <div className={classNames}>Red</div>
-                      <div>const textContent= "JSX Expressions";</div>
+                      <div>const textContent= &quot;JSX Expressions&quot;;</div>
                       <div>
-                        &lt;div className="blue-color"&gt;&#123;textContent&#125;&lt;/div&gt;
+                        &lt;div
+                        className=&quot;blue-color&quot;&gt;&#123;textContent&#125;&lt;/div&gt;
                       </div>
                       <div className="blue-color">{textContent}</div>
                     </div>
@@ -219,10 +333,17 @@ Create a ReactJS Project with Vite
                   <li>
                     <strong>JavaScript Objects and CSS</strong>
                     <div>
-                      <div> &lt;div style=&#123;&#123;backgroundColor:'grey',color:'blue'&#125;&#125;&gt;...&lt;/div&gt;</div>
-                      <div style={{ backgroundColor: 'grey', color: 'blue' }}>Grey with blue text</div>
                       <div>
-                        &lt;div style=&#123;person.theme&#125;&gt;&#123;person.name&#125; &lt;/div&gt;
+                        {" "}
+                        &lt;div
+                        style=&#123;&#123;backgroundColor:&apos;grey&apos;,color:&apos;blue&apos;&#125;&#125;&gt;...&lt;/div&gt;
+                      </div>
+                      <div style={{ backgroundColor: "grey", color: "blue" }}>
+                        Grey with blue text
+                      </div>
+                      <div>
+                        &lt;div style=&#123;person.theme&#125;&gt;&#123;person.name&#125;
+                        &lt;/div&gt;
                       </div>
                       <div style={person.theme}>{person.name}</div>
                     </div>
@@ -233,13 +354,6 @@ Create a ReactJS Project with Vite
           }
           
           export default App;
-          
-    - Install the dependencies 
-        
-        .. code-block:: sh
-          :linenos:
-          
-          yarn install
           
     - Run dev
         
@@ -282,11 +396,10 @@ Hosting the App
 --------------------------------------------------------------------------------------------------
     
     - Hosting address: `https://<USERNAME>.github.io/react-projects/react-projects-with-typescript/tut02-writing-markup-with-jsx/ <https://\<USERNAME\>.github.io/react-projects/react-projects-with-typescript/tut02-writing-markup-with-jsx/>`_
-    - Login as github <USERNAME>
-    - Create repo ``react-projects`` repo if not exist
+    - Github login as <USERNAME>
+    - Create the ``react-projects`` repo if not exist
     - Create the ``gh-pages`` branch in the ``react-projects`` repo if not exist
     - Push the <dist> folder contents to the deploying folder ``/react-projects-with-typescript/tut02-writing-markup-with-jsx/`` in the ``gh-pages`` branch
-    - Push the <dist> folder contents to the deploying base folder in the ``gh-pages`` branch
     
 
 **************************************************************************************************

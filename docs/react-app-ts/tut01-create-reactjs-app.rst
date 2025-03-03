@@ -48,6 +48,106 @@ Create a ReactJS Project with Vite
         yarn create vite tut01-create-reactjs-app --template react-ts
         
 ==================================================================================================
+ESLint and Prettier configuration (Optional)
+==================================================================================================
+    
+    - Install the ``EditorConfig`` extension for VS Code if you haven't already.
+    - Add .editorconfig (https://editorconfig.org) to the root of the project ::
+        
+        root = true
+        
+        [*]
+        indent_style = space
+        indent_size = 2
+        end_of_line = lf
+        insert_final_newline = true
+        trim_trailing_whitespace = true
+        
+    - Reload VS Code (open the command palette, find and use ``Reload Window``).
+    - Install dependencies ::
+        
+        yarn add --dev prettier eslint-plugin-prettier eslint-config-prettier  eslint-plugin-react 
+        
+    - Modify the eslint.config.js file with following contents:
+        
+        .. code-block:: cfg
+          :caption: contents of eslint.config.js
+          :linenos:
+          
+          import js from "@eslint/js";
+          import globals from "globals";
+          import reactHooks from "eslint-plugin-react-hooks";
+          import reactRefresh from "eslint-plugin-react-refresh";
+          import tseslint from "typescript-eslint";
+          import react from "eslint-plugin-react";
+          import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
+          
+          export default tseslint
+            .config(
+              { ignores: ["dist"] },
+              {
+                //extends: [js.configs.recommended, ...tseslint.configs.recommended],
+                extends: [
+                  js.configs.recommended,
+                  ...tseslint.configs.recommendedTypeChecked,
+                ],
+                files: ["**/*.{ts,tsx}"],
+                languageOptions: {
+                  ecmaVersion: 2020,
+                  globals: globals.browser,
+                  parserOptions: {
+                    project: ["./tsconfig.node.json", "./tsconfig.app.json"],
+                    tsconfigRootDir: import.meta.dirname,
+                  },
+                },
+                settings: {
+                  react: {
+                    version: "detect",
+                  },
+                },
+                plugins: {
+                  "react-hooks": reactHooks,
+                  "react-refresh": reactRefresh,
+                  react: react,
+                },
+                rules: {
+                  ...reactHooks.configs.recommended.rules,
+                  "react-refresh/only-export-components": [
+                    "warn",
+                    { allowConstantExport: true },
+                  ],
+                  ...react.configs.recommended.rules,
+                  ...react.configs["jsx-runtime"].rules,
+                },
+              },
+            )
+            .concat(eslintPluginPrettier);
+          
+    - Edit the eslint scripts in the package.json file: 
+        
+        .. code-block:: cfg
+          :caption: contents of eslint.config.js
+          :linenos:
+          
+          "scripts": {
+            ... ,
+            "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+            "lint:fix": "eslint src --ext ts,tsx --fix",
+          },
+          
+    - Run ESLint:
+        
+        .. code-block:: sh
+          :linenos:
+          
+          #npm
+          npm run lint
+          npm run lint:fix
+          #yarn
+          yarn lint
+          yarn lint:fix
+          
+==================================================================================================
 Build and Run
 ==================================================================================================
   
@@ -114,8 +214,8 @@ Host the Live Demo on GitHub Pages
         yarn run build
         
     - Hosting address: `https://<USERNAME>.github.io/react-projects/react-projects-with-typescript/tut01-create-reactjs-app/ <https://\<USERNAME\>.github.io/react-projects/react-projects-with-typescript/tut01-create-reactjs-app/>`_
-    - Login as github <USERNAME>
-    - Create repo ``react-projects`` repo if not exist
+    - Github login as <USERNAME>
+    - Create the ``react-projects`` repo if not exist
     - Create the ``gh-pages`` branch in the ``react-projects`` repo if not exist
     - Push the <dist> folder contents to the deploying folder ``/react-projects-with-typescript/tut01-create-reactjs-app/`` in the ``gh-pages`` branch
     
