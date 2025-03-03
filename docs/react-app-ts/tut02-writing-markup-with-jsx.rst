@@ -234,6 +234,13 @@ Create a ReactJS Project with Vite
           
           export default App;
           
+    - Install the dependencies 
+        
+        .. code-block:: sh
+          :linenos:
+          
+          yarn install
+          
     - Run dev
         
         .. code-block:: sh
@@ -251,13 +258,10 @@ Create a ReactJS Project with Vite
 ==================================================================================================
 Hosting the React App on GitHub Pages
 ==================================================================================================
-    
-    If deploying to `https://<USERNAME>.github.io/<repo-name>/<deploying-base-dir>/<sub-dir>/ <https://\<USERNAME\>.github.io/\<repo-name\>/\<deploying-base-dir\>/\<sub-dir\>/>`_, then create:
-            
-            - in the ``gh-pages`` branch, create ``/<repo-name>/<deploying-base-dir>/<sub-dir>/`` folder structure
-            - upload the build files to `https://github.com/<USERNAME>/<repo-name>/<deploying-base-dir>/<sub-dir>/ <https://github.com/\<USERNAME\>/\<repo-name\>/\<deploying-base-dir\>/\<sub-dir\>/>`_ in the ``gh-pages`` branch
-            - the deploying base is ``/<repo-name>/<deploying-base-dir>/<sub-dir>/``
-            - the deploying url: ``https://<USERNAME>.github.io/<repo-name>/<deploying-base-dir>/<sub-dir>/``
+
+--------------------------------------------------------------------------------------------------
+Build the App
+--------------------------------------------------------------------------------------------------
     
     - Configure the build base url:
         
@@ -273,6 +277,15 @@ Hosting the React App on GitHub Pages
         
         yarn run build
         
+--------------------------------------------------------------------------------------------------
+Hosting the App 
+--------------------------------------------------------------------------------------------------
+    
+    - Hosting address: `https://<USERNAME>.github.io/react-projects/react-projects-with-typescript/tut02-writing-markup-with-jsx/ <https://\<USERNAME\>.github.io/react-projects/react-projects-with-typescript/tut02-writing-markup-with-jsx/>`_
+    - Login as github <USERNAME>
+    - Create repo ``react-projects`` repo if not exist
+    - Create the ``gh-pages`` branch in the ``react-projects`` repo if not exist
+    - Push the <dist> folder contents to the deploying folder ``/react-projects-with-typescript/tut02-writing-markup-with-jsx/`` in the ``gh-pages`` branch
     - Push the <dist> folder contents to the deploying base folder in the ``gh-pages`` branch
     
 
@@ -281,7 +294,7 @@ Sources and Demos
 **************************************************************************************************
     
     - Sources: https://github.com/david-ggs-230/react-projects/tree/main/react-projects-with-typescript/tut02-writing-markup-with-jsx
-    - Demo site: https://david-ggs-230.github.io/react-projects/react-projects-with-typescript/tut02-writing-markup-with-jsx/
+    - Live Demo: https://david-ggs-230.github.io/react-projects/react-projects-with-typescript/tut02-writing-markup-with-jsx/
     - Screenshot
         
         .. figure:: images/tut02/tut02-writing-jsx-homepage.png

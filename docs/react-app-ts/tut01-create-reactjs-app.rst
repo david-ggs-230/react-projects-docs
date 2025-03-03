@@ -56,6 +56,8 @@ Build and Run
     
     # Move inside the <new-react-app-name> folder
     cd tut01-create-reactjs-app
+    # Install the dependencies:  npm install <or> yarn install
+    npm install
     # Run dev:  npm run dev <or> yarn dev
     npm run dev
     # Build the React App: npm run build <or> yarn build
@@ -67,6 +69,9 @@ Build and Run
 Hosting the React App on GitHub Pages
 ==================================================================================================
 
+--------------------------------------------------------------------------------------------------
+Hosting Guide
+--------------------------------------------------------------------------------------------------
     
     - Creating a github repo, ``main`` branch
     - Create a ``gh-pages`` branch
@@ -90,6 +95,17 @@ Hosting the React App on GitHub Pages
                     base: '/<repo-name>/<deploying-base-dir>/<sub-dir>/',
                 })
                 
+--------------------------------------------------------------------------------------------------
+Host the Live Demo on GitHub Pages
+--------------------------------------------------------------------------------------------------
+
+    - Modifiy the ``vite.config.js`` file as follows ::
+        
+        export default defineConfig({
+            plugins: [react()],
+            base: '/react-projects/react-projects-with-typescript/tut01-create-reactjs-app/',
+        })
+        
     - Build the app ::
         
         # npm
@@ -97,9 +113,12 @@ Hosting the React App on GitHub Pages
         # yarn
         yarn run build
         
-    - Push the <dist> folder contents to the deploying base folder in the ``gh-pages`` branch
+    - Hosting address: `https://<USERNAME>.github.io/react-projects/react-projects-with-typescript/tut01-create-reactjs-app/ <https://\<USERNAME\>.github.io/react-projects/react-projects-with-typescript/tut01-create-reactjs-app/>`_
+    - Login as github <USERNAME>
+    - Create repo ``react-projects`` repo if not exist
+    - Create the ``gh-pages`` branch in the ``react-projects`` repo if not exist
+    - Push the <dist> folder contents to the deploying folder ``/react-projects-with-typescript/tut01-create-reactjs-app/`` in the ``gh-pages`` branch
     
-
 **************************************************************************************************
 Sources and Demos
 **************************************************************************************************
