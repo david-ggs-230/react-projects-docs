@@ -728,7 +728,7 @@ Sources and Demos
         .. figure:: images/tut03/tut03-react-components-homepage.png
            :align: center
            :class: sd-my-2
-           :width: 100%
+           :width: 80%
            :alt: React Components
            
            :custom-color-primary-bold:`React Components`

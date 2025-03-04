@@ -52,17 +52,21 @@ ESLint and Prettier configuration (Optional)
 ==================================================================================================
     
     - Install the ``EditorConfig`` extension for VS Code if you haven't already.
-    - Add .editorconfig (https://editorconfig.org) to the root of the project ::
+    - Add .editorconfig (https://editorconfig.org) to the root of the project
         
-        root = true
-        
-        [*]
-        indent_style = space
-        indent_size = 2
-        end_of_line = lf
-        insert_final_newline = true
-        trim_trailing_whitespace = true
-        
+        .. code-block:: cfg
+          :caption: contents of .editorconfig
+          :linenos:
+          
+          root = true
+          
+          [*]
+          indent_style = space
+          indent_size = 2
+          end_of_line = lf
+          insert_final_newline = true
+          trim_trailing_whitespace = true
+          
     - Reload VS Code (open the command palette, find and use ``Reload Window``).
     - Install dependencies ::
         
@@ -70,7 +74,7 @@ ESLint and Prettier configuration (Optional)
         
     - Modify the eslint.config.js file with following contents:
         
-        .. code-block:: cfg
+        .. code-block:: js
           :caption: contents of eslint.config.js
           :linenos:
           
