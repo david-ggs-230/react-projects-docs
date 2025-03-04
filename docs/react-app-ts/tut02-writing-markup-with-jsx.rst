@@ -310,6 +310,10 @@ Create Project Contents
                     <div className="list-item-content">
                       <h3>Event Handling</h3>
                       <p>
+                        &lt;button onClick=&#123;handleClick&#125;&gt;count is
+                        &#123;count&#125;&lt;/button&gt;
+                      </p>
+                      <p>
                         <button onClick={handleClick}>count is {count}</button>
                       </p>
                     </div>
