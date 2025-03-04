@@ -84,13 +84,10 @@ Create a ReactJS Project
         
         cd tut02-writing-markup-with-jsx
         
-    - Install the dependencies 
+    - Install the dependencies ::
         
-        .. code-block:: sh
-          :linenos:
-          
-          yarn install
-          
+        yarn install
+        
 --------------------------------------------------------------------------------------------------
 ESLint and Prettier Configuration
 --------------------------------------------------------------------------------------------------
@@ -197,74 +194,72 @@ Create Project Contents
           :caption: src/list-styles.css
           :linenos:
           
-          .listcontainer {
-            font-family: "Space Mono", monospace;
-            display: flex;
-            flex-direction: column;
-            max-width: 800px;
-            padding: 32px;
-            margin: 60px auto;
-            border: 1px solid #eee;
-            box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.06);
-          }
-          
-          * {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizelegibility;
-            letter-spacing: -0.25px;
+          .list-container {
+            max-width: 600px;
+            width:max-content;
+            margin: 0 auto;
+            font-family: Arial, sans-serif;
           }
           
           ol {
-            padding-left: 50px;
+            padding-left: 0;
+            counter-reset: list-counter;
           }
           
-          li {
-            color: #4f4f4f;
-            padding-left: 16px;
-            margin-top: 24px;
-            position: relative;
-            font-size: 16px;
-            line-height: 20px;
+          .list-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
           }
           
-          li:before {
-            content: "";
-            display: block;
-            height: 42px;
-            width: 42px;
-            border-radius: 50%;
-            border: 2px solid #ddd;
-            position: absolute;
-            top: -12px;
-            left: -46px;
+          .list-item div button {
+            border-radius: 8px;
+            border: 1px solid rgb(90, 95, 82);
+          }
+          .list-item-number {
+            font-weight: bold;
+            margin-right: 10px;
+            counter-increment: list-counter;
           }
           
-          ol.alternating-colors li:nth-child(odd):before {
-            border-color: #0bad02;
+          .list-item-number::before {
+            content: counter(list-counter) ". ";
           }
           
-          ol.alternating-colors li:nth-child(even):before {
-            border-color: #2378d5;
+          .list-item-content {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            flex-grow: 1;
           }
           
-          .red-color{
+          .list-item-content h3 {
+            margin: 0;
+            font-size: 1em;
+          }
+          
+          .list-item-content p {
+            margin: 5px 0;
+            font-size: 0.9em;
+          }
+          
+          .red-color {
             color: #ff0000;
           }
           
-          .blue-color{
+          .blue-color {
             color: #0011ff;
           }
           
-          .bg-red{
+          .bg-red {
             background-color: #ff0000;
           }
           
-          .bg-blue{
+          .bg-blue {
             background-color: #0011ff;
           }
           
-        
         
     - Edit the src/App.tsx file with the following contents
         
@@ -292,60 +287,92 @@ Create Project Contents
               setCount((count) => count + 1);
             }
             return (
-              <div className="App listcontainer">
+              <div className="list-container">
                 <h2>{titleElement}</h2>
-                <ol className="alternating-colors">
-                  <li>
-                    <strong>Return a single root element</strong>
-                    <div>&quot;&lt;&gt;The Rules of JSX&lt;/&gt;&quot;</div>
-                  </li>
-                  <li>
-                    <strong>Attributes in JSX</strong>
-                    <div>
-                      <div>
-                        &lt;div className=&quot;red-color&quot;&gt;Red&lt;/div&gt;
-                      </div>
-                      <div className="red-color">Red</div>
+                <ol>
+                  <li className="list-item">
+                    <div className="list-item-number"></div>
+                    <div className="list-item-content">
+                      <h3>Return a single root element</h3>
+                      <p>&quot;&lt;&gt;The Rules of JSX&lt;/&gt;&quot;</p>
                     </div>
                   </li>
-                  <li>
-                    <strong>Event Handling</strong>
-                    <div>
-                      <button onClick={handleClick}>count is {count}</button>
+                  <li className="list-item">
+                    <div className="list-item-number"></div>
+                    <div className="list-item-content">
+                      <h3>Attributes in JSX</h3>
+                      <p>&lt;p className=&quot;red-color&quot;&gt;Red&lt;/p&gt;</p>
+                      <p className="red-color">Red</p>
                     </div>
                   </li>
-                  <li>
-                    <strong>JavaScript Expressions</strong>
-                    <div>
-                      <div>const classNames=&quot;red-color bg-blue&quot;</div>
-                      <div>
-                        &lt;div className=&#123; classNames &#125;&gt;Red&lt;/div&gt;
-                      </div>
-                      <div className={classNames}>Red</div>
-                      <div>const textContent= &quot;JSX Expressions&quot;;</div>
-                      <div>
-                        &lt;div
-                        className=&quot;blue-color&quot;&gt;&#123;textContent&#125;&lt;/div&gt;
-                      </div>
-                      <div className="blue-color">{textContent}</div>
+                  <li className="list-item">
+                    <div className="list-item-number"></div>
+                    <div className="list-item-content">
+                      <h3>Event Handling</h3>
+                      <p>
+                        <button onClick={handleClick}>count is {count}</button>
+                      </p>
                     </div>
                   </li>
-                  <li>
-                    <strong>JavaScript Objects and CSS</strong>
-                    <div>
-                      <div>
-                        {" "}
-                        &lt;div
-                        style=&#123;&#123;backgroundColor:&apos;grey&apos;,color:&apos;blue&apos;&#125;&#125;&gt;...&lt;/div&gt;
+                  <li className="list-item">
+                    <div className="list-item-number"></div>
+                    <div className="list-item-content">
+                      <h3>JavaScript Expressions: Attributes</h3>
+                      <p>const classNames=&quot;red-color bg-blue&quot;</p>
+                      <p>&lt;p className=&#123; classNames &#125;&gt;Red&lt;/p&gt;</p>
+                      <p className={classNames}>Red</p>
+                    </div>
+                  </li>
+                  <li className="list-item">
+                    <div className="list-item-number"></div>
+                    <div className="list-item-content">
+                      <h3>JavaScript Expressions: Contents</h3>
+                      <p>const textContent= &quot;JSX Expressions&quot;;</p>
+                      <p>
+                        &lt;p
+                        className=&quot;blue-color&quot;&gt;&#123;textContent&#125;&lt;
+                        /p&gt;
+                      </p>
+                      <p className="blue-color">{textContent}</p>
+                    </div>
+                  </li>
+                  <li className="list-item">
+                    <div className="list-item-number"></div>
+                    <div className="list-item-content">
+                      <h3>Inline CSS Styles</h3>
+                      <p>
+                        &lt;p style=&#123;&#123; backgroundColor: &quot;grey&quot;, color:
+                        &quot;blue&quot;
+                        <br /> &#125;&#125; &gt; Grey background with blue text &lt;
+                        /p&gt;
+                      </p>
+                      <p style={{ backgroundColor: "grey", color: "blue" }}>
+                        Grey background with blue text
+                      </p>
+                    </div>
+                  </li>
+                  <li className="list-item">
+                    <div className="list-item-number"></div>
+                    <div className="list-item-content">
+                      <h3>JavaScript Objects</h3>
+                      <div style={{ textAlign: "left" }}>
+                        const person = &#123;
+                        <br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;name: &quot;George Bush&quot;,
+                        <br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;theme: &#123;
+                        <br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;backgroundColor: &quot;black&quot;,
+                        <br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;color: &quot;pink&quot;, &#125;
+                        <br />
+                        &#125;;
                       </div>
-                      <div style={{ backgroundColor: "grey", color: "blue" }}>
-                        Grey with blue text
-                      </div>
-                      <div>
-                        &lt;div style=&#123;person.theme&#125;&gt;&#123;person.name&#125;
-                        &lt;/div&gt;
-                      </div>
-                      <div style={person.theme}>{person.name}</div>
+                      <p>
+                        &lt;p style=&#123;person.theme&#125;&gt;&#123;person.name&#125;
+                        &lt;/p&gt;
+                      </p>
+                      <p style={person.theme}>{person.name}</p>
                     </div>
                   </li>
                 </ol>
@@ -413,7 +440,7 @@ Sources and Demos
         .. figure:: images/tut02/tut02-writing-jsx-homepage.png
            :align: center
            :class: sd-my-2
-           :width: 50%
+           :width: 100%
            :alt: Writing Markup with JSX
            
            :custom-color-primary-bold:`Writing Markup with JSX`
