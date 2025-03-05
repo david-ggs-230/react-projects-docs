@@ -176,8 +176,8 @@ ESLint and Prettier Configuration
           
           "scripts": {
             ... ,
-            "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-            "lint:fix": "eslint src --ext ts,tsx --fix",
+            "lint": "eslint src ./*.js ./*.ts --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+            "lint:fix": "eslint src ./*.js ./*.ts --ext ts,tsx --fix",
           },
           
     - Run ESLint:
