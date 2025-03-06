@@ -340,7 +340,7 @@ Create a Class Component with Arrow Functions Event Handler
                   <div>
                     <button onClick={this.handleIncrementBtnClick}>Increment</button>
                     <button
-                      onClick={this.handleIncrementBtnClick}
+                      onClick={this.handleDecrementBtnClick}
                       style={{
                         display: "inline",
                         marginLeft: "20px",
