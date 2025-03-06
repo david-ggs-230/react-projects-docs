@@ -207,7 +207,7 @@ Host the Live Demo on GitHub Pages
         
         export default defineConfig({
             plugins: [react()],
-            base: '/react-projects/react-projects-with-typescript/tut01-create-reactjs-app/',
+            base: "/react-projects/react-projects-with-typescript/tut01-create-reactjs-app/",
         })
         
     - Build the app ::

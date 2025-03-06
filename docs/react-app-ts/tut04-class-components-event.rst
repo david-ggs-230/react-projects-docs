@@ -1,4 +1,4 @@
-.. _tut04-class-components-state:
+.. _tut04-class-components-event:
 
 .. role:: custom-color-primary
    :class: sd-text-primary
@@ -11,31 +11,24 @@
    
 
 ##################################################################################################
-Class Components - State
+Class Components - Event
 ##################################################################################################
 
-In React class components, state is used to store and manage data that can change over time within the component. The state allows a component to keep track of information between renders and update the user interface (UI) when the state changes.
+Events are just some actions performed by a user to interact with any application. They can be the smallest of actions, like hovering a mouse pointer on an element that triggers a drop-down menu, resizing an application window, or dragging and dropping elements to upload them etc. In React class components, event handling refers to the process of responding to user actions, such as clicks, form submissions, or key presses. React provides a way to handle events in a declarative way, making it easy to respond to user actions and update the component's state or behavior accordingly.
 
-A React class component manages and exposes its state through the this.state property. React provides a unified API to handle state within a component, which is this.setState(). This method accepts either a JavaScript object or a function that returns a JavaScript object. When the state is updated, the component triggers a re-render to reflect the changes in the UI.
+Events in React are divided into three categories:
     
-    - State vs Props in Class Components:
-        
-        - State is used for data that can change over time and is local to the component.
-        - Props are used to pass data from parent components to child components and are immutable inside the child component.
-        
+    - Mouse Events − onClick, onDrag, onDoubleClick
+    - Keyboard Events − onKeyDown, onKeyPress, onKeyUp
+    - Focus Events − onFocus, onBlur
     
-    - Key Concepts of State in React Class Components:
-        
-        - State is local to the component: Each instance of a class component has its own state, and it is not shared with other components unless explicitly passed down as props.
-        - State is mutable: Unlike props, the state of a component can be changed over time.
-        - State changes trigger re-renders: When the state changes, React re-renders the component to reflect the updated state in the UI.
-        
-    - How to Use State in React Class Components:
-        
-        - Initialize State: Initialize the state in the constructor method by calling this.state and setting the initial values.
-        - Access State: Use this.state to access the state properties.
-        - Update State: Use this.setState() to update the state. This method ensures that React re-renders the component and applies the updated state.
-        
+Event Handling in React Class Components:
+    
+    - Binding Event Handlers: In class components, event handler methods need to be bound to the class instance, otherwise, this will not refer to the correct object. This is typically done in the constructor.
+    - Event Handlers: Event handler functions are usually methods inside the class component. These methods are invoked when the event is triggered.
+    - Using JSX for Event Handling: React uses JSX to attach event handlers, and events in React are camelCased, like onClick, onChange, etc.
+    
+
 **************************************************************************************************
 Create a React Project Structure
 **************************************************************************************************
@@ -46,11 +39,11 @@ Create a React Project
     
     - Create a ReactJS Project ::
         
-        yarn create vite tut04-class-components-state --template react-ts
+        yarn create vite tut04-class-components-event --template react-ts
         
-    - Move inside the ReactJS project folder <tut04-class-components-state> ::
+    - Move inside the ReactJS project folder <tut04-class-components-event> ::
         
-        cd tut04-class-components-state
+        cd tut04-class-components-event
         
     - Install the dependencies ::
         
@@ -234,205 +227,134 @@ Create Project CSS Styles
           }
           
 **************************************************************************************************
-Create Class Components Using State
+Create Class Components Using Event Handler
 **************************************************************************************************
 
-To demonstrate the usage of state in React class components with a parent counter and a child counter, we will create two class components:
-    
-    - The parent component will hold the state for the counter, and it will pass that state to the child component as props. Parent Component (ParentCounter):
-        
-        - The parent has its own counter (parentCounter) managed via the state (this.state.parentCounter).
-        - It has a method handleParentBtnClick to update the parent’s counter when the button is clicked.
-        - The parent passes its counter to the child via props (parentCounter).
-        
-    - The child component can modify the counter via a method provided by the parent. Child Component (ChildCounter):
-        
-        - The child maintains its own counter (childCounter) in the state (this.state.childCounter).
-        - The child can increment its counter independently of the parent's counter by clicking the button.
-        - The child has a method passed down by the parent as a prop to update the parent’s counter when the button is clicked.
-        - The child's counter is updated via its own state (this.setState()), while the parent's counter is passed down as a prop.
-        
+Event handling in React class components involves defining methods to handle events, binding those methods to the component instance (either manually or using arrow functions), and associating the methods with events in the JSX. Additionally, arguments can be passed to event handlers when necessary using arrow functions. This allows for a more interactive UI that responds to user input.
+
 ==================================================================================================
-Create a Class Component with State Data
+Create a Class Component with Class Methods Event Handler
 ==================================================================================================
     
-    Define a class component with a state counter and a method to increment the counter.
+    Define a class component with methods to modify the state data.
         
         .. code-block:: tsx
-          :caption: src/ParentComponentNoChild.tsx
+          :caption: src/ComponentWithClassFunctionEventHandler.tsx
           :linenos:
           
           import React from "react";
           
-          interface ParentComponentState {
-            parentCounter: number;
+          interface ComponentState {
+            counter: number;
           }
           
-          class ParentComponentNoChild extends React.Component<
+          class ComponentWithClassFunctionEventHandler extends React.Component<
             object,
-            ParentComponentState
+            ComponentState
           > {
             constructor(props: object) {
               super(props);
               this.state = {
-                parentCounter: 0,
+                counter: 0,
               };
+              this.handleIncrementBtnClick = this.handleIncrementBtnClick.bind(this);
+              this.handleDecrementBtnClick = this.handleDecrementBtnClick.bind(this);
             }
-            handleParentBtnClick = () => {
+            handleIncrementBtnClick() {
               this.setState((prevState) => ({
-                parentCounter: prevState.parentCounter + 1,
+                counter: prevState.counter + 1,
               }));
-            };
+            }
           
+            handleDecrementBtnClick() {
+              this.setState((prevState) => ({
+                counter: prevState.counter - 1,
+              }));
+            }
             render() {
               return (
                 <>
-                  <div style={{ marginTop: "20px" }}>
-                    Parent Counter: {this.state.parentCounter}
-                    <button
-                      onClick={this.handleParentBtnClick}
-                      style={{
-                        display: "inline",
-                        marginLeft: "20px",
-                      }}
-                    >
+                  <div style={{ marginTop: "20px" }}>Counter: {this.state.counter}</div>
+                  <div>
+                    <button onClick={() => this.handleIncrementBtnClick()}>
                       Increment
                     </button>
+                    <button
+                      onClick={() => this.handleDecrementBtnClick()}
+                      style={{
+                        display: "inline",
+                        marginLeft: "20px",
+                      }}
+                    >
+                      Decrement
+                    </button>
                   </div>
                 </>
               );
             }
           }
           
-          export default ParentComponentNoChild;
+          export default ComponentWithClassFunctionEventHandler;
           
 ==================================================================================================
-Create a Class Component Passing State Data to Child
+Create a Class Component with Arrow Functions Event Handler
 ==================================================================================================
     
-    Define a class component with a state counter and a method to increment the counter, and passing the state counter and method to its child.
+    Define a class component with arrow functions to modify the state data..
         
         .. code-block:: cfg
-          :caption: src/ParentComponentWithChild.tsx
+          :caption: src/ComponentWithArrowFunctionEventHandler.tsx
           :linenos:
           
           import React from "react";
-          import ChildComponent from "./ChildComponent";
           
-          interface ParentComponentState {
-            parentCounter: number;
+          interface ComponentState {
+            counter: number;
           }
           
-          class ParentComponentWithChild extends React.Component<
+          class ComponentWithArrowFunctionEventHandler extends React.Component<
             object,
-            ParentComponentState
+            ComponentState
           > {
             constructor(props: object) {
               super(props);
               this.state = {
-                parentCounter: 0,
+                counter: 0,
               };
             }
-            handleParentBtnClick = () => {
+            handleIncrementBtnClick = () => {
               this.setState((prevState) => ({
-                parentCounter: prevState.parentCounter + 1,
+                counter: prevState.counter + 1,
               }));
             };
           
+            handleDecrementBtnClick = () => {
+              this.setState((prevState) => ({
+                counter: prevState.counter - 1,
+              }));
+            };
             render() {
               return (
                 <>
-                  <div style={{ marginTop: "20px" }}>
-                    Parent Counter in Parent: {this.state.parentCounter}
+                  <div style={{ marginTop: "20px" }}>Counter: {this.state.counter}</div>
+                  <div>
+                    <button onClick={this.handleIncrementBtnClick}>Increment</button>
                     <button
-                      onClick={this.handleParentBtnClick}
+                      onClick={this.handleIncrementBtnClick}
                       style={{
                         display: "inline",
                         marginLeft: "20px",
                       }}
                     >
-                      In Parent: Parent ++
+                      Decrement
                     </button>
                   </div>
-                  <ChildComponent
-                    parentCounter={this.state.parentCounter}
-                    handleClick={this.handleParentBtnClick}
-                  />
                 </>
               );
             }
           }
           
-          export default ParentComponentWithChild;
-          
-          
-==================================================================================================
-Create a Class Component Receiving State Data from Parent
-==================================================================================================
-    
-    Define a class component with a state counter and a method to increment the counter, and receiving the parent's state counter and method as props.
-        
-        .. code-block:: cfg
-          :caption: src/ChildComponent.tsx
-          :linenos:
-          
-          import React from "react";
-          
-          interface ChildComponentProps {
-            parentCounter: number;
-            handleClick: () => void;
-          }
-          interface ChildComponentState {
-            childCounter: number;
-          }
-          
-          class ChildComponent extends React.Component<
-            ChildComponentProps,
-            ChildComponentState
-          > {
-            constructor(props: ChildComponentProps) {
-              super(props);
-              this.state = {
-                childCounter: 0,
-              };
-            }
-            handleChildBtnClick = () => {
-              this.setState((prevState) => ({
-                childCounter: prevState.childCounter + 1,
-              }));
-            };
-          
-            render() {
-              return (
-                <div style={{ marginTop: "20px" }}>
-                  <div>Parent Counter in Child: {this.props.parentCounter}</div>
-                  <div>Child Counter in Child: {this.state.childCounter}</div>
-                  <div>
-                    <button
-                      onClick={this.props.handleClick}
-                      style={{
-                        display: "inline",
-                        marginLeft: "20px",
-                      }}
-                    >
-                      In Child: Parent ++
-                    </button>
-                    <button
-                      onClick={this.handleChildBtnClick}
-                      style={{
-                        display: "inline",
-                        marginLeft: "20px",
-                      }}
-                    >
-                      In Child: Child ++
-                    </button>
-                  </div>
-                </div>
-              );
-            }
-          }
-          
-          export default ChildComponent;
+          export default ComponentWithArrowFunctionEventHandler;
           
 ==================================================================================================
 Create a Class Component to Show the User Interface
@@ -445,28 +367,28 @@ Create a Class Component to Show the User Interface
           :linenos:
           
           import React from "react";
-          import ParentComponentNoChild from "./ParentComponentNoChild";
-          import ParentComponentWithChild from "./ParentComponentWithChild";
+          import ComponentWithClassFunctionEventHandler from "./ComponentWithClassFunctionEventHandler";
+          import ComponentWithArrowFunctionEventHandler from "./ComponentWithArrowFunctionEventHandler";
           import "./list-style.css";
           
           class ClassComponentsDisplay extends React.Component {
             render() {
               return (
                 <div className="list-container">
-                  <h2>Using State in a React Class Component</h2>
+                  <h2>Event Handling in a React Class Component</h2>
                   <ol>
                     <li className="list-item">
                       <div className="list-item-number"></div>
                       <div className="list-item-content">
-                        <h3>Parent Counter -- No Child</h3>
-                        <ParentComponentNoChild />
+                        <h3>Event Handler by Class Methods</h3>
+                        <ComponentWithClassFunctionEventHandler />
                       </div>
                     </li>
                     <li className="list-item">
                       <div className="list-item-number"></div>
                       <div className="list-item-content">
-                        <h3>Parent Counter -- With Child</h3>
-                        <ParentComponentWithChild />
+                        <h3>Event Handler by Arrow Functions</h3>
+                        <ComponentWithArrowFunctionEventHandler />
                       </div>
                     </li>
                   </ol>
@@ -521,11 +443,11 @@ Build the App
     - Configure the build base url:
         
         - open vite.config.js file
-        - set base to ``/react-projects/react-projects-with-typescript/tut04-class-components-state/`` ::
+        - set base to ``/react-projects/react-projects-with-typescript/tut04-class-components-event/`` ::
             
             export default defineConfig({
                 plugins: [react()],
-                base: "/react-projects/react-projects-with-typescript/tut04-class-components-state/",
+                base: "/react-projects/react-projects-with-typescript/tut04-class-components-event/",
             })
             
     - Build the app ::
@@ -536,25 +458,25 @@ Build the App
 Hosting the App 
 ==================================================================================================
     
-    - Hosting address: `https://<USERNAME>.github.io/react-projects/react-projects-with-typescript/tut04-class-components-state/ <https://\<USERNAME\>.github.io/react-projects/react-projects-with-typescript/tut04-class-components-state/>`_
+    - Hosting address: `https://<USERNAME>.github.io/react-projects/react-projects-with-typescript/tut04-class-components-event/ <https://\<USERNAME\>.github.io/react-projects/react-projects-with-typescript/tut04-class-components-event/>`_
     - Github login as <USERNAME>
     - Create the ``react-projects`` repo if not exist
     - Create the ``gh-pages`` branch in the ``react-projects`` repo if not exist
-    - Push the <dist> folder contents to the deploying folder ``react-projects-with-typescript/tut04-class-components-state/`` in the ``gh-pages`` branch
+    - Push the <dist> folder contents to the deploying folder ``react-projects-with-typescript/tut04-class-components-event/`` in the ``gh-pages`` branch
     
 
 **************************************************************************************************
 Sources and Demos
 **************************************************************************************************
     
-    - Sources: https://github.com/david-ggs-230/react-projects/tree/main/react-projects-with-typescript/tut04-class-components-state
-    - Live Demo: https://david-ggs-230.github.io/react-projects/react-projects-with-typescript/tut04-class-components-state/
+    - Sources: https://github.com/david-ggs-230/react-projects/tree/main/react-projects-with-typescript/tut04-class-components-event
+    - Live Demo: https://david-ggs-230.github.io/react-projects/react-projects-with-typescript/tut04-class-components-event/
     - Screenshot
         
-        .. figure:: images/tut04/tut04-class-components-state.png
+        .. figure:: images/tut04/tut04-class-components-event.png
            :align: center
            :class: sd-my-2
            :width: 80%
-           :alt: React Class Components - State
+           :alt: React Class Components - Event
            
-           :custom-color-primary-bold:`React Class Components - State`
+           :custom-color-primary-bold:`React Class Components - Event`

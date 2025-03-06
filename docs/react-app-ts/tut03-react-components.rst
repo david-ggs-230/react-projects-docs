@@ -699,7 +699,7 @@ Build the App
             
             export default defineConfig({
                 plugins: [react()],
-                base: '/react-projects/react-projects-with-typescript/tut03-react-components/',
+                base: "/react-projects/react-projects-with-typescript/tut03-react-components/",
             })
             
     - Build the app ::

@@ -11,7 +11,7 @@
    
 
 ##################################################################################################
-React Class Components - Props
+Class Components - Props
 ##################################################################################################
 
 In a React class component, props (short for "properties") are used to pass data from a parent component to a child component. Props are read-only, meaning that a component cannot modify its own props directly. They are used to configure and customize the behavior and display of a component.
@@ -512,7 +512,7 @@ Build the App
             
             export default defineConfig({
                 plugins: [react()],
-                base: '/react-projects/react-projects-with-typescript/tut04-class-components-props/',
+                base: "/react-projects/react-projects-with-typescript/tut04-class-components-props/",
             })
             
     - Build the app ::

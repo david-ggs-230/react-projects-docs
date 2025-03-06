@@ -419,7 +419,7 @@ Build the App
             
             export default defineConfig({
                 plugins: [react()],
-                base: '/react-projects/react-projects-with-typescript/tut02-writing-markup-with-jsx/',
+                base: "/react-projects/react-projects-with-typescript/tut02-writing-markup-with-jsx/",
             })
             
     - Build the app ::

@@ -30,5 +30,6 @@ A React class component is a way to define a component using a JavaScript/TypeSc
     
     tut04-class-components-props
     tut04-class-components-state
+    tut04-class-components-event
     
     
