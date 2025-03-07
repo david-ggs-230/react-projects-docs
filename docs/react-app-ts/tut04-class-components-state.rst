@@ -312,7 +312,7 @@ Create a Class Component Passing State Data to Child
     
     Define a class component with a state counter and a method to increment the counter, and passing the state counter and method to its child.
         
-        .. code-block:: cfg
+        .. code-block:: tsx
           :caption: src/ParentComponentWithChild.tsx
           :linenos:
           
@@ -372,7 +372,7 @@ Create a Class Component Receiving State Data from Parent
     
     Define a class component with a state counter and a method to increment the counter, and receiving the parent's state counter and method as props.
         
-        .. code-block:: cfg
+        .. code-block:: tsx
           :caption: src/ChildComponent.tsx
           :linenos:
           
@@ -440,7 +440,7 @@ Create a Class Component to Show the User Interface
     
     Create a class Component to show the user interface
         
-        .. code-block:: cfg
+        .. code-block:: tsx
           :caption: src/ClassComponentsDisplay.tsx
           :linenos:
           
