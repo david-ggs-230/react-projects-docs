@@ -29,6 +29,111 @@ Event Handling in React Class Components:
     - Using JSX for Event Handling: React uses JSX to attach event handlers, and events in React are camelCased, like onClick, onChange, etc.
     
 
+React event handling is very similar to DOM events with little changes. In JavaScript, when an event is specified, you will be dealing with a react event type called a synthetic event instead of regular DOM events. SyntheticEvent is expensive in terms of CPU resources as every synthetic event created needs to be garbage-collected. Every synthetic event object has the following attributes:
+    
+    - boolean bubbles
+    - boolean cancelable
+    - DOMEventTarget currentTarget
+    - boolean defaultPrevented
+    - number eventPhase
+    - boolean isTrusted
+    - DOMEvent nativeEvent
+    - void preventDefault()
+    - boolean isDefaultPrevented()
+    - void stopPropagation()
+    - boolean isPropagationStopped()
+    - void persist()
+    - DOMEventTarget target
+    - number timeStamp
+    - string type
+    
+Event Handler in Class Component:
+    
+    - using regular function
+        
+        - Define the event handler ::
+            
+            # Passing no argument
+            eventHandlerMethod() { 
+               .... 
+            }
+            
+            # Passing an event argument
+            eventHandlerMethod(e) { 
+               .... 
+            }
+            
+            # Passing extra arguments 
+            eventHandlerMethod(extra, e) { 
+               .... 
+            }
+            
+        - Use the event handler
+            
+            - must bind the event handler method in the constructor of the component ::
+                
+                constructor(props) { 
+                   ... 
+                   this.eventHandlerMethod = this.eventHandlerMethod.bind(this); 
+                }
+                
+            - Handle event on element ::
+                
+                # Passing no argument
+                <tag onClick={this.eventHandlerMethod}> ... </tag>
+                <tag onClick={()=>this.eventHandlerMethod()}> ... </tag>
+                
+                #Passing an event argument
+                <tag onClick={this.eventHandlerMethod}> ... </tag>
+                <tag onClick={(e)=>this.eventHandlerMethod(e)}> ... </tag>
+                
+                #Passing extra arguments 
+                <tag onClick={this.eventHandlerMethod.bind(this, extra)}> ... </tag>
+                <tag onClick={(e)=>this.eventHandlerMethod(extra, e)}> ... </tag>
+                
+    - using lambda function
+        
+        - Define the event handler ::
+            
+            # Passing no argument
+            eventHandlerMethod = () => { 
+               .... 
+            }
+            
+            # Passing an event argument
+            eventHandlerMethod = (e) => { 
+               .... 
+            }
+            
+            # Passing extra arguments 
+            eventHandlerMethod = (extra, e) => { 
+               .... 
+            }
+            
+        - Use the event handler
+            
+            - in lambda syntax, binding is not needed. this keyword will be automatically bound to the event handler method ::
+                
+                constructor(props) { 
+                   ... 
+                   //this.eventHandlerMethod = this.eventHandlerMethod.bind(this);  # no need
+                }
+                
+            - Handle event on element ::
+                
+                # Passing no argument
+                <tag onClick={this.eventHandlerMethod}> ... </tag>
+                <tag onClick={()=>this.eventHandlerMethod()}> ... </tag>
+                
+                #Passing an event argument
+                <tag onClick={this.eventHandlerMethod}> ... </tag>
+                <tag onClick={(e)=>this.eventHandlerMethod(e)}> ... </tag>
+                
+                #Passing extra arguments 
+                <tag onClick={(e)=>this.eventHandlerMethod(extra, e)}> ... </tag>
+                
+
+
 **************************************************************************************************
 Create a React Project Structure
 **************************************************************************************************
@@ -233,8 +338,12 @@ Create Class Components Using Event Handler
 Event handling in React class components involves defining methods to handle events, binding those methods to the component instance (either manually or using arrow functions), and associating the methods with events in the JSX. Additionally, arguments can be passed to event handlers when necessary using arrow functions. This allows for a more interactive UI that responds to user input.
 
 ==================================================================================================
-Create a Class Component with Class Methods Event Handler
+Event Handler (Pass no argument)
 ==================================================================================================
+
+--------------------------------------------------------------------------------------------------
+Event Handler Using Class Method
+--------------------------------------------------------------------------------------------------
     
     Define a class component with methods to modify the state data.
         
@@ -296,13 +405,13 @@ Create a Class Component with Class Methods Event Handler
           
           export default ComponentWithClassFunctionEventHandler;
           
-==================================================================================================
-Create a Class Component with Arrow Functions Event Handler
-==================================================================================================
+--------------------------------------------------------------------------------------------------
+Event Handler Using Arrow Functions
+--------------------------------------------------------------------------------------------------
     
     Define a class component with arrow functions to modify the state data..
         
-        .. code-block:: cfg
+        .. code-block:: tsx
           :caption: src/ComponentWithArrowFunctionEventHandler.tsx
           :linenos:
           
@@ -356,19 +465,325 @@ Create a Class Component with Arrow Functions Event Handler
           
           export default ComponentWithArrowFunctionEventHandler;
           
+
+==================================================================================================
+Event Handler (Pass extra argument)
+==================================================================================================
+
+--------------------------------------------------------------------------------------------------
+Event Handler Using Class Method
+--------------------------------------------------------------------------------------------------
+    
+    Define a class component with methods to modify the state data.
+        
+        .. code-block:: tsx
+          :caption: src/ComponentWithClassFunctionExtraArgs.tsx
+          :linenos:
+          
+          import React from "react";
+          
+          interface ComponentState {
+            counter: number;
+            messages: string[];
+          }
+          
+          class ComponentWithClassFunctionExtraArgs extends React.Component<
+            object,
+            ComponentState
+          > {
+            constructor(props: object) {
+              super(props);
+              this.state = {
+                counter: 0,
+                messages: [],
+              };
+              this.handleIncrementBtnClick = this.handleIncrementBtnClick.bind(this);
+              this.handleDecrementBtnClick = this.handleDecrementBtnClick.bind(this);
+              this.handleMessagesUpdateClick = this.handleMessagesUpdateClick.bind(this);
+              this.handleMessagesUpdateEventClick =
+                this.handleMessagesUpdateEventClick.bind(this);
+            }
+            handleIncrementBtnClick() {
+              this.setState((prevState) => ({
+                counter: prevState.counter + 1,
+              }));
+            }
+          
+            handleDecrementBtnClick() {
+              this.setState((prevState) => ({
+                counter: prevState.counter - 1,
+              }));
+            }
+            handleMessagesUpdateClick({
+              message,
+              count,
+            }: {
+              message: string;
+              count: number;
+            }) {
+              this.setState((prevState) => ({
+                messages: [...prevState.messages, "" + message + ", count: " + count],
+              }));
+            }
+            handleMessagesUpdateEventClick(
+              {
+                message,
+                count,
+              }: {
+                message: string;
+                count: number;
+              },
+              e: React.MouseEvent,
+            ) {
+              this.setState((prevState) => ({
+                messages: [
+                  ...prevState.messages,
+                  "" +
+                    message +
+                    ", count: " +
+                    count +
+                    ", e: " +
+                    (e?.target as HTMLElement)?.innerHTML,
+                ],
+              }));
+            }
+            render() {
+              return (
+                <>
+                  <div style={{ marginTop: "20px" }}>Counter: {this.state.counter}</div>
+                  <div>
+                    <button onClick={() => this.handleIncrementBtnClick()}>
+                      Increment
+                    </button>
+                    <button
+                      onClick={() => this.handleDecrementBtnClick()}
+                      style={{
+                        display: "inline",
+                        marginLeft: "20px",
+                      }}
+                    >
+                      Decrement
+                    </button>
+                  </div>
+                  <div style={{ marginTop: "20px" }}>
+                    <button
+                      onClick={this.handleMessagesUpdateClick.bind(this, {
+                        message: "Button 1",
+                        count: this.state.counter,
+                      })}
+                    >
+                      Button 1
+                    </button>
+                    <button
+                      onClick={() =>
+                        this.handleMessagesUpdateClick({
+                          message: "Button 2",
+                          count: this.state.counter,
+                        })
+                      }
+                      style={{ marginLeft: "20px" }}
+                    >
+                      Button 2
+                    </button>
+                    
+                    <button
+                      onClick={(e) =>
+                        this.handleMessagesUpdateEventClick(
+                          {
+                            message: "Button 3",
+                            count: this.state.counter,
+                          },
+                          e,
+                        )
+                      }
+                      style={{ marginLeft: "20px" }}
+                    >
+                      Button 3
+                    </button>
+                  </div>
+                  {this.state.messages.length > 0 && (
+                    <div className="list-container">
+                      <h5>LogMessages</h5>
+                      <ol>
+                        {this.state.messages.map((message, index) => (
+                          <li key={index} className="list-item">
+                            <div>
+                              {index + 1}. {message}
+                            </div>
+                          </li>
+                        ))}
+                      </ol>
+                    </div>
+                  )}
+                </>
+              );
+            }
+          }
+          
+          export default ComponentWithClassFunctionExtraArgs;
+          
+--------------------------------------------------------------------------------------------------
+Event Handler Using Arrow Functions
+--------------------------------------------------------------------------------------------------
+    
+    Define a class component with arrow functions to modify the state data..
+        
+        .. code-block:: tsx
+          :caption: src/ComponentWithArrowFunctionEventHandler.tsx
+          :linenos:
+          
+          import React from "react";
+          
+          interface ComponentState {
+            counter: number;
+            messages: string[];
+          }
+          
+          class ComponentWitharrowFunctionExtraArgs extends React.Component<
+            object,
+            ComponentState
+          > {
+            constructor(props: object) {
+              super(props);
+              this.state = {
+                counter: 0,
+                messages: [],
+              };
+            }
+            handleIncrementBtnClick = () => {
+              this.setState((prevState) => ({
+                counter: prevState.counter + 1,
+              }));
+            };
+          
+            handleDecrementBtnClick = () => {
+              this.setState((prevState) => ({
+                counter: prevState.counter - 1,
+              }));
+            };
+            handleMessagesUpdateClick = ({
+              message,
+              count,
+            }: {
+              message: string;
+              count: number;
+            }) => {
+              this.setState((prevState) => ({
+                messages: [...prevState.messages, "" + message + ", count: " + count],
+              }));
+            };
+            handleMessagesUpdateEventClick = (
+              {
+                message,
+                count,
+              }: {
+                message: string;
+                count: number;
+              },
+              e: React.MouseEvent,
+            ) => {
+              this.setState((prevState) => ({
+                messages: [
+                  ...prevState.messages,
+                  "" +
+                    message +
+                    ", count: " +
+                    count +
+                    ", e: " +
+                    (e?.target as HTMLElement)?.innerHTML,
+                ],
+              }));
+            };
+            render() {
+              return (
+                <>
+                  <div style={{ marginTop: "20px" }}>Counter: {this.state.counter}</div>
+                  <div>
+                    <button onClick={() => this.handleIncrementBtnClick()}>
+                      Increment
+                    </button>
+                    <button
+                      onClick={() => this.handleDecrementBtnClick()}
+                      style={{
+                        display: "inline",
+                        marginLeft: "20px",
+                      }}
+                    >
+                      Decrement
+                    </button>
+                  </div>
+                  <div style={{ marginTop: "20px" }}>
+                    <button
+                      onClick={this.handleMessagesUpdateClick.bind(this, {
+                        message: "Button 1",
+                        count: this.state.counter,
+                      })}
+                    >
+                      Button 1
+                    </button>
+                    <button
+                      onClick={() =>
+                        this.handleMessagesUpdateClick({
+                          message: "Button 2",
+                          count: this.state.counter,
+                        })
+                      }
+                      style={{ marginLeft: "20px" }}
+                    >
+                      Button 2
+                    </button>
+          
+                    <button
+                      onClick={(e) =>
+                        this.handleMessagesUpdateEventClick(
+                          {
+                            message: "Button 3",
+                            count: this.state.counter,
+                          },
+                          e,
+                        )
+                      }
+                      style={{ marginLeft: "20px" }}
+                    >
+                      Button 3
+                    </button>
+                  </div>
+                  {this.state.messages.length > 0 && (
+                    <div className="list-container">
+                      <h5>LogMessages</h5>
+                      <ol>
+                        {this.state.messages.map((message, index) => (
+                          <li key={index} className="list-item">
+                            <div>
+                              {index + 1}. {message}
+                            </div>
+                          </li>
+                        ))}
+                      </ol>
+                    </div>
+                  )}
+                </>
+              );
+            }
+          }
+          
+          export default ComponentWitharrowFunctionExtraArgs;
+          
 ==================================================================================================
 Create a Class Component to Show the User Interface
 ==================================================================================================
     
     Create a class Component to show the user interface
         
-        .. code-block:: cfg
+        .. code-block:: tsx
           :caption: src/ClassComponentsDisplay.tsx
           :linenos:
           
           import React from "react";
           import ComponentWithClassFunctionEventHandler from "./ComponentWithClassFunctionEventHandler";
           import ComponentWithArrowFunctionEventHandler from "./ComponentWithArrowFunctionEventHandler";
+          import ComponentWithClassFunctionExtraArgs from "./ComponentWithClassFunctionExtraArgs";
+          import ComponentWitharrowFunctionExtraArgs from "./ComponentWitharrowFunctionExtraArgs";
           import "./list-style.css";
           
           class ClassComponentsDisplay extends React.Component {
@@ -389,6 +804,20 @@ Create a Class Component to Show the User Interface
                       <div className="list-item-content">
                         <h3>Event Handler by Arrow Functions</h3>
                         <ComponentWithArrowFunctionEventHandler />
+                      </div>
+                    </li>
+                    <li className="list-item">
+                      <div className="list-item-number"></div>
+                      <div className="list-item-content">
+                        <h3>Event Handler by Class Methods with Extra Arguments</h3>
+                        <ComponentWithClassFunctionExtraArgs />
+                      </div>
+                    </li>
+                    <li className="list-item">
+                      <div className="list-item-number"></div>
+                      <div className="list-item-content">
+                        <h3>Event Handler by Arrow Functions with Extra Arguments</h3>
+                        <ComponentWitharrowFunctionExtraArgs />
                       </div>
                     </li>
                   </ol>
