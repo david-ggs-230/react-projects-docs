@@ -236,39 +236,49 @@ Creating TypeScript object types
           import React from "react";
           
           type Person = {
-            name: string;
-            age: number;
-            location: string;
-            label: string;
-            children?: React.ReactNode;
-            propAccess?: "this" | "destructuring" | "default";
+            name?: string;
+            age?: number;
+            location?: string;
           };
           
           export default Person;
           
 ==================================================================================================
-Accessing Props
+Passing and Accessing Props
 ==================================================================================================
     
-    - Create a child class Component with default props
+In React, passing and accessing props in a class component is simple and straightforward:
+    
+    - Passing Props to a Class Component (Passing props from a parent component to a child component)
+        
+        - The props are passed as attributes in the JSX, and the child component can access them.
+        - The destructuring props are passed as attributes in the JSX, and the child component can access them.
+        - If a prop is not passed, the child component will use default values.
+        
+    - Accessing Props to a Class Component (a child component access props passed from a parent component)
+        
+        - ChildComponent accesses the props object.
+        - ChildComponent accesses attributes from the destructured props object
+        
+    
+    
+    - Create a child class Component accessing the props object.
         
         .. code-block:: tsx
-          :caption: src/ClassComponentAccessProps.tsx
+          :caption: src/ChildComponentWithPropsArgs.tsx
           :linenos:
           
           import React from "react";
           import Person from "./Person";
           
-          class ClassComponentAccessProps extends React.Component<Person> {
-            // Default props
-            static defaultProps = {
-              name: "Unknown Name",
-              age: NaN,
-              location: "Unknown Location",
-            };
+          class ChildComponentWithPropsArgs extends React.Component<Person> {
             render() {
               // Accessing props
-              const { name, age, location } = this.props;
+              const {
+                name = "Unknown Name",
+                age = NaN,
+                location = "Unknown Location",
+              } = this.props;
               return (
                 <>
                   <div>Name: {name}</div>
@@ -279,50 +289,38 @@ Accessing Props
             }
           }
           
-          export default ClassComponentAccessProps;
+          export default ChildComponentWithPropsArgs;
           
-    - Create a child class Component for props accessing
+    - Create a child class Component for props accessing with static defaultProps
         
         .. code-block:: tsx
-          :caption: src/ClassComponentPropsAccessMethods.tsx
+          :caption: src/ChildComponentWithDefaultProps.tsx
           :linenos:
           
           import React from "react";
           import Person from "./Person";
           
-          class ClassComponentPropsAccessMethods extends React.Component<Person> {
+          class ChildComponentWithDefaultProps extends React.Component<Person> {
+            static defaultProps = {
+              name: "Unknown Name",
+              age: NaN,
+              location: "Unknown Location",
+            };
             render() {
               // Accessing props
-              const {
-                name = "Unknown",
-                age = NaN,
-                location = "Unknown",
-                propAccess = "default",
-              } = this.props;
+              const { name, age, location } = this.props;
           
               return (
                 <>
-                  {(propAccess === "this" || propAccess === "default") && (
-                    <>
-                      <div>Name: {this.props.name}</div>
-                      <div>Age: {this.props.age}</div>
-                      <div>Location: {this.props.location}</div>
-                    </>
-                  )}
-                  {propAccess === "destructuring" && (
-                    <>
-                      <div>Name: {name}</div>
-                      <div>Age: {age}</div>
-                      <div>Location: {location}</div>
-                    </>
-                  )}
+                  <div>Name: {name}</div>
+                  <div>Age: {age}</div>
+                  <div>Location: {location}</div>
                 </>
               );
             }
           }
           
-          export default ClassComponentPropsAccessMethods;
-          
+          export default ChildComponentWithDefaultProps;
           
 ==================================================================================================
 Passing Props
@@ -335,17 +333,17 @@ Passing Props
           :linenos:
           
           import React from "react";
-          import ClassComponentAccessProps from "./ClassComponentAccessProps";
-          import ClassComponentPropsAccessMethods from "./ClassComponentPropsAccessMethods";
+          import ChildComponentWithPropsArgs from "./ChildComponentWithPropsArgs";
+          import ChildComponentWithDefaultProps from "./ChildComponentWithDefaultProps";
           import Person from "./Person";
           import "./list-style.css";
+          
           class ClassComponentsDisplay extends React.Component {
             render() {
               const person: Person = {
                 name: "John Doe",
                 age: 30,
                 location: "New York",
-                label: "Person Label",
               };
               return (
                 <div className="list-container">
@@ -354,107 +352,79 @@ Passing Props
                     <li className="list-item">
                       <div className="list-item-number"></div>
                       <div className="list-item-content">
-                        <h3>Parent: Passing props</h3>
-                        <p>
-                          <div style={{ textAlign: "left", paddingLeft: "20px" }}>
-                            &lt;ClassComponentAccessProps <br />
-                            &nbsp;&nbsp;&nbsp;&nbsp;name=&quot;John Doe&quot; <br />
-                            &nbsp;&nbsp;&nbsp;&nbsp;age=&#123;30&#125; <br />
-                            &nbsp;&nbsp;&nbsp;&nbsp;location=&quot;New York&quot; <br />{" "}
-                            /&gt;
-                          </div>
-                        </p>
-                        <p>
-                          <ClassComponentAccessProps
+                        <h3>Parent: Passing props arguments</h3>
+                        <h5 className="blue-color" style={{ marginTop: "0px" }}>
+                          Child: Accessing arguments using props
+                        </h5>
+          
+                        <div style={{ textAlign: "left", paddingLeft: "20px" }}>
+                          &lt;ChildComponentWithPropsArgs <br />
+                          &nbsp;&nbsp;&nbsp;&nbsp;name=&quot;John Doe&quot; <br />
+                          &nbsp;&nbsp;&nbsp;&nbsp;age=&#123;30&#125; <br />
+                          &nbsp;&nbsp;&nbsp;&nbsp;location=&quot;New York&quot; <br />
+                          /&gt;
+                        </div>
+          
+                        <div>
+                          <ChildComponentWithPropsArgs
                             name="John Doe"
                             age={30}
                             location="New York"
                           />
-                        </p>
+                        </div>
                       </div>
                     </li>
                     <li className="list-item">
                       <div className="list-item-number"></div>
                       <div className="list-item-content">
                         <h3>Parent: Passing destructuring props</h3>
-                        <p>
-                          <div style={{ textAlign: "left", paddingLeft: "20px" }}>
-                            &lt;ClassComponentAccessProps <br />
-                            &nbsp;&nbsp;&nbsp;&nbsp;&#123;...person&#125; <br />
-                            /&gt;
-                          </div>
-                        </p>
-                        <p>
-                          <ClassComponentAccessProps {...person} />
-                        </p>
+                        <h5 className="blue-color" style={{ marginTop: "0px" }}>
+                          Child: Accessing arguments using props
+                        </h5>
+          
+                        <div style={{ textAlign: "left", paddingLeft: "20px" }}>
+                          &lt;ChildComponentWithPropsArgs <br />
+                          &nbsp;&nbsp;&nbsp;&nbsp;&#123; ...person&#125; <br />
+                          /&gt;
+                        </div>
+          
+                        <div>
+                          <ChildComponentWithPropsArgs {...person} />
+                        </div>
                       </div>
                     </li>
                     <li className="list-item">
                       <div className="list-item-number"></div>
                       <div className="list-item-content">
-                        <h3>Parent: Passing default props </h3>
-                        <p>
-                          <div style={{ textAlign: "left", paddingLeft: "20px" }}>
-                            &lt;ClassComponentAccessProps /&gt;
-                          </div>
-                        </p>
-                        <p>
-                          <ClassComponentAccessProps />
-                        </p>
+                        <h3>Parent: Passing no arguments</h3>
+                        <h5 className="blue-color" style={{ marginTop: "0px" }}>
+                          Child: Accessing default arguments using props
+                        </h5>
+          
+                        <div style={{ textAlign: "left", paddingLeft: "20px" }}>
+                          &lt;ChildComponentWithPropsArgs /&gt;
+                        </div>
+          
+                        <div>
+                          <ChildComponentWithPropsArgs />
+                        </div>
                       </div>
                     </li>
                     <li className="list-item">
                       <div className="list-item-number"></div>
                       <div className="list-item-content">
-                        <h3>Child: Accessing props through this</h3>
-                        <p>
-                          <div style={{ textAlign: "left", paddingLeft: "20px" }}>
-                            &lt;&gt; <br />
-                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;Name:
-                            &#123;this.props.name&#125;&lt;/div&gt;
-                            <br />
-                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;Age:
-                            &#123;this.props.age&#125;&lt;/div&gt;
-                            <br />
-                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;Location:
-                            &#123;this.props.location&#125;&lt;/div&gt;
-                            <br />
-                            &lt;/&gt;
-                          </div>
-                        </p>
-                        <p>
-                          <ClassComponentPropsAccessMethods
-                            propAccess="this"
-                            {...person}
-                          />
-                        </p>
-                      </div>
-                    </li>
-                    <li className="list-item">
-                      <div className="list-item-number"></div>
-                      <div className="list-item-content">
-                        <h3>Child: Accessing props through destructuring</h3>
-                        <p>
-                          <div style={{ textAlign: "left", paddingLeft: "20px" }}>
-                            &lt;&gt; <br />
-                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;Name:
-                            &#123;name&#125;&lt;/div&gt;
-                            <br />
-                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;Age:
-                            &#123;age&#125;&lt;/div&gt;
-                            <br />
-                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;Location:
-                            &#123;location&#125;&lt;/div&gt;
-                            <br />
-                            &lt;/&gt;
-                          </div>
-                        </p>
-                        <p>
-                          <ClassComponentPropsAccessMethods
-                            propAccess="destructuring"
-                            {...person}
-                          />
-                        </p>
+                        <h3>Parent: Passing no arguments</h3>
+                        <h5 className="blue-color" style={{ marginTop: "0px" }}>
+                          Child: Accessing default arguments using defaultProps
+                        </h5>
+          
+                        <div style={{ textAlign: "left", paddingLeft: "20px" }}>
+                          &lt;ChildComponentWithDefaultProps /&gt;
+                        </div>
+          
+                        <div>
+                          <ChildComponentWithDefaultProps />
+                        </div>
                       </div>
                     </li>
                   </ol>
@@ -464,6 +434,7 @@ Passing Props
           }
           
           export default ClassComponentsDisplay;
+          
           
     - Edit ``App.tsx`` to render the component
         
