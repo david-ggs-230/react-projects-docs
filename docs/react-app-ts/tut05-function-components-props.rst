@@ -247,19 +247,63 @@ Creating TypeScript object types
           export default Person;
           
 ==================================================================================================
-Accessing Props
+Passing and Accessing Props
 ==================================================================================================
+
+In React, passing and accessing props in a function component is simple and straightforward:
     
-    - Create a child function Component with default props
+    - Passing Props to a Function Component (Passing props from a parent component to a child component)
+        
+        - The props are passed as attributes in the JSX, and the child component can access them.
+        - The destructuring props are passed as attributes in the JSX, and the child component can access them.
+        - If a prop is not passed, the child component will use default values.
+        
+    - Accessing Props to a Function Component (a child component access props passed from a parent component)
+        
+        - ChildComponent accesses the props object.
+        - ChildComponent accesses the destructured props object
+        
+    
+    - Create a child function Component accessing the props object.
         
         .. code-block:: tsx
-          :caption: src/FunctionComponentWithDestrucingPropsArgs.tsx
+          :caption: src/ChildComponentWithPropsArgs.tsx
+          :linenos:
+          
+          import Person from "./Person";
+          
+          const ChildComponentWithPropsArgs: React.FC<Person> = (props: Person) => {
+            const {
+              name = "Unknown Name",
+              age = NaN,
+              location = "Unknown Location",
+            } = { ...props };
+            return (
+              <>
+                {/*<div>Name: {props.name ? props.name : "Unknown Name"}</div>*/}
+                {/*<div>Age: {props.age ? props.age : "NaN"}</div>*/}
+                {/*<div>
+                  Location: {props.location ? props.location : "Unknown Location"}
+                </div> */}
+                <div>Name: {name}</div>
+                <div>Age: {age}</div>
+                <div>Location: {location}</div>
+              </>
+            );
+          };
+          
+          export default ChildComponentWithPropsArgs;
+          
+    - Create a child function Component accessing the destructured props object
+        
+        .. code-block:: tsx
+          :caption: src/ChildComponentWithDestrucingPropsArgs.tsx
           :linenos:
           
           import React from "react";
           import Person from "./Person";
           
-          const FunctionComponentWithDestrucingPropsArgs: React.FC<Person> = ({
+          const ChildComponentWithDestrucingPropsArgs: React.FC<Person> = ({
             name = "Unknown Name",
             age = NaN,
             location = "Unknown Location",
@@ -273,62 +317,17 @@ Accessing Props
             );
           };
           
-          export default FunctionComponentWithDestrucingPropsArgs;
+          export default ChildComponentWithDestrucingPropsArgs;
           
-          
-    - Create a child function Component for props accessing
-        
-        .. code-block:: tsx
-          :caption: src/FunctionComponentWithPropsArgs.tsx
-          :linenos:
-          
-          import React from "react";
-          import Person from "./Person";
-          
-          const FunctionComponentWithPropsArgs: React.FC<Person> = (props: Person) => {
-            const {
-              name = "Unknown",
-              age = NaN,
-              location = "Unknown",
-              propAccess = "default",
-            } = { ...props };
-          
-            return (
-              <>
-                {propAccess === "default" && (
-                  <>
-                    <div>Name: {props.name ? props.name : "Unknown"}</div>
-                    <div>Age: {props.age ? props.age : NaN}</div>
-                    <div>Location: {props.location ? props.location : "Unknown"}</div>
-                  </>
-                )}
-                {propAccess === "destructuring" && (
-                  <>
-                    <div>Name: {name}</div>
-                    <div>Age: {age}</div>
-                    <div>Location: {location}</div>
-                  </>
-                )}
-              </>
-            );
-          };
-          
-          export default FunctionComponentWithPropsArgs;
-          
-          
-==================================================================================================
-Passing Props
-==================================================================================================
-    
-    - Create a parent function Component for passing props
+    - Create a parent function Component passing props to its child component
         
         .. code-block:: cfg
           :caption: src/FunctionComponentsDisplay.tsx
           :linenos:
           
           import React from "react";
-          import FunctionComponentWithDestrucingPropsArgs from "./FunctionComponentWithDestrucingPropsArgs";
-          import FunctionComponentWithPropsArgs from "./FunctionComponentWithPropsArgs";
+          import ChildComponentWithDestrucingPropsArgs from "./ChildComponentWithDestrucingPropsArgs";
+          import ChildComponentWithPropsArgs from "./ChildComponentWithPropsArgs";
           import Person from "./Person";
           import "./list-style.css";
           
@@ -337,7 +336,6 @@ Passing Props
               name: "John Doe",
               age: 30,
               location: "New York",
-              label: "Person Label",
             };
             return (
               <div className="list-container">
@@ -347,17 +345,20 @@ Passing Props
                     <div className="list-item-number"></div>
                     <div className="list-item-content">
                       <h3>Parent: Passing props arguments</h3>
+                      <h5 className="blue-color" style={{ marginTop: "0px" }}>
+                        Child: Accessing arguments using props
+                      </h5>
                       <p>
                         <div style={{ textAlign: "left", paddingLeft: "20px" }}>
-                          &lt;FunctionComponentWithDestructuringPropsArgs <br />
+                          &lt;ChildComponentWithPropsArgs <br />
                           &nbsp;&nbsp;&nbsp;&nbsp;name=&quot;John Doe&quot; <br />
                           &nbsp;&nbsp;&nbsp;&nbsp;age=&#123;30&#125; <br />
-                          &nbsp;&nbsp;&nbsp;&nbsp;location=&quot;New York&quot; <br />{" "}
+                          &nbsp;&nbsp;&nbsp;&nbsp;location=&quot;New York&quot; <br />
                           /&gt;
                         </div>
                       </p>
                       <p>
-                        <FunctionComponentWithDestrucingPropsArgs
+                        <ChildComponentWithPropsArgs
                           name="John Doe"
                           age={30}
                           location="New York"
@@ -369,55 +370,42 @@ Passing Props
                     <div className="list-item-number"></div>
                     <div className="list-item-content">
                       <h3>Parent: Passing destructuring props</h3>
+                      <h5 className="blue-color" style={{ marginTop: "0px" }}>
+                        Child: Accessing arguments using props
+                      </h5>
                       <p>
                         <div style={{ textAlign: "left", paddingLeft: "20px" }}>
-                          &lt;FunctionComponentWithPropsArgs <br />
+                          &lt;ChildComponentWithPropsArgs <br />
                           &nbsp;&nbsp;&nbsp;&nbsp;&#123; ...person&#125; <br />
                           /&gt;
                         </div>
                       </p>
                       <p>
-                        <FunctionComponentWithDestrucingPropsArgs {...person} />
+                        <ChildComponentWithPropsArgs {...person} />
                       </p>
                     </div>
                   </li>
                   <li className="list-item">
                     <div className="list-item-number"></div>
                     <div className="list-item-content">
-                      <h3>Parent: Passing default props </h3>
+                      <h3>Parent: Passing props arguments</h3>
+                      <h5 className="blue-color" style={{ marginTop: "0px" }}>
+                        Child: Accessing arguments using destrucing props
+                      </h5>
                       <p>
                         <div style={{ textAlign: "left", paddingLeft: "20px" }}>
-                          &lt;FunctionComponentWithDestrucingPropsArgs /&gt;
+                          &lt;ChildComponentWithDestrucingPropsArgs <br />
+                          &nbsp;&nbsp;&nbsp;&nbsp;name=&quot;John Doe&quot; <br />
+                          &nbsp;&nbsp;&nbsp;&nbsp;age=&#123;30&#125; <br />
+                          &nbsp;&nbsp;&nbsp;&nbsp;location=&quot;New York&quot; <br />
+                          /&gt;
                         </div>
                       </p>
                       <p>
-                        <FunctionComponentWithDestrucingPropsArgs />
-                      </p>
-                    </div>
-                  </li>
-                  <li className="list-item">
-                    <div className="list-item-number"></div>
-                    <div className="list-item-content">
-                      <h3>Child: Accessing props through props</h3>
-                      <p>
-                        <div style={{ textAlign: "left", paddingLeft: "20px" }}>
-                          &lt;&gt; <br />
-                          &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;Name:
-                          &#123;props.name&#125;&lt;/div&gt;
-                          <br />
-                          &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;Age:
-                          &#123;props.age&#125;&lt;/div&gt;
-                          <br />
-                          &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;Location:
-                          &#123;props.location&#125;&lt;/div&gt;
-                          <br />
-                          &lt;/&gt;
-                        </div>
-                      </p>
-                      <p>
-                        <FunctionComponentWithPropsArgs
-                          propAccess="default"
-                          {...person}
+                        <ChildComponentWithDestrucingPropsArgs
+                          name="John Doe"
+                          age={30}
+                          location="New York"
                         />
                       </p>
                     </div>
@@ -425,27 +413,61 @@ Passing Props
                   <li className="list-item">
                     <div className="list-item-number"></div>
                     <div className="list-item-content">
-                      <h3>Child: Accessing props through destructuring</h3>
+                      <h3>Parent: Passing destructuring props</h3>
+                      <h5 className="blue-color" style={{ marginTop: "0px" }}>
+                        Child: Accessing arguments using destrucing props
+                      </h5>
                       <p>
                         <div style={{ textAlign: "left", paddingLeft: "20px" }}>
-                          &lt;&gt; <br />
-                          &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;Name:
-                          &#123;name&#125;&lt;/div&gt;
-                          <br />
-                          &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;Age:
-                          &#123;age&#125;&lt;/div&gt;
-                          <br />
-                          &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;Location:
-                          &#123;location&#125;&lt;/div&gt;
-                          <br />
-                          &lt;/&gt;
+                          &lt;ChildComponentWithDestrucingPropsArgs <br />
+                          &nbsp;&nbsp;&nbsp;&nbsp;&#123; ...person&#125; <br />
+                          /&gt;
                         </div>
                       </p>
                       <p>
-                        <FunctionComponentWithPropsArgs
-                          propAccess="destructuring"
-                          {...person}
-                        />
+                        <ChildComponentWithDestrucingPropsArgs {...person} />
+                      </p>
+                    </div>
+                  </li>
+                  <li className="list-item">
+                    <div className="list-item-number"></div>
+                    <div className="list-item-content">
+                      <h3>Parent: Passing no arguments</h3>
+                      <h5 className="blue-color" style={{ marginTop: "0px" }}>
+                        Child: Accessing default arguments using props
+                      </h5>
+                      <p>
+                        <div style={{ textAlign: "left", paddingLeft: "20px" }}>
+                          &lt;ChildComponentWithPropsArgs <br />
+                          &nbsp;&nbsp;&nbsp;&nbsp;name=&quot;John Doe&quot; <br />
+                          &nbsp;&nbsp;&nbsp;&nbsp;age=&#123;30&#125; <br />
+                          &nbsp;&nbsp;&nbsp;&nbsp;location=&quot;New York&quot; <br />
+                          /&gt;
+                        </div>
+                      </p>
+                      <p>
+                        <ChildComponentWithPropsArgs />
+                      </p>
+                    </div>
+                  </li>
+                  <li className="list-item">
+                    <div className="list-item-number"></div>
+                    <div className="list-item-content">
+                      <h3>Parent: Passing no arguments</h3>
+                      <h5 className="blue-color" style={{ marginTop: "0px" }}>
+                        Child: Accessing default arguments using destrucing props
+                      </h5>
+                      <p>
+                        <div style={{ textAlign: "left", paddingLeft: "20px" }}>
+                          &lt;ChildComponentWithDestrucingPropsArgs <br />
+                          &nbsp;&nbsp;&nbsp;&nbsp;name=&quot;John Doe&quot; <br />
+                          &nbsp;&nbsp;&nbsp;&nbsp;age=&#123;30&#125; <br />
+                          &nbsp;&nbsp;&nbsp;&nbsp;location=&quot;New York&quot; <br />
+                          /&gt;
+                        </div>
+                      </p>
+                      <p>
+                        <ChildComponentWithDestrucingPropsArgs />
                       </p>
                     </div>
                   </li>
@@ -456,6 +478,10 @@ Passing Props
           
           export default FunctionComponentsDisplay;
           
+==================================================================================================
+Render the component
+==================================================================================================
+    
     - Edit ``App.tsx`` to render the component
         
         .. code-block:: tsx
