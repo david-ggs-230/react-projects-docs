@@ -543,7 +543,7 @@ Sources and Demos
     - Live Demo: https://david-ggs-230.github.io/react-projects/react-projects-with-typescript/tut05-function-components-state/
     - Screenshot
         
-        .. figure:: images/tut04/tut04-class-components-state.png
+        .. figure:: images/tut05/tut05-function-components-state.png
            :align: center
            :class: sd-my-2
            :width: 80%
