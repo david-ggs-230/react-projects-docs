@@ -410,7 +410,7 @@ Event Handler Using Function Method
     
     Define a Function Component with methods to modify the state data.
         
-        .. code-block:: cfg
+        .. code-block:: tsx
           :caption: src/FunctionComponentWithEventHandlerWithExtraArgs.tsx
           :linenos:
           
@@ -446,7 +446,7 @@ Event Handler Using Function Method
                 message: string;
                 count: number;
               },
-              event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+              event: React.MouseEvent,
             ) {
               setMessages((prevState) => [
                 ...prevState,
@@ -534,7 +534,7 @@ Event Handler Using Arrow Functions
     
     Define a Function Component with arrow functions to modify the state data..
         
-        .. code-block:: cfg
+        .. code-block:: tsx
           :caption: src/FunctionComponentWithArrowFunctionWithExtraArgs.tsx
           :linenos:
           
@@ -562,14 +562,8 @@ Event Handler Using Arrow Functions
               ]);
             };
             const handleMessagesUpdateClickWithEvent = (
-              {
-                message,
-                count,
-              }: {
-                message: string;
-                count: number;
-              },
-              event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+              { message, count }: { message: string; count: number },
+              event: React.MouseEvent,
             ) => {
               setMessages((prevState) => [
                 ...prevState,

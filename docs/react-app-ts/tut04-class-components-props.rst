@@ -328,7 +328,7 @@ Passing Props
     
     - Create a parent class Component for passing props
         
-        .. code-block:: cfg
+        .. code-block:: tsx
           :caption: src/ClassComponentsDisplay.tsx
           :linenos:
           
@@ -337,7 +337,6 @@ Passing Props
           import ChildComponentWithDefaultProps from "./ChildComponentWithDefaultProps";
           import Person from "./Person";
           import "./list-style.css";
-          
           class ClassComponentsDisplay extends React.Component {
             render() {
               const person: Person = {
@@ -358,11 +357,13 @@ Passing Props
                         </h5>
           
                         <div style={{ textAlign: "left", paddingLeft: "20px" }}>
-                          &lt;ChildComponentWithPropsArgs <br />
-                          &nbsp;&nbsp;&nbsp;&nbsp;name=&quot;John Doe&quot; <br />
-                          &nbsp;&nbsp;&nbsp;&nbsp;age=&#123;30&#125; <br />
-                          &nbsp;&nbsp;&nbsp;&nbsp;location=&quot;New York&quot; <br />
-                          /&gt;
+                          <div>{`<ChildComponentWithPropsArgs`}</div>
+                          <div style={{ textAlign: "left", marginLeft: "20px" }}>
+                            <div>{`name="John Doe"`}</div>
+                            <div>{`age={30}`}</div>
+                            <div>{`location="New York"`}</div>
+                          </div>
+                          <div>{`/>`}</div>
                         </div>
           
                         <div>
@@ -383,9 +384,7 @@ Passing Props
                         </h5>
           
                         <div style={{ textAlign: "left", paddingLeft: "20px" }}>
-                          &lt;ChildComponentWithPropsArgs <br />
-                          &nbsp;&nbsp;&nbsp;&nbsp;&#123; ...person&#125; <br />
-                          /&gt;
+                          <div>{`<ChildComponentWithPropsArgs {...person} />`}</div>
                         </div>
           
                         <div>
@@ -402,7 +401,7 @@ Passing Props
                         </h5>
           
                         <div style={{ textAlign: "left", paddingLeft: "20px" }}>
-                          &lt;ChildComponentWithPropsArgs /&gt;
+                          <div>{`<ChildComponentWithPropsArgs />`}</div>
                         </div>
           
                         <div>
@@ -419,7 +418,7 @@ Passing Props
                         </h5>
           
                         <div style={{ textAlign: "left", paddingLeft: "20px" }}>
-                          &lt;ChildComponentWithDefaultProps /&gt;
+                          <div>{`<ChildComponentWithDefaultProps />`}</div>
                         </div>
           
                         <div>

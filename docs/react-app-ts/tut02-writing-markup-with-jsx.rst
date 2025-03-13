@@ -267,7 +267,7 @@ Create Project Contents
         
     - Edit the src/App.tsx file with the following contents
         
-        .. code-block:: cfg
+        .. code-block:: tsx
           :caption: src/App.tsx
           :linenos:
           
@@ -298,89 +298,72 @@ Create Project Contents
                     <div className="list-item-number"></div>
                     <div className="list-item-content">
                       <h3>Return a single root element</h3>
-                      <p>&quot;&lt;&gt;The Rules of JSX&lt;/&gt;&quot;</p>
+                      <div>{"<>The Rules of JSX</>"}</div>
                     </div>
                   </li>
                   <li className="list-item">
                     <div className="list-item-number"></div>
                     <div className="list-item-content">
                       <h3>Attributes in JSX</h3>
-                      <p>&lt;p className=&quot;red-color&quot;&gt;Red&lt;/p&gt;</p>
-                      <p className="red-color">Red</p>
+                      <div>{`<div className="red-color">Red</div>`}</div>
+                      <div className="red-color">Red</div>
                     </div>
                   </li>
                   <li className="list-item">
                     <div className="list-item-number"></div>
                     <div className="list-item-content">
                       <h3>Event Handling</h3>
-                      <p>
-                        &lt;button onClick=&#123;handleClick&#125;&gt;count is
-                        &#123;count&#125;&lt;/button&gt;
-                      </p>
-                      <p>
-                        <button onClick={handleClick}>count is {count}</button>
-                      </p>
+                      <div>{`<button onClick={handleClick}> count is {count} </button>`}</div>
+                      <div>
+                        <button onClick={handleClick}> count is {count} </button>
+                      </div>
                     </div>
                   </li>
                   <li className="list-item">
                     <div className="list-item-number"></div>
                     <div className="list-item-content">
                       <h3>JavaScript Expressions: Attributes</h3>
-                      <p>const classNames=&quot;red-color bg-blue&quot;</p>
-                      <p>&lt;p className=&#123; classNames &#125;&gt;Red&lt;/p&gt;</p>
-                      <p className={classNames}>Red</p>
+                      <div>{`const classNames="red-color bg-blue"`}</div>
+                      <div>{`<div className={ classNames }>Red</div>`}</div>
+                      <div className={classNames}>Red</div>
                     </div>
                   </li>
                   <li className="list-item">
                     <div className="list-item-number"></div>
                     <div className="list-item-content">
                       <h3>JavaScript Expressions: Contents</h3>
-                      <p>const textContent= &quot;JSX Expressions&quot;;</p>
-                      <p>
-                        &lt;p
-                        className=&quot;blue-color&quot;&gt;&#123;textContent&#125;&lt;
-                        /p&gt;
-                      </p>
-                      <p className="blue-color">{textContent}</p>
+                      <div>{`const textContent= "JSX Expressions";`}</div>
+                      <div>{`<div className="blue-color">{textContent}</div>`}</div>
+                      <div className="blue-color">{textContent}</div>
                     </div>
                   </li>
                   <li className="list-item">
                     <div className="list-item-number"></div>
                     <div className="list-item-content">
                       <h3>Inline CSS Styles</h3>
-                      <p>
-                        &lt;p style=&#123;&#123; backgroundColor: &quot;grey&quot;, color:
-                        &quot;blue&quot;
-                        <br /> &#125;&#125; &gt; Grey background with blue text &lt;
-                        /p&gt;
-                      </p>
-                      <p style={{ backgroundColor: "grey", color: "blue" }}>
+                      <div>{`<div style={{ backgroundColor: "grey",color: "blue"}}> `}</div>
+                      <div>{` Grey background with blue text </div>`}</div>
+                      <div style={{ backgroundColor: "grey", color: "blue" }}>
                         Grey background with blue text
-                      </p>
+                      </div>
                     </div>
                   </li>
                   <li className="list-item">
                     <div className="list-item-number"></div>
                     <div className="list-item-content">
                       <h3>JavaScript Objects</h3>
-                      <div style={{ textAlign: "left" }}>
-                        const person = &#123;
-                        <br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;name: &quot;George Bush&quot;,
-                        <br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;theme: &#123;
-                        <br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;backgroundColor: &quot;black&quot;,
-                        <br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;color: &quot;pink&quot;, &#125;
-                        <br />
-                        &#125;;
+                      <div style={{ textAlign: "left", marginLeft: "20px" }}>
+                        <div>{`const person = {`}</div>
+                        <div style={{ textAlign: "left", marginLeft: "20px" }}>
+                          <div>{`name: "George Bush",`}</div>
+                          <div>{`theme: {`}</div>
+                          <div>{`backgroundColor: "black",`}</div>
+                          <div>{`color: "pink", }`}</div>
+                        </div>
+                        <div>{`};`}</div>
                       </div>
-                      <p>
-                        &lt;p style=&#123;person.theme&#125;&gt;&#123;person.name&#125;
-                        &lt;/p&gt;
-                      </p>
-                      <p style={person.theme}>{person.name}</p>
+                      <div>{`<div style={person.theme}>{person.name}</div>`}</div>
+                      <div style={person.theme}>{person.name}</div>
                     </div>
                   </li>
                 </ol>

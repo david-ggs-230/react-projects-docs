@@ -316,17 +316,17 @@ In React, passing and accessing props in a function component is simple and stra
           
     - Create a parent function Component passing props to its child component
         
-        .. code-block:: cfg
+        .. code-block:: tsx
           :caption: src/FunctionComponentsDisplay.tsx
           :linenos:
           
-          import React from "react";
+          import { FC } from "react";
           import ChildComponentWithDestrucingPropsArgs from "./ChildComponentWithDestrucingPropsArgs";
           import ChildComponentWithPropsArgs from "./ChildComponentWithPropsArgs";
           import Person from "./Person";
           import "./list-style.css";
           
-          const FunctionComponentsDisplay: React.FC = () => {
+          const FunctionComponentsDisplay: FC = () => {
             const person: Person = {
               name: "John Doe",
               age: 30,
@@ -343,15 +343,15 @@ In React, passing and accessing props in a function component is simple and stra
                       <h5 className="blue-color" style={{ marginTop: "0px" }}>
                         Child: Accessing arguments using props
                       </h5>
-          
                       <div style={{ textAlign: "left", paddingLeft: "20px" }}>
-                        &lt;ChildComponentWithPropsArgs <br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;name=&quot;John Doe&quot; <br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;age=&#123;30&#125; <br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;location=&quot;New York&quot; <br />
-                        /&gt;
+                        <div>{`<ChildComponentWithPropsArgs`}</div>
+                        <div style={{ textAlign: "left", marginLeft: "20px" }}>
+                          <div>{`name="John Doe"`}</div>
+                          <div>{`age={30}`}</div>
+                          <div>{`location="New York"`}</div>
+                        </div>
+                        <div>{`/>`}</div>
                       </div>
-          
                       <div>
                         <ChildComponentWithPropsArgs
                           name="John Doe"
@@ -368,13 +368,9 @@ In React, passing and accessing props in a function component is simple and stra
                       <h5 className="blue-color" style={{ marginTop: "0px" }}>
                         Child: Accessing arguments using props
                       </h5>
-          
                       <div style={{ textAlign: "left", paddingLeft: "20px" }}>
-                        &lt;ChildComponentWithPropsArgs <br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;&#123; ...person&#125; <br />
-                        /&gt;
+                        <div>{`<ChildComponentWithPropsArgs {...person} />`}</div>
                       </div>
-          
                       <div>
                         <ChildComponentWithPropsArgs {...person} />
                       </div>
@@ -387,15 +383,15 @@ In React, passing and accessing props in a function component is simple and stra
                       <h5 className="blue-color" style={{ marginTop: "0px" }}>
                         Child: Accessing arguments using destrucing props
                       </h5>
-          
                       <div style={{ textAlign: "left", paddingLeft: "20px" }}>
-                        &lt;ChildComponentWithDestrucingPropsArgs <br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;name=&quot;John Doe&quot; <br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;age=&#123;30&#125; <br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;location=&quot;New York&quot; <br />
-                        /&gt;
+                        <div>{`<ChildComponentWithDestrucingPropsArgs`}</div>
+                        <div style={{ textAlign: "left", marginLeft: "20px" }}>
+                          <div>{`name="John Doe"`}</div>
+                          <div>{`age={30}`}</div>
+                          <div>{`location="New York"`}</div>
+                        </div>
+                        <div>{`/>`}</div>
                       </div>
-          
                       <div>
                         <ChildComponentWithDestrucingPropsArgs
                           name="John Doe"
@@ -412,13 +408,13 @@ In React, passing and accessing props in a function component is simple and stra
                       <h5 className="blue-color" style={{ marginTop: "0px" }}>
                         Child: Accessing arguments using destrucing props
                       </h5>
-          
                       <div style={{ textAlign: "left", paddingLeft: "20px" }}>
-                        &lt;ChildComponentWithDestrucingPropsArgs <br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;&#123; ...person&#125; <br />
-                        /&gt;
+                        <div>{`<ChildComponentWithDestrucingPropsArgs`}</div>
+                        <div style={{ textAlign: "left", marginLeft: "20px" }}>
+                          <div>{`{...person}`}</div>
+                        </div>
+                        <div>{`/>`}</div>
                       </div>
-          
                       <div>
                         <ChildComponentWithDestrucingPropsArgs {...person} />
                       </div>
@@ -433,7 +429,7 @@ In React, passing and accessing props in a function component is simple and stra
                       </h5>
           
                       <div style={{ textAlign: "left", paddingLeft: "20px" }}>
-                        &lt;ChildComponentWithPropsArgs /&gt;
+                        <div>{`<ChildComponentWithPropsArgs />`}</div>
                       </div>
           
                       <div>
@@ -450,7 +446,7 @@ In React, passing and accessing props in a function component is simple and stra
                       </h5>
           
                       <div style={{ textAlign: "left", paddingLeft: "20px" }}>
-                        &lt;ChildComponentWithDestrucingPropsArgs /&gt;
+                        <div>{`<ChildComponentWithDestrucingPropsArgs />`}</div>
                       </div>
           
                       <div>
@@ -464,6 +460,7 @@ In React, passing and accessing props in a function component is simple and stra
           };
           
           export default FunctionComponentsDisplay;
+          
           
 ==================================================================================================
 Render the component
