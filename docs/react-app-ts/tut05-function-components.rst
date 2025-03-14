@@ -45,5 +45,6 @@ Functional components should be used whenever possible because they are simpler,
     tut05-function-components-state
     tut05-function-components-event
     tut05-function-components-life-cycle
+    tut05-function-components-hooks
     
     
