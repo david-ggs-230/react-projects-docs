@@ -733,10 +733,158 @@ useRef
 The signature of the useRef
 --------------------------------------------------------------------------------------------------
 
+The useRef hook in React is commonly used for accessing and interacting with DOM elements or for storing mutable values that do not trigger a re-render when they change. The useRef hook helps ensure that the component works smoothly with both React’s Virtual DOM and the HTML DOM. 
+    
+    - Accessing DOM Elements: You can use useRef to directly reference a DOM element and interact with it (e.g., focusing an input field).
+    - Storing Mutable Values: You can use useRef to store values that persist across renders, but changes to those values do not cause re-renders.
+    
+How useRef Works with Virtual DOM and HTML DOM
+    
+    - Persistent Reference: using useRef allows you to interact with the real HTML DOM directly without causing a re-render or needing to store the value in React state.
+    - No Re-rendering on Changes: Unlike state (useState), updating the current property of a useRef does not cause the component to re-render. 
+    
+The signature of useRef is as follows ::
+    
+    <refObj> = useRef(<val>)
+    # val is the initial value to be set for the returned mutable object, refObj.
+    # refObj is the object returned by the hook.
+    
+To automatically attach a DOM object to the refObj, it should be set in ref props of the element as shown below ::
+    
+    <input ref={refObj} />
+    
+To access the attached DOM element, use current property of the refObj as shown below ::
+    
+    const refElement = refObj.current
+    
+Use cases of useRef
+    
+    - Accessing JavaScript DOM API
+        
+        - Focusing an input element
+        - Selecting text
+        - play audio or video using media playback API
+        
+    - Imperative animation − Web Animation API provides a rich set of animation feature through imperative programming rather than declarative programming. To use Web animation API, we need access to the raw DOM.
+    - Integration with third party library − Since third party library requires access to raw DOM to do its functionality, it is be mandatory to use useRef to get the DOM reference from react and provide it to third party library.
+    
 --------------------------------------------------------------------------------------------------
-Example
+Component - useRef
 --------------------------------------------------------------------------------------------------
 
+Define a component with the useRef hook.
+        
+        .. code-block:: tsx
+          :caption: src/ComponentUseRef.tsx
+          :linenos:
+          
+          import "./list-style.css";
+          import { useState, useRef } from "react";
+          
+          const ComponentUseRef = () => {
+            const inputRef = useRef<HTMLInputElement>(null);
+            const labelRef = useRef<HTMLLabelElement>(null);
+            const handleInputChange = () => {
+              if (labelRef.current && inputRef.current) {
+                labelRef.current.innerText = inputRef.current.value;
+              }
+            };
+          
+            const [seconds, setSeconds] = useState(0);
+            const timerRef = useRef<number>(NaN);
+            const startTimer = () => {
+              if (!isNaN(timerRef.current)) return; // Don't start a new timer if one is already running
+          
+              timerRef.current = setInterval(() => {
+                setSeconds((prev) => prev + 1);
+              }, 1000);
+            };
+          
+            const stopTimer = () => {
+              if (timerRef.current) {
+                // Clear the timer if it exists
+                clearInterval(timerRef.current);
+              }
+              // Reset the timerRef to NaN
+              timerRef.current = NaN;
+            };
+            const prevCountRef = useRef(-1);
+            const [count, setCount] = useState(0);
+          
+            const handleCountChange = () => {
+              setCount((prev) => {
+                prevCountRef.current = prev;
+                return prev + 1;
+              });
+            };
+          
+            return (
+              <>
+                <div>
+                  <h5
+                    className="blue-color"
+                    style={{ marginTop: "20px", marginBottom: "0px" }}
+                  >
+                    <div>useRef: Accessing real DOM Elements directly</div>
+                  </h5>
+                  <div style={{ marginTop: "0px" }}>
+                    <input
+                      ref={inputRef}
+                      type="text"
+                      placeholder="Enter input field data"
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div style={{ marginTop: "10px" }}>
+                    Input Value in HTML DOM:{" "}
+                    <span style={{ color: "red" }} ref={labelRef} />
+                  </div>
+                </div>
+                <div>
+                  <h5
+                    className="blue-color"
+                    style={{ marginTop: "20px", marginBottom: "0px" }}
+                  >
+                    <div>useRef: Persisting Values Across Renders</div>
+                  </h5>
+                  <div style={{ marginTop: "0px" }}>
+                    Timer:<span className="red-color"> {seconds} </span> seconds
+                  </div>
+                  <div style={{ marginTop: "0px" }}>
+                    <button onClick={startTimer}>Start</button>
+                    <button
+                      style={{
+                        marginLeft: "10px",
+                      }}
+                      onClick={stopTimer}
+                    >
+                      Stop
+                    </button>
+                  </div>
+                </div>
+                <div>
+                  <h5
+                    className="blue-color"
+                    style={{ marginTop: "20px", marginBottom: "0px" }}
+                  >
+                    <div>useRef: Storing Previous State</div>
+                  </h5>
+                  <div style={{ marginTop: "0px" }}>Current count: {count}</div>{" "}
+                  <div style={{ marginTop: "0px" }}>
+                    Previous count:{" "}
+                    {prevCountRef.current < 0 ? "N/A" : prevCountRef.current}
+                  </div>
+                  <div style={{ marginTop: "0px" }}>
+                    <button onClick={handleCountChange}>Increment</button>
+                  </div>
+                </div>
+              </>
+            );
+          };
+          
+          export default ComponentUseRef;
+          
+          
 
 ==================================================================================================
 useReducer
