@@ -498,16 +498,233 @@ Define a function component with the useEffect hook.
 useContext
 ==================================================================================================
 
-useContext is used to access values from a React Context without needing to pass props manually at every level of the component tree.
-
 --------------------------------------------------------------------------------------------------
 The signature of the useContext
 --------------------------------------------------------------------------------------------------
 
+useContext is used to access values from a React Context without needing to pass props manually at every level of the component tree. Context is one of the important concept in React. It provides the ability to pass a information from the parent component to all its children to any nested level without passing the information through props in each level. Context will make the code more readable and simple to understand. Context can be used to store information which does not change or have minimal change. Some of the use cases of context are as follows
+    
+    - Application configuration
+    - Current authenticated user information
+    - Current user setting
+    - Language setting
+    - Theme / Design configuration by application / users
+    
+Context usage through hook
+    
+    - Creating a new context ::
+        
+        // Create a context
+        const ValueContext = React.createContext("default value");
+        // Create a Context with Multiple Objects
+        const ThemeContext = React.createContext({
+           color: 'black',
+           backgroundColor: 'white'
+        })
+        // Create a Context with Objects and functions
+        const ThemeContext = React.createContext<ThemeType>({
+          theme: { color: "black", backgroundColor: "white" },
+          setTheme: () => {},
+        });
+        
+        
+    - Setting context provider in the root component ::
+        
+        <ThemeContext.Provider value={{
+           color: 'white',
+           backgroundColor: 'green'
+        }}>
+            <children components.../>
+        </ThemeContext.Provider>
+        
+    - Setting context consumer in the component where we need the context information ::
+        
+        import ThemeContext from "ThemeContext";
+        const theme = useContext(ThemContext)
+        
+    - Accessing context information and using it in render method ::
+        
+        let theme = useContext(ThemeContext)
+        return (
+           <div style={{
+              color: theme.color,
+              backgroundColor: theme.backgroundColor }}>
+                 Hello World
+           </div>
+        )
+        
+Updating context: Updating the context will rerender all the child component. React provides an option to update the context by using both useState and useContext hook.
+    
+    - In the root component, use useState hook to manage the theme information ::
+        
+        const [theme, setTheme] = useState({...})
+        <ThemeContext.Provider value={{ theme, setTheme }}>
+            <children components.../>
+        </ThemeContext.Provider>
+        
+    - In the component where we need the context information, use useContext and state update function ::
+        
+        import ThemeContext from "ThemeContext";
+        let { theme, setTheme } = useContext(ThemeContext)
+        const handleClick=(color)=>{
+          setTheme({color: color});
+        }
+        
+    
 --------------------------------------------------------------------------------------------------
-Example
+Component - useContext
 --------------------------------------------------------------------------------------------------
 
+Define a component to hold the Context Objects.
+        
+        .. code-block:: tsx
+          :caption: src/CreateContextObjects.tsx
+          :linenos:
+          
+          import React, { Dispatch, SetStateAction } from "react";
+          
+          // Create a context
+          const ValueContext = React.createContext("default value");
+          
+          type ThemeType = {
+            theme: { color: string; backgroundColor: string };
+            setTheme: Dispatch<
+              SetStateAction<{ color: string; backgroundColor: string }>
+            >;
+          };
+          // Create a Context
+          const ThemeContext = React.createContext<ThemeType>({
+            theme: { color: "black", backgroundColor: "white" },
+            setTheme: () => {},
+          });
+          export { ValueContext, ThemeContext };
+          
+Define a function component using the context object.
+        
+        .. code-block:: tsx
+          :caption: src/ComponentUseContextValue.tsx
+          :linenos:
+          
+          import { useContext } from "react";
+          import { ValueContext } from "./CreateContextObjects";
+          
+          import "./list-style.css";
+          
+          const ComponentUseContextValue = () => {
+            // Access context value
+            const value = useContext(ValueContext);
+            return (
+              <>
+                <h5
+                  className="blue-color"
+                  style={{ marginTop: "20px", marginBottom: "0px" }}
+                >
+                  <div>useContext with an initial value</div>
+                </h5>
+                <div style={{ marginTop: "0px" }}>
+                  initial context value: <span className="red-color">{value}</span>
+                </div>
+              </>
+            );
+          };
+          
+          export default ComponentUseContextValue;
+          
+          
+Define a function component updating the context objects.
+        
+        .. code-block:: tsx
+          :caption: src/ComponentUpdateContextValue.tsx
+          :linenos:
+          
+          import { useContext, useRef } from "react";
+          import { ThemeContext } from "./CreateContextObjects";
+          
+          import "./list-style.css";
+          
+          const ComponentUpdateContextValue = () => {
+            // Access context value
+            const { theme, setTheme } = useContext(ThemeContext);
+            const blueBtnBorderRef = useRef("white");
+            const redBtnBorderRef = useRef("white");
+            const handleClick = (color: string) => {
+              if (color === "red") {
+                redBtnBorderRef.current = "lightcoral";
+                blueBtnBorderRef.current = "white";
+              } else if (color === "blue") {
+                blueBtnBorderRef.current = "lightblue";
+                redBtnBorderRef.current = "white";
+              }
+              setTheme({ color: color, backgroundColor: color });
+            };
+            return (
+              <>
+                <h5
+                  className="blue-color"
+                  style={{ marginTop: "20px", marginBottom: "0px" }}
+                >
+                  <div>useContext with useState to update context value</div>
+                </h5>
+                <div style={{ marginTop: "0px" }}>
+                  Context Color:{" "}
+                  <span style={{ color: theme.color }}>{theme.color} </span>
+                </div>
+                <div style={{ marginTop: "0px" }}>
+                  <button
+                    style={{ backgroundColor: redBtnBorderRef.current }}
+                    onClick={() => handleClick("red")}
+                  >
+                    Red
+                  </button>
+                  <button
+                    style={{
+                      marginLeft: "10px",
+                      backgroundColor: blueBtnBorderRef.current,
+                    }}
+                    onClick={() => handleClick("blue")}
+                  >
+                    Blue
+                  </button>
+                </div>
+              </>
+            );
+          };
+          
+          export default ComponentUpdateContextValue;
+          
+Define a function component using the useContext hook.
+        
+        .. code-block:: tsx
+          :caption: src/ComponentUseContext.tsx
+          :linenos:
+          
+          import { useState } from "react";
+          import { ValueContext } from "./CreateContextObjects";
+          import { ThemeContext } from "./CreateContextObjects";
+          import ComponentUseContextValue from "./ComponentUseContextValue";
+          import ComponentUpdateContextValue from "./ComponentUpdateContextValue";
+          import "./list-style.css";
+          
+          const ComponentUseContext = () => {
+            const [theme, setTheme] = useState({
+              color: "green",
+              backgroundColor: "lightgreen",
+            });
+          
+            return (
+              <>
+                <ValueContext.Provider value="Hello, World!">
+                  <ComponentUseContextValue />
+                </ValueContext.Provider>
+                <ThemeContext.Provider value={{ theme: theme, setTheme: setTheme }}>
+                  <ComponentUpdateContextValue />
+                </ThemeContext.Provider>
+              </>
+            );
+          };
+          
+          export default ComponentUseContext;
+          
 ==================================================================================================
 useRef
 ==================================================================================================
@@ -539,8 +756,12 @@ Example
 useMemo
 ==================================================================================================
 
+useMemo is a React Hook that lets you cache the result of a calculation between re-renders.
+
 --------------------------------------------------------------------------------------------------
+
 The signature of the useMemo
+
 --------------------------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------------------------
