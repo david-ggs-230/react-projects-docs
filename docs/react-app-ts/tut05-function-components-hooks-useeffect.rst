@@ -14,7 +14,7 @@
 React Hooks - useEffect
 ##################################################################################################
 
-React provides useEffect to do side-effects in a component. Some of the side effects are as follows ::
+React provides useEffect to do side-effects in a component. Some of the side effects are as follows
     
     - Fetching data from external source & updating the rendered content.
     - Updating DOM elements after rendering.
@@ -22,21 +22,21 @@ React provides useEffect to do side-effects in a component. Some of the side eff
     - Using Timers
     - Logging
     
-In class based components, these side effects are done using life cycle components. So, useEffect hook is an effect replacement for below mentioned life cycle events. ::
+In class based components, these side effects are done using life cycle components. So, useEffect hook is an effect replacement for below mentioned life cycle events.
     
     - componentDidMount − Fires after the rendering is done for the first time.
     - componentDidUpdate − Fires after the rendering is updated due to prop or state changes.
     - componentWillUnmount − Fires after the rendered content is unmounted during destruction of component.
     
-The signature of useEffect is as follows ::
-    
-    useEffect( <update function>, <dependency> )
-    # the signature of the update function is:
-    #    {
-    #       // code
-    #       return <clean up function>
-    #    }
-    
+The signature of useEffect is as follows: ::
+        
+        useEffect( <update function>, <dependency> )
+        # the signature of the update function is:
+        #    {
+        #       // code
+        #       return <clean up function>
+        #    }
+        
 useEffect( <update function>, <dependency> ):
     
     - Update function − Update function is the function to be executed after each render phase. This corresponds to componentDidMount and componentDidUpdate events
