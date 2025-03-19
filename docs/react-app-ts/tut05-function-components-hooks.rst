@@ -54,7 +54,7 @@ The main hooks include useState, useEffect, useContext, useReducer, useCallback,
     tut05-function-components-hooks-usecontext
     tut05-function-components-hooks-useref
     tut05-function-components-hooks-usereducer
-    
+    tut05-function-components-hooks-usememo
     
     
     
