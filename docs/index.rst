@@ -17,4 +17,5 @@ React Tutorial with Typescript documentation
    react-app-ts/tut03-react-components
    react-app-ts/tut04-class-components
    react-app-ts/tut05-function-components
+   react-app-ts/tut06-react-form
    
