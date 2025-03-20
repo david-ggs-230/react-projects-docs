@@ -18,4 +18,6 @@ React Tutorial with Typescript documentation
    react-app-ts/tut04-class-components
    react-app-ts/tut05-function-components
    react-app-ts/tut06-react-form
+   react-app-ts/tut07-react-restapi
+   
    
