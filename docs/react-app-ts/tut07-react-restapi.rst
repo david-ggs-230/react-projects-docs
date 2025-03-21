@@ -444,262 +444,159 @@ React RESTful API Components
 **************************************************************************************************
 
 ==================================================================================================
-Controlled Components
+Components for Data Display
 ==================================================================================================
     
-    - Define a controlled react form function component.
+    - Define a function component for displaying each phone data.
         
         .. code-block:: tsx
-          :caption: src/ReactFormControlledComponent.tsx
+          :caption: src/ComponentPhone.tsx
           :linenos:
           
-          import React, { useState } from "react";
-          import "./App.css";
-          
-          const ReactFormControlledComponent: React.FC = () => {
-            const [formState, setFormState] = useState({
-              name: "",
-              age: "",
-              location: "",
-            });
+          const ComponentPhone = ({
+            id = "-1",
+            name = "Unknown Name",
+            capacity = "Unknown",
+            price = "Unknown",
+          }: {
+            id: string;
+            name: string;
+            capacity: string;
+            price: string;
+          }) => {
             const labelStyle = {
               display: "inline-block",
-              width: "2.5rem",
+              width: "3rem",
               marginRight: "1.5rem",
             };
-            const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-              const { name, value } = e.target;
-              setFormState((prevState) => ({ ...prevState, [name]: value }));
+            const itemStyle = {
+              display: "inline-block",
+              width: "8rem",
+              marginRight: "1.5rem",
             };
-          
-            const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-              e.preventDefault();
-              alert(JSON.stringify(formState));
-            };
-          
             return (
-              <div>
-                <div className="App">
-                  <form onSubmit={handleSubmit}>
-                    <div style={{ marginTop: 20 }}>
-                      <label htmlFor="name" style={labelStyle}>
-                        Name
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        placeholder="Enter name"
-                        value={formState.name}
-                        onChange={changeHandler}
-                      />
-                    </div>
-                    <div style={{ marginTop: 10 }}>
-                      <label htmlFor="age" style={labelStyle}>
-                        Age
-                      </label>
-                      <input
-                        type="number"
-                        id="age"
-                        name="age"
-                        placeholder="Enter age"
-                        value={formState.age}
-                        onChange={changeHandler}
-                      />
-                    </div>
-                    <div style={{ marginTop: 10 }}>
-                      <label htmlFor="location" style={labelStyle}>
-                        Location
-                      </label>
-                      <input
-                        type="text"
-                        id="location"
-                        name="location"
-                        placeholder="Enter location"
-                        value={formState.location}
-                        onChange={changeHandler}
-                      />
-                    </div>
-                    <div style={{ marginTop: 10 }}>
-                      <input type="submit" value="Submit" />
-                    </div>
-                  </form>
+              <div
+                style={{ marginTop: 10, textAlign: "left", marginLeft: "40px" }}
+                className="form-group"
+              >
+                <div>
+                  <label style={labelStyle}>ID:</label>
+                  <span style={itemStyle} className="blue-color">
+                    {id}
+                  </span>
                 </div>
                 <div>
-                  <h4 style={{ marginBottom: "0px" }}>Name: {formState.name}</h4>
-                  <div>Age: {formState.age}</div>
-                  <div>Location: {formState.location}</div>
+                  <label style={labelStyle}>Name:</label>
+                  <span style={itemStyle}>{name}</span>
+                </div>
+                <div>
+                  <label style={labelStyle}>Capacity:</label>
+                  <span style={itemStyle}>{capacity}</span>
+                </div>
+                <div>
+                  <label style={labelStyle}>Price:</label>
+                  <span style={itemStyle}>{price}</span>
                 </div>
               </div>
             );
           };
           
-          export default ReactFormControlledComponent;
+          export default ComponentPhone;
           
-==================================================================================================
-Uncontrolled Component
-==================================================================================================
-    
-    - Define an uncontrolled react form function component.
+    - Define a function component for displaying each people data.
         
         .. code-block:: tsx
-          :caption: src/ReactFormUncontrolledComponent.tsx
+          :caption: src/ComponentPeople.tsx
           :linenos:
           
-          import React, { useRef } from "react";
-          import "./App.css";
-          
-          const ReactFormUncontrolledComponent: React.FC = () => {
-            const labelNameRef = useRef<HTMLSpanElement>(null);
-            const labelAgeRef = useRef<HTMLSpanElement>(null);
-            const labelLocationRef = useRef<HTMLSpanElement>(null);
-          
+          const ComponentPeople = ({
+            id = -1,
+            firstName = "Unknown Name",
+            lastName = "Unknown",
+            age = -1,
+          }: {
+            id: number;
+            firstName: string;
+            lastName: string;
+            age: number;
+          }) => {
             const labelStyle = {
               display: "inline-block",
-              width: "2.5rem",
-              marginRight: "1.5rem",
+              width: "6rem",
             };
-            const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-              e.preventDefault();
-              alert(
-                JSON.stringify({
-                  name: labelNameRef.current?.innerText,
-                  age: labelAgeRef.current?.innerText,
-                  location: labelLocationRef.current?.innerText,
-                }),
-              );
+            const itemStyle = {
+              display: "inline-block",
+              width: "20rem",
             };
-          
-            const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-              const { name, value } = e.target;
-              if (name === "name" && labelNameRef.current) {
-                labelNameRef.current.innerText = value;
-              } else if (name === "age" && labelAgeRef.current) {
-                labelAgeRef.current.innerText = value;
-              } else if (name === "location" && labelLocationRef.current) {
-                labelLocationRef.current.innerText = value;
-              }
-            };
-          
             return (
-              <div>
-                <div className="App">
-                  <form onSubmit={handleSubmit}>
-                    <div style={{ marginTop: 10 }}>
-                      <label htmlFor="name" style={labelStyle}>
-                        Name
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        placeholder="Enter name"
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div style={{ marginTop: 10 }}>
-                      <label htmlFor="age" style={labelStyle}>
-                        Age
-                      </label>
-                      <input
-                        type="number"
-                        id="age"
-                        name="age"
-                        placeholder="Enter age"
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div style={{ marginTop: 10 }}>
-                      <label htmlFor="location" style={labelStyle}>
-                        Location
-                      </label>
-                      <input
-                        type="text"
-                        id="location"
-                        name="location"
-                        placeholder="Enter location"
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div style={{ marginTop: 10 }}>
-                      <input type="submit" value="Submit" />
-                    </div>
-                  </form>
+              <div
+                style={{ marginTop: 10, textAlign: "left", marginLeft: "40px" }}
+                className="form-group"
+              >
+                <div>
+                  <label style={labelStyle}>ID:</label>
+                  <span style={itemStyle} className="blue-color">
+                    {id}
+                  </span>
                 </div>
                 <div>
-                  <h4 style={{ marginBottom: "0px" }}>
-                    Name: <span ref={labelNameRef}></span>
-                  </h4>
-                  <div>
-                    Age: <span ref={labelAgeRef}></span>
-                  </div>
-                  <div>
-                    Location: <span ref={labelLocationRef}></span>
-                  </div>
+                  <label style={labelStyle}>First Name:</label>
+                  <span style={itemStyle}>{firstName}</span>
+                </div>
+                <div>
+                  <label style={labelStyle}>Last Name:</label>
+                  <span style={itemStyle}>{lastName}</span>
+                </div>
+                <div>
+                  <label style={labelStyle}>Age:</label>
+                  <span style={itemStyle}>{age}</span>
                 </div>
               </div>
             );
           };
           
-          export default ReactFormUncontrolledComponent;
+          export default ComponentPeople;
           
+
 ==================================================================================================
-React Hook Form Component
+Components for Handling Data Inputs
 ==================================================================================================
     
-    - Define a react hook form component.
+    - Define a function component for adding new phone data.
         
         .. code-block::
-          :caption: src/ReactHookFormComponent.tsx
+          :caption: src/FormComponentPhone.tsx
           :linenos:
           
-          import { useRef } from "react";
           import { useForm } from "react-hook-form";
           import "./App.css";
           
-          const ReactHookFormComponent = () => {
-            const { register, handleSubmit } = useForm();
+          interface FormComponentPhoneProps {
+            serverError: boolean;
+            addPhone: ({
+              name,
+              capacity,
+              price,
+            }: {
+              name: string;
+              capacity: string;
+              price: string;
+            }) => Promise<void>;
+          }
+          interface FormData {
+            name: string;
+            capacity: string;
+            price: string;
+          }
           
-            const labelNameRef = useRef<HTMLSpanElement>(null);
-            const labelAgeRef = useRef<HTMLSpanElement>(null);
-            const labelLocationRef = useRef<HTMLSpanElement>(null);
+          const FormComponentPhone: React.FC<FormComponentPhoneProps> = (props) => {
+            const { serverError, addPhone } = { ...props };
+            const { register, handleSubmit, reset } = useForm<FormData>();
           
             const labelStyle = {
               display: "inline-block",
-              width: "2.5rem",
+              width: "3rem",
               marginRight: "1.5rem",
-            };
-            const onFormSubmit = () => {
-              if (
-                labelNameRef.current &&
-                labelAgeRef.current &&
-                labelLocationRef.current
-              ) {
-                alert(
-                  JSON.stringify({
-                    name: labelNameRef.current.innerText,
-                    age: labelAgeRef.current.innerText,
-                    location: labelLocationRef.current.innerText,
-                  }),
-                );
-              }
-            };
-          
-            const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-              const name = e.target.name;
-              if (name === "name") {
-                if (labelNameRef.current) {
-                  labelNameRef.current.innerText = e.target.value;
-                }
-              } else if (name === "age") {
-                if (labelAgeRef.current) {
-                  labelAgeRef.current.innerText = e.target.value;
-                }
-              } else if (name === "location") {
-                if (labelLocationRef.current) {
-                  labelLocationRef.current.innerText = e.target.value;
-                }
-              }
             };
           
             return (
@@ -708,242 +605,919 @@ React Hook Form Component
                   <form
                     onSubmit={(e) => {
                       e.preventDefault();
-                      handleSubmit(onFormSubmit)().catch((error) => {
-                        console.error("Form submission error:", error);
-                      });
+                      void handleSubmit(addPhone)();
+                      reset();
                     }}
                   >
                     <div style={{ marginTop: 10 }}>
                       <label htmlFor="name" style={labelStyle}>
-                        Name
+                        Name:
                       </label>
                       <input
                         type="text"
-                        id="name"
-                        placeholder="Enter name"
+                        placeholder="Enter phone name"
                         {...register("name")}
-                        onChange={handleChange}
                       />
                     </div>
                     <div style={{ marginTop: 10 }}>
-                      <label htmlFor="age" style={labelStyle}>
-                        Age
-                      </label>
-                      <input
-                        type="number"
-                        id="age"
-                        placeholder="Enter age"
-                        {...register("age")}
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div style={{ marginTop: 10 }}>
-                      <label htmlFor="location" style={labelStyle}>
-                        Location
+                      <label htmlFor="capacity" style={labelStyle}>
+                        Capacity:
                       </label>
                       <input
                         type="text"
-                        id="location"
-                        placeholder="Enter location"
-                        {...register("location")}
-                        onChange={handleChange}
+                        placeholder="Enter phone capacity"
+                        {...register("capacity")}
                       />
                     </div>
                     <div style={{ marginTop: 10 }}>
-                      <input type="submit" value="Submit" />
+                      <label htmlFor="price" style={labelStyle}>
+                        Price:
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Enter price"
+                        {...register("price")}
+                      />
+                    </div>
+                    <div style={{ marginTop: 10 }}>
+                      <input type="submit" value="Submit" disabled={serverError} />
                     </div>
                   </form>
-                </div>
-                <div>
-                  <h4 style={{ marginBottom: "0px" }}>
-                    Name: <span ref={labelNameRef}></span>
-                  </h4>
-                  <div>
-                    Age: <span ref={labelAgeRef}></span>
-                  </div>
-                  <div>
-                    Location: <span ref={labelLocationRef}></span>
-                  </div>
                 </div>
               </div>
             );
           };
+          export default FormComponentPhone;
           
-          export default ReactHookFormComponent;
           
-==================================================================================================
-React Hook Form Validation
-==================================================================================================
-    
-    - Define a react hook form component with inputs validation.
+    - Define a function component for adding new people data.
         
         .. code-block::
-          :caption: src/ReactHookFormInputsValidation.tsx
+          :caption: src/FormComponentPeople.tsx
           :linenos:
           
-          import { useRef } from "react";
           import { useForm } from "react-hook-form";
           import "./App.css";
           
-          const ReactHookFormInputsValidation = () => {
-            const {
-              register,
-              handleSubmit,
-              formState: { errors },
-              reset,
-            } = useForm({
-              mode: "all",
-            });
+          interface FormComponentPeopleProps {
+            serverError: boolean;
+            addPeople: ({
+              firstName,
+              lastName,
+              age,
+            }: {
+              firstName: string;
+              lastName: string;
+              age: number;
+            }) => Promise<void>;
+          }
+          interface FormData {
+            firstName: string;
+            lastName: string;
+            age: number;
+          }
           
-            const labelNameRef = useRef<HTMLSpanElement>(null);
-            const labelAgeRef = useRef<HTMLSpanElement>(null);
-            const labelLocationRef = useRef<HTMLSpanElement>(null);
+          const FormComponentPeople: React.FC<FormComponentPeopleProps> = (props) => {
+            const { serverError, addPeople } = { ...props };
+            const { register, handleSubmit, reset } = useForm<FormData>();
           
             const labelStyle = {
               display: "inline-block",
-              width: "2.5rem",
+              width: "6rem",
               marginRight: "1.5rem",
-            };
-            const onFormSubmit = () => {
-              if (
-                labelNameRef.current &&
-                labelAgeRef.current &&
-                labelLocationRef.current
-              ) {
-                alert(
-                  JSON.stringify({
-                    name: labelNameRef.current.innerText,
-                    age: labelAgeRef.current.innerText,
-                    location: labelLocationRef.current.innerText,
-                  }),
-                );
-              }
-              reset();
-            };
-          
-            const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-              const name = e.target.name;
-              if (name === "name") {
-                if (labelNameRef.current) {
-                  labelNameRef.current.innerText = e.target.value;
-                }
-              } else if (name === "age") {
-                if (labelAgeRef.current) {
-                  labelAgeRef.current.innerText = e.target.value;
-                }
-              } else if (name === "location") {
-                if (labelLocationRef.current) {
-                  labelLocationRef.current.innerText = e.target.value;
-                }
-              }
             };
           
             return (
               <div>
                 <div className="App">
                   <form
-                    noValidate
                     onSubmit={(e) => {
                       e.preventDefault();
-                      handleSubmit(onFormSubmit)().catch((error) => {
-                        console.error("Form submission error:", error);
-                      });
+                      void handleSubmit(addPeople)();
+                      reset();
                     }}
                   >
-                    <div style={{ marginTop: 10 }} className="form-group">
-                      <label htmlFor="name" style={labelStyle}>
-                        Name
+                    <div style={{ marginTop: 20 }}>
+                      <label htmlFor="firstName" style={labelStyle}>
+                        First Name:
                       </label>
                       <input
                         type="text"
-                        id="name"
-                        placeholder="Enter name"
-                        {...register("name", {
-                          required: "You must enter a name",
-                          minLength: {
-                            value: 4,
-                            message: "Name must be at least 4 characters",
-                          },
-                          maxLength: {
-                            value: 128,
-                            message: "Name must be at most 128 characters",
-                          },
-                        })}
-                        onChange={handleChange}
+                        placeholder="Enter first name"
+                        {...register("firstName")}
                       />
-                      {/*<p><ErrorMessage errors={errors} name="name" /></div>*/}
-                      {errors.name && typeof errors.name.message === "string" && (
-                        <div className="red-color">{errors.name.message}</div>
-                      )}
                     </div>
-                    <div style={{ marginTop: 10 }} className="form-group">
+                    <div style={{ marginTop: 10 }}>
+                      <label htmlFor="lastName" style={labelStyle}>
+                        Last Name:
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Enter last name"
+                        {...register("lastName")}
+                      />
+                    </div>
+                    <div style={{ marginTop: 10 }}>
                       <label htmlFor="age" style={labelStyle}>
-                        Age
+                        Age:
                       </label>
-                      <input
-                        type="number"
-                        id="age"
-                        placeholder="Enter age"
-                        {...register("age", {
-                          valueAsNumber: true,
-                          min: { value: 1, message: "Age must be at least 1 years old" },
-                          max: {
-                            value: 150,
-                            message: "Age must be at most 150 years old",
-                          },
-                        })}
-                        onChange={handleChange}
-                      />
-                      {errors.age && typeof errors.age.message === "string" && (
-                        <div className="red-color">{errors.age.message}</div>
-                      )}
+                      <input type="number" placeholder="Enter age" {...register("age")} />
                     </div>
-                    <div style={{ marginTop: 10 }} className="form-group">
-                      <label htmlFor="location" style={labelStyle}>
-                        Location
-                      </label>
-                      <input
-                        type="text"
-                        id="location"
-                        placeholder="Enter location"
-                        {...register("location", {
-                          required: "You must enter a location",
-                          minLength: {
-                            value: 2,
-                            message: "Location must be at least 2 characters",
-                          },
-                          maxLength: {
-                            value: 128,
-                            message: "Location must be at most 128 characters",
-                          },
-                        })}
-                        onChange={handleChange}
-                      />
-                      {errors.location && typeof errors.location.message === "string" && (
-                        <div className="red-color">{errors.location.message}</div>
-                      )}
-                    </div>
-                    <div style={{ marginTop: 10 }} className="form-group">
-                      <input type="submit" value="Submit" />
+                    <div style={{ marginTop: 10 }}>
+                      <input type="submit" value="Submit" disabled={serverError} />
                     </div>
                   </form>
-                </div>
-                <div>
-                  <h4 style={{ marginBottom: "0px" }}>
-                    Name: <span ref={labelNameRef}></span>
-                  </h4>
-                  <div>
-                    Age: <span ref={labelAgeRef}></span>
-                  </div>
-                  <div>
-                    Location: <span ref={labelLocationRef}></span>
-                  </div>
                 </div>
               </div>
             );
           };
+          export default FormComponentPeople;
           
-          export default ReactHookFormInputsValidation;
+          
+==================================================================================================
+Using Fetch
+==================================================================================================
+    
+--------------------------------------------------------------------------------------------------
+Fetch: Getting Data List
+--------------------------------------------------------------------------------------------------
+    
+    - Define a function component using fetch to get phones and peoples from two public servers.
+        
+        .. code-block::
+          :caption: src/FetchGetComponent.tsx
+          :linenos:
+          
+          import React, { useState, useEffect, useRef } from "react";
+          import ComponentPhone from "./ComponentPhone";
+          import ComponentPeople from "./ComponentPeople";
+          import "./App.css";
+          
+          interface Phone {
+            id: string;
+            name: string;
+            data: {
+              Capacity: string;
+              Price: string;
+            };
+          }
+          interface People {
+            id: number;
+            firstName: string;
+            lastName: string;
+            age: number;
+          }
+          const FetchGetComponent: React.FC = () => {
+            const [phones, setPhones] = useState<Phone[]>([]);
+            const [isPhonesLoading, setPhonesLoading] = useState(true);
+          
+            const [peoples, setPeoples] = useState<People[]>([]);
+            const [isPeoplesLoading, setPeoplesLoading] = useState(true);
+          
+            const getPhoneError = useRef<HTMLDivElement>(null);
+            const getPeopleError = useRef<HTMLDivElement>(null);
+          
+            useEffect(() => {
+              const fetchPhones = async () => {
+                await fetch("https://api.restful-api.dev/objects?id=12&id=13")
+                  .then((response) => {
+                    if (response.ok) {
+                      return response.json() as unknown as Phone[];
+                    }
+                    throw new Error(`Failed to fetch data, Status: ${response.status}`);
+                  })
+                  .then((data) => {
+                    //console.log(data);
+                    setPhones(data);
+                    setPhonesLoading(false);
+                  })
+                  .catch((err) => {
+                    if (err instanceof Error) {
+                      //console.log(err.message); // Error message  output
+                      if (getPhoneError.current) {
+                        getPhoneError.current.textContent = err.message;
+                      }
+                    }
+                    setPhonesLoading(true);
+                  });
+              };
+              const fetchPeoples = async () => {
+                await fetch("https://softwium.com/api/peoples?limit=2")
+                  .then((response) => {
+                    if (response.ok) {
+                      return response.json() as unknown as People[];
+                    }
+                    throw new Error(`Failed to fetch data, Status: ${response.status}`);
+                  })
+                  .then((data) => {
+                    //console.log(data);
+                    setPeoples(data);
+                    setPeoplesLoading(false);
+                  })
+                  .catch((err) => {
+                    if (err instanceof Error) {
+                      //console.log(err.message); // Error message  output
+                      if (getPeopleError.current) {
+                        getPeopleError.current.textContent = err.message;
+                      }
+                    }
+                    setPeoplesLoading(true);
+                  });
+              };
+              void fetchPhones();
+              void fetchPeoples();
+            }, []);
+            return (
+              <>
+                <div style={{ marginTop: "20px" }}>
+                  <h3>Fetch Two Phone Objects</h3>
+                  <h5 className="blue-color" style={{ marginTop: "0px" }}>
+                    Server: https://api.restful-api.dev/objects
+                  </h5>
+                  <div>
+                    <h4>Phone List</h4>
+                    {isPhonesLoading && (
+                      <div>
+                        <div>Loading...</div>
+                        <div className="red-color" ref={getPhoneError}></div>
+                      </div>
+                    )}
+                    <div>
+                      {phones.length > 0 &&
+                        phones.map((phone) => {
+                          return (
+                            <div key={phone.id} style={{ marginTop: "10px" }}>
+                              <ComponentPhone
+                                id={phone.id}
+                                name={phone.name}
+                                capacity={phone.data.Capacity}
+                                price={phone.data.Price}
+                              />
+                            </div>
+                          );
+                        })}
+                    </div>
+                  </div>
+                </div>
+                <div style={{ marginTop: "20px" }}>
+                  <h3>Fetch Two Peoples</h3>
+                  <h5 className="blue-color" style={{ marginTop: "0px" }}>
+                    Server: https://softwium.com/api/peoples
+                  </h5>
+                  <div>
+                    <h4>People List</h4>
+                    {isPeoplesLoading && (
+                      <div>
+                        <div>Loading...</div>
+                        <div className="red-color" ref={getPeopleError}></div>
+                      </div>
+                    )}
+                    <div>
+                      {peoples.length > 0 &&
+                        peoples.map((people) => {
+                          return (
+                            <div key={people.id} style={{ marginTop: "10px" }}>
+                              <ComponentPeople
+                                id={people.id}
+                                firstName={people.firstName}
+                                lastName={people.lastName}
+                                age={people.age}
+                              />
+                            </div>
+                          );
+                        })}
+                    </div>
+                  </div>
+                </div>
+              </>
+            );
+          };
+          
+          export default FetchGetComponent;
+          
+--------------------------------------------------------------------------------------------------
+Fetch: Adding Data
+--------------------------------------------------------------------------------------------------
+    
+    - Define a function component using fetch to add new phone and people from two public servers.
+        
+        .. code-block::
+          :caption: src/FetchPostComponent.tsx
+          :linenos:
+          
+          import React, { useState, useEffect, useRef } from "react";
+          import FormComponentPhone from "./FormComponentPhone";
+          import ComponentPhone from "./ComponentPhone";
+          import ComponentPeople from "./ComponentPeople";
+          import FormComponentPeople from "./FormComponentPeople";
+          import "./App.css";
+          
+          interface Phone {
+            id: string;
+            name: string;
+            data: {
+              Capacity: string;
+              Price: string;
+            };
+          }
+          interface People {
+            id: number;
+            firstName: string;
+            lastName: string;
+            age: number;
+          }
+          const FetchPostComponent: React.FC = () => {
+            const [phones, setPhones] = useState<Phone[]>([]);
+            const [isPhonesLoading, setPhonesLoading] = useState(true);
+            const [isPhonesServerError, setPhonesServerError] = useState(false);
+            const [peoples, setPeoples] = useState<People[]>([]);
+            const [isPeoplesLoading, setPeoplesLoading] = useState(true);
+          
+            const [isPeoplesServerError, setPeoplesServerError] = useState(false);
+            const getPhoneError = useRef<HTMLDivElement>(null);
+            const getPeopleError = useRef<HTMLDivElement>(null);
+          
+            useEffect(() => {
+              const fetchPhones = async () => {
+                await fetch("https://api.restful-api.dev/objects?id=12&id=13")
+                  .then((response) => {
+                    if (response.ok) {
+                      return response.json() as unknown as Phone[];
+                    }
+                    throw new Error(`Failed to fetch data, Status: ${response.status}`);
+                  })
+                  .then((data) => {
+                    //console.log(data);
+                    setPhones(data);
+                    setPhonesLoading(false);
+                  })
+                  .catch((err) => {
+                    if (err instanceof Error) {
+                      //console.log(err.message); // Error message  output
+                      if (getPhoneError.current) {
+                        getPhoneError.current.textContent = err.message;
+                      }
+                    }
+                    setPhonesServerError(true);
+                    setPhonesLoading(true);
+                  });
+              };
+              const fetchPeoples = async () => {
+                await fetch("https://softwium.com/api/peoples?limit=2")
+                  .then((response) => {
+                    if (response.ok) {
+                      return response.json() as unknown as People[];
+                    }
+                    throw new Error(`Failed to fetch data, Status: ${response.status}`);
+                  })
+                  .then((data) => {
+                    //console.log(data);
+                    setPeoples(data);
+                    setPeoplesLoading(false);
+                  })
+                  .catch((err) => {
+                    if (err instanceof Error) {
+                      //console.log(err.message); // Error message  output
+                      if (getPeopleError.current) {
+                        getPeopleError.current.textContent = err.message;
+                      }
+                    }
+                    setPeoplesServerError(true);
+                    setPeoplesLoading(true);
+                  });
+              };
+              void fetchPhones();
+              void fetchPeoples();
+            }, []);
+          
+            const addPhoneItem = async ({
+              name,
+              capacity,
+              price,
+            }: {
+              name: string;
+              capacity: string;
+              price: string;
+            }) => {
+              await fetch("https://api.restful-api.dev/objects", {
+                method: "POST",
+                body: JSON.stringify({
+                  name: name,
+                  data: {
+                    Capacity: capacity,
+                    Price: price,
+                  },
+                }),
+                headers: {
+                  "Content-type": "application/json; charset=UTF-8",
+                },
+              })
+                .then((response) => response.json() as unknown as Phone)
+                .then((data) => {
+                  setPhones((phones) => [...phones, data]);
+                  setPhonesLoading(false);
+                })
+                .catch((err) => {
+                  if (err instanceof Error) {
+                    console.log(err.message);
+                  }
+                  setPhonesServerError(true);
+                  setPhonesLoading(true);
+                });
+            };
+            const addPeopleItem = async ({
+              firstName,
+              lastName,
+              age,
+            }: {
+              firstName: string;
+              lastName: string;
+              age: number;
+            }) => {
+              await fetch("https://api.restful-api.dev/objects", {
+                method: "POST",
+                body: JSON.stringify({
+                  firstName: firstName,
+                  lastName: lastName,
+                  age: age,
+                }),
+                headers: {
+                  "Content-type": "application/json; charset=UTF-8",
+                },
+              })
+                .then((response) => response.json() as unknown as People)
+                .then((data) => {
+                  if (!data.firstName) data.firstName = firstName;
+                  if (!data.lastName) data.lastName = lastName;
+                  if (!data.age) data.age = age;
+                  setPeoples((peoples) => [...peoples, data]);
+                  setPeoplesLoading(false);
+                })
+                .catch((err) => {
+                  if (err instanceof Error) {
+                    console.log(err.message);
+                  }
+                  setPeoplesServerError(true);
+                  setPeoplesLoading(true);
+                });
+            };
+            return (
+              <>
+                <div style={{ marginTop: "20px" }}>
+                  <h3>Fetch Post: Add New Phone Item</h3>
+                  <h5 className="blue-color" style={{ marginTop: "0px" }}>
+                    Server: https://api.restful-api.dev/objects
+                  </h5>
+                  <FormComponentPhone
+                    serverError={isPhonesServerError}
+                    addPhone={addPhoneItem}
+                  />
+                  <div>
+                    <h4>Phone List</h4>
+                    {isPhonesLoading && (
+                      <div>
+                        <div>Loading...</div>
+                        <div className="red-color" ref={getPhoneError}></div>
+                      </div>
+                    )}
+                    <div>
+                      {phones.length > 0 &&
+                        phones.map((phone) => {
+                          return (
+                            <div key={phone.id} style={{ marginTop: "10px" }}>
+                              <ComponentPhone
+                                id={phone.id}
+                                name={phone.name}
+                                capacity={phone.data.Capacity}
+                                price={phone.data.Price}
+                              />
+                            </div>
+                          );
+                        })}
+                    </div>
+                  </div>
+                </div>
+                <div style={{ marginTop: "20px" }}>
+                  <h3>Fetch Post: Add New People</h3>
+                  <h5 className="blue-color" style={{ marginTop: "0px" }}>
+                    Server: https://softwium.com/api/peoples
+                  </h5>
+                  <FormComponentPeople
+                    serverError={isPeoplesServerError}
+                    addPeople={addPeopleItem}
+                  />
+                  <div>
+                    <h4>People List</h4>
+                    {isPeoplesLoading && (
+                      <div>
+                        <div>Loading...</div>
+                        <div className="red-color" ref={getPeopleError}></div>
+                      </div>
+                    )}
+                    <div>
+                      {peoples.length > 0 &&
+                        peoples.map((people) => {
+                          return (
+                            <div key={people.id} style={{ marginTop: "10px" }}>
+                              <ComponentPeople
+                                id={people.id}
+                                firstName={people.firstName}
+                                lastName={people.lastName}
+                                age={people.age}
+                              />
+                            </div>
+                          );
+                        })}
+                    </div>
+                  </div>
+                </div>
+              </>
+            );
+          };
+          
+          export default FetchPostComponent;
+          
+                    
+==================================================================================================
+Using axios Library
+==================================================================================================
+    
+--------------------------------------------------------------------------------------------------
+Axios: Getting Data List
+--------------------------------------------------------------------------------------------------
+    
+    - Define a function component using axios to get phones and peoples from two public servers.
+        
+        .. code-block::
+          :caption: src/AxiosGetComponent.tsx
+          :linenos:
+          
+          import React, { useState, useEffect, useRef } from "react";
+          import axios from "axios";
+          import ComponentPhone from "./ComponentPhone";
+          import ComponentPeople from "./ComponentPeople";
+          import "./App.css";
+          
+          interface Phone {
+            id: string;
+            name: string;
+            data: {
+              Capacity: string;
+              Price: string;
+            };
+          }
+          interface People {
+            id: number;
+            firstName: string;
+            lastName: string;
+            age: number;
+          }
+          const AxiosGetComponent: React.FC = () => {
+            const [phones, setPhones] = useState<Phone[]>([]);
+            const [isPhonesLoading, setPhonesLoading] = useState(true);
+          
+            const [peoples, setPeoples] = useState<People[]>([]);
+            const [isPeoplesLoading, setPeoplesLoading] = useState(true);
+          
+            const getPhoneError = useRef<HTMLDivElement>(null);
+            const getPeopleError = useRef<HTMLDivElement>(null);
+          
+            useEffect(() => {
+              const getPhones = async () => {
+                await axios
+                  .get("https://api.restful-api.dev/objects?id=12&id=13")
+                  .then((response) => {
+                    return response.data as JSON as unknown as Phone[];
+                  })
+                  .then((data) => {
+                    //console.log(data);
+                    setPhones(data);
+                    setPhonesLoading(false);
+                  })
+                  .catch((err) => {
+                    if (err instanceof Error) {
+                      //console.log(err.message); // Error message  output
+                      if (getPhoneError.current) {
+                        getPhoneError.current.textContent = err.message;
+                      }
+                    }
+                    setPhonesLoading(true);
+                  });
+              };
+              const getPeoples = async () => {
+                await axios
+                  .get("https://softwium.com/api/peoples?limit=2")
+                  .then((response) => response.data as JSON as unknown as People[])
+                  .then((data) => {
+                    //console.log(data);
+                    setPeoples(data);
+                    setPeoplesLoading(false);
+                  })
+                  .catch((err) => {
+                    if (err instanceof Error) {
+                      //console.log(err.message); // Error message  output
+                      if (getPeopleError.current) {
+                        getPeopleError.current.textContent = err.message;
+                      }
+                    }
+                    setPeoplesLoading(true);
+                  });
+              };
+              void getPhones();
+              void getPeoples();
+            }, []);
+            return (
+              <>
+                <div style={{ marginTop: "20px" }}>
+                  <h3>Axios: Get Two Phone Objects</h3>
+                  <h5 className="blue-color" style={{ marginTop: "0px" }}>
+                    Server: https://api.restful-api.dev/objects
+                  </h5>
+                  <div>
+                    <h4>Phone List</h4>
+                    {isPhonesLoading && (
+                      <div>
+                        <div>Loading...</div>
+                        <div className="red-color" ref={getPhoneError}></div>
+                      </div>
+                    )}
+                    <div>
+                      {phones.length > 0 &&
+                        phones.map((phone) => {
+                          return (
+                            <div key={phone.id} style={{ marginTop: "10px" }}>
+                              <ComponentPhone
+                                id={phone.id}
+                                name={phone.name}
+                                capacity={phone.data.Capacity}
+                                price={phone.data.Price}
+                              />
+                            </div>
+                          );
+                        })}
+                    </div>
+                  </div>
+                </div>
+                <div style={{ marginTop: "20px" }}>
+                  <h3>Axios: Get Two Peoples</h3>
+                  <h5 className="blue-color" style={{ marginTop: "0px" }}>
+                    Server: https://softwium.com/api/peoples
+                  </h5>
+                  <div>
+                    <h4>People List</h4>
+                    {isPeoplesLoading && (
+                      <div>
+                        <div>Loading...</div>
+                        <div className="red-color" ref={getPeopleError}></div>
+                      </div>
+                    )}
+                    <div>
+                      {peoples.length > 0 &&
+                        peoples.map((people) => {
+                          return (
+                            <div key={people.id} style={{ marginTop: "10px" }}>
+                              <ComponentPeople
+                                id={people.id}
+                                firstName={people.firstName}
+                                lastName={people.lastName}
+                                age={people.age}
+                              />
+                            </div>
+                          );
+                        })}
+                    </div>
+                  </div>
+                </div>
+              </>
+            );
+          };
+          
+          export default AxiosGetComponent;
+          
+--------------------------------------------------------------------------------------------------
+Axios: Adding Data
+--------------------------------------------------------------------------------------------------
+    
+    - Define a function component using axios to add new phone and people from two public servers.
+        
+        .. code-block::
+          :caption: src/AxiosPostComponent.tsx
+          :linenos:
+          
+          import React, { useState, useEffect, useRef } from "react";
+          import axios from "axios";
+          import FormComponentPhone from "./FormComponentPhone";
+          import ComponentPhone from "./ComponentPhone";
+          import ComponentPeople from "./ComponentPeople";
+          import FormComponentPeople from "./FormComponentPeople";
+          import "./App.css";
+          
+          interface Phone {
+            id: string;
+            name: string;
+            data: {
+              Capacity: string;
+              Price: string;
+            };
+          }
+          interface People {
+            id: number;
+            firstName: string;
+            lastName: string;
+            age: number;
+          }
+          const AxiosPostComponent: React.FC = () => {
+            const [phones, setPhones] = useState<Phone[]>([]);
+            const [isPhonesLoading, setPhonesLoading] = useState(true);
+            const [isPhonesServerError, setPhonesServerError] = useState(false);
+            const [peoples, setPeoples] = useState<People[]>([]);
+            const [isPeoplesLoading, setPeoplesLoading] = useState(true);
+          
+            const [isPeoplesServerError, setPeoplesServerError] = useState(false);
+            const getPhoneError = useRef<HTMLDivElement>(null);
+            const getPeopleError = useRef<HTMLDivElement>(null);
+          
+            useEffect(() => {
+              const getPhones = async () => {
+                await axios
+                  .get("https://api.restful-api.dev/objects?id=12&id=13")
+                  .then((response) => {
+                    return response.data as JSON as unknown as Phone[];
+                  })
+                  .then((data) => {
+                    //console.log(data);
+                    setPhones(data);
+                    setPhonesLoading(false);
+                  })
+                  .catch((err) => {
+                    if (err instanceof Error) {
+                      //console.log(err.message); // Error message  output
+                      if (getPhoneError.current) {
+                        getPhoneError.current.textContent = err.message;
+                      }
+                    }
+                    setPhonesLoading(true);
+                  });
+              };
+              const getPeoples = async () => {
+                await axios
+                  .get("https://softwium.com/api/peoples?limit=2")
+                  .then((response) => response.data as JSON as unknown as People[])
+                  .then((data) => {
+                    //console.log(data);
+                    setPeoples(data);
+                    setPeoplesLoading(false);
+                  })
+                  .catch((err) => {
+                    if (err instanceof Error) {
+                      //console.log(err.message); // Error message  output
+                      if (getPeopleError.current) {
+                        getPeopleError.current.textContent = err.message;
+                      }
+                    }
+                    setPeoplesLoading(true);
+                  });
+              };
+              void getPhones();
+              void getPeoples();
+            }, []);
+          
+            const addPhoneItem = async ({
+              name,
+              capacity,
+              price,
+            }: {
+              name: string;
+              capacity: string;
+              price: string;
+            }) => {
+              await axios
+                .post("https://api.restful-api.dev/objects", {
+                  name: name,
+                  data: {
+                    Capacity: capacity,
+                    Price: price,
+                  },
+                })
+                .then((response) => response.data as JSON as unknown as Phone)
+                .then((data) => {
+                  setPhones((phones) => [...phones, data]);
+                  setPhonesLoading(false);
+                })
+                .catch((err) => {
+                  if (err instanceof Error) {
+                    console.log(err.message);
+                  }
+                  setPhonesServerError(true);
+                  setPhonesLoading(true);
+                });
+            };
+            const addPeopleItem = async ({
+              firstName,
+              lastName,
+              age,
+            }: {
+              firstName: string;
+              lastName: string;
+              age: number;
+            }) => {
+              await axios
+                .post("https://api.restful-api.dev/objects", {
+                  firstName: firstName,
+                  lastName: lastName,
+                  age: age,
+                })
+                .then((response) => response.data as JSON as unknown as People)
+                .then((data) => {
+                  if (!data.firstName) data.firstName = firstName;
+                  if (!data.lastName) data.lastName = lastName;
+                  if (!data.age) data.age = age;
+                  setPeoples((peoples) => [...peoples, data]);
+                  setPeoplesLoading(false);
+                })
+                .catch((err) => {
+                  if (err instanceof Error) {
+                    console.log(err.message);
+                  }
+                  setPeoplesServerError(true);
+                  setPeoplesLoading(true);
+                });
+            };
+            return (
+              <>
+                <div style={{ marginTop: "20px" }}>
+                  <h3>Axios Post: Add New Phone Item</h3>
+                  <h5 className="blue-color" style={{ marginTop: "0px" }}>
+                    Server: https://api.restful-api.dev/objects
+                  </h5>
+                  <FormComponentPhone
+                    serverError={isPhonesServerError}
+                    addPhone={addPhoneItem}
+                  />
+                  <div>
+                    <h4>Phone List</h4>
+                    {isPhonesLoading && (
+                      <div>
+                        <div>Loading...</div>
+                        <div className="red-color" ref={getPhoneError}></div>
+                      </div>
+                    )}
+                    <div>
+                      {phones.length > 0 &&
+                        phones.map((phone) => {
+                          return (
+                            <div key={phone.id} style={{ marginTop: "10px" }}>
+                              <ComponentPhone
+                                id={phone.id}
+                                name={phone.name}
+                                capacity={phone.data.Capacity}
+                                price={phone.data.Price}
+                              />
+                            </div>
+                          );
+                        })}
+                    </div>
+                  </div>
+                </div>
+                <div style={{ marginTop: "20px" }}>
+                  <h3>Axios Post: Add New People</h3>
+                  <h5 className="blue-color" style={{ marginTop: "0px" }}>
+                    Server: https://softwium.com/api/peoples
+                  </h5>
+                  <FormComponentPeople
+                    serverError={isPeoplesServerError}
+                    addPeople={addPeopleItem}
+                  />
+                  <div>
+                    <h4>People List</h4>
+                    {isPeoplesLoading && (
+                      <div>
+                        <div>Loading...</div>
+                        <div className="red-color" ref={getPeopleError}></div>
+                      </div>
+                    )}
+                    <div>
+                      {peoples.length > 0 &&
+                        peoples.map((people) => {
+                          return (
+                            <div key={people.id} style={{ marginTop: "10px" }}>
+                              <ComponentPeople
+                                id={people.id}
+                                firstName={people.firstName}
+                                lastName={people.lastName}
+                                age={people.age}
+                              />
+                            </div>
+                          );
+                        })}
+                    </div>
+                  </div>
+                </div>
+              </>
+            );
+          };
+          
+          export default AxiosPostComponent;
           
 ==================================================================================================
 Function Component - the User Interface
@@ -955,11 +1529,11 @@ Function Component - the User Interface
           :caption: src/FunctionComponentsDisplay.tsx
           :linenos:
           
+          import AxiosGetComponent from "./AxiosGetComponent";
+          import AxiosPostComponent from "./AxiosPostComponent";
+          import FetchGetComponent from "./FetchGetComponent";
+          import FetchPostComponent from "./FetchPostComponent";
           import "./list-style.css";
-          import ReactHookFormInputsValidation from "./ReactHookFormInputsValidation";
-          import ReactFormControlledComponent from "./ReactFormControlledComponent";
-          import ReactFormUncontrolledComponent from "./ReactFormUncontrolledComponent";
-          import ReactHookFormComponent from "./ReactHookFormComponent";
           
           const FunctionComponentsDisplay = () => {
             return (
@@ -969,36 +1543,36 @@ Function Component - the User Interface
                   <li className="list-item">
                     <div className="list-item-number"></div>
                     <div className="list-item-content">
-                      <h3>Controlled Component</h3>
+                      <h3>Fetch API: GET Requests</h3>
                       <div>
-                        <ReactFormControlledComponent />
+                        <FetchGetComponent />
                       </div>
                     </div>
                   </li>
                   <li className="list-item">
                     <div className="list-item-number"></div>
                     <div className="list-item-content">
-                      <h3>Uncontrolled Component</h3>
+                      <h3>Fetch API: Post Requests</h3>
                       <div>
-                        <ReactFormUncontrolledComponent />
+                        <FetchPostComponent />
                       </div>
                     </div>
                   </li>
                   <li className="list-item">
                     <div className="list-item-number"></div>
                     <div className="list-item-content">
-                      <h3>The useForm Library</h3>
+                      <h3>Axios API: GET Requests</h3>
                       <div>
-                        <ReactHookFormComponent />
+                        <AxiosGetComponent />
                       </div>
                     </div>
                   </li>
                   <li className="list-item">
                     <div className="list-item-number"></div>
                     <div className="list-item-content">
-                      <h3>useForm with Validation</h3>
+                      <h3>Axios API: Post Requests</h3>
                       <div>
-                        <ReactHookFormInputsValidation />
+                        <AxiosPostComponent />
                       </div>
                     </div>
                   </li>
@@ -1076,7 +1650,7 @@ Sources and Demos
     - Live Demo: https://david-ggs-230.github.io/react-projects/react-projects-with-typescript/tut07-react-restapi/
     - Screenshot
         
-        .. figure:: images/tut06/tut06-react-form.png
+        .. figure:: images/tut07/tut07-react-restapi.png
            :align: center
            :class: sd-my-2
            :width: 60%
