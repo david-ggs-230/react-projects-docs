@@ -564,7 +564,7 @@ Components for Handling Data Inputs
     
     - Define a function component for adding new phone data.
         
-        .. code-block::
+        .. code-block:: tsx
           :caption: src/FormComponentPhone.tsx
           :linenos:
           
@@ -652,7 +652,7 @@ Components for Handling Data Inputs
           
     - Define a function component for adding new people data.
         
-        .. code-block::
+        .. code-block:: tsx
           :caption: src/FormComponentPeople.tsx
           :linenos:
           
@@ -735,16 +735,16 @@ Components for Handling Data Inputs
           
           
 ==================================================================================================
-Using Fetch
+The Fetch API
 ==================================================================================================
     
 --------------------------------------------------------------------------------------------------
-Fetch: Getting Data List
+Making GET Requests
 --------------------------------------------------------------------------------------------------
     
     - Define a function component using fetch to get phones and peoples from two public servers.
         
-        .. code-block::
+        .. code-block:: tsx
           :caption: src/FetchGetComponent.tsx
           :linenos:
           
@@ -896,12 +896,12 @@ Fetch: Getting Data List
           export default FetchGetComponent;
           
 --------------------------------------------------------------------------------------------------
-Fetch: Adding Data
+Making POST Requests
 --------------------------------------------------------------------------------------------------
     
     - Define a function component using fetch to add new phone and people from two public servers.
         
-        .. code-block::
+        .. code-block:: tsx
           :caption: src/FetchPostComponent.tsx
           :linenos:
           
@@ -1139,16 +1139,16 @@ Fetch: Adding Data
           
                     
 ==================================================================================================
-Using axios Library
+The axios API
 ==================================================================================================
     
 --------------------------------------------------------------------------------------------------
-Axios: Getting Data List
+Making GET Requests
 --------------------------------------------------------------------------------------------------
     
     - Define a function component using axios to get phones and peoples from two public servers.
         
-        .. code-block::
+        .. code-block:: tsx
           :caption: src/AxiosGetComponent.tsx
           :linenos:
           
@@ -1295,12 +1295,12 @@ Axios: Getting Data List
           export default AxiosGetComponent;
           
 --------------------------------------------------------------------------------------------------
-Axios: Adding Data
+Making POST Requests
 --------------------------------------------------------------------------------------------------
     
     - Define a function component using axios to add new phone and people from two public servers.
         
-        .. code-block::
+        .. code-block:: tsx
           :caption: src/AxiosPostComponent.tsx
           :linenos:
           
