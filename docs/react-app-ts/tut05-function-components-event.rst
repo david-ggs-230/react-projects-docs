@@ -650,7 +650,7 @@ Event Handler Using Arrow Functions
 Create a Function Component to Show the User Interface
 ==================================================================================================
     
-    Create a Function Component to show the user interface
+    - Create a Function Component to show the user interface
         
         .. code-block:: tsx
           :caption: src/FunctionComponentsDisplay.tsx

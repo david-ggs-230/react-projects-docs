@@ -438,7 +438,7 @@ Create a Class Component Receiving State Data from Parent
 Create a Class Component to Show the User Interface
 ==================================================================================================
     
-    Create a class Component to show the user interface
+    - Create a class Component to show the user interface
         
         .. code-block:: tsx
           :caption: src/ClassComponentsDisplay.tsx

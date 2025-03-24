@@ -564,7 +564,7 @@ Components for Handling Data Inputs
     
     - Define a function component for adding new phone data.
         
-        .. code-block:: tsx
+        .. code-block:: cfg
           :caption: src/FormComponentPhone.tsx
           :linenos:
           
@@ -652,7 +652,7 @@ Components for Handling Data Inputs
           
     - Define a function component for adding new people data.
         
-        .. code-block:: tsx
+        .. code-block:: cfg
           :caption: src/FormComponentPeople.tsx
           :linenos:
           
@@ -744,7 +744,7 @@ Making GET Requests
     
     - Define a function component using fetch to get phones and peoples from two public servers.
         
-        .. code-block:: tsx
+        .. code-block:: cfg
           :caption: src/FetchGetComponent.tsx
           :linenos:
           
@@ -901,7 +901,7 @@ Making POST Requests
     
     - Define a function component using fetch to add new phone and people from two public servers.
         
-        .. code-block:: tsx
+        .. code-block:: cfg
           :caption: src/FetchPostComponent.tsx
           :linenos:
           
@@ -1148,7 +1148,7 @@ Making GET Requests
     
     - Define a function component using axios to get phones and peoples from two public servers.
         
-        .. code-block:: tsx
+        .. code-block:: cfg
           :caption: src/AxiosGetComponent.tsx
           :linenos:
           
@@ -1300,7 +1300,7 @@ Making POST Requests
     
     - Define a function component using axios to add new phone and people from two public servers.
         
-        .. code-block:: tsx
+        .. code-block:: cfg
           :caption: src/AxiosPostComponent.tsx
           :linenos:
           
@@ -1523,7 +1523,7 @@ Making POST Requests
 Function Component - the User Interface
 ==================================================================================================
     
-    Create a function component to show the user interface
+    - Create a function component to show the user interface
         
         .. code-block:: tsx
           :caption: src/FunctionComponentsDisplay.tsx

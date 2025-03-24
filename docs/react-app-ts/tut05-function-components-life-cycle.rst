@@ -378,7 +378,7 @@ Function Components with Life Cycle Equivalents
 Create a Function Component to Show the User Interface
 ==================================================================================================
     
-    Create a function component to show the user interface
+    - Create a function component to show the user interface
         
         .. code-block:: tsx
           :caption: src/FunctionComponentsDisplay.tsx

@@ -424,7 +424,7 @@ Create a Function Component Receiving State Data from Parent
 Create a Function Component to Show the User Interface
 ==================================================================================================
     
-    Create a function Component to show the user interface
+    - Create a function Component to show the user interface
         
         .. code-block:: tsx
           :caption: src/FunctionComponentsDisplay.tsx
