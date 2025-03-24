@@ -269,7 +269,7 @@ ESLint and Prettier Configuration
     - Install the ``EditorConfig`` extension for VS Code if you haven't already.
     - Add .editorconfig (https://editorconfig.org) to the root of the project
         
-        .. code-block:: cfg
+        .. code-block:: tsx
           :caption: contents of .editorconfig
           :linenos:
           
@@ -344,7 +344,7 @@ ESLint and Prettier Configuration
           
     - Edit the eslint scripts in the package.json file: 
         
-        .. code-block:: cfg
+        .. code-block:: tsx
           :caption: contents of package.json
           :linenos:
           
@@ -564,7 +564,7 @@ Components for Handling Data Inputs
     
     - Define a function component for adding new phone data.
         
-        .. code-block:: cfg
+        .. code-block:: tsx
           :caption: src/FormComponentPhone.tsx
           :linenos:
           
@@ -652,7 +652,7 @@ Components for Handling Data Inputs
           
     - Define a function component for adding new people data.
         
-        .. code-block:: cfg
+        .. code-block:: tsx
           :caption: src/FormComponentPeople.tsx
           :linenos:
           
@@ -744,7 +744,7 @@ Making GET Requests
     
     - Define a function component using fetch to get phones and peoples from two public servers.
         
-        .. code-block:: cfg
+        .. code-block:: tsx
           :caption: src/FetchGetComponent.tsx
           :linenos:
           
@@ -901,7 +901,7 @@ Making POST Requests
     
     - Define a function component using fetch to add new phone and people from two public servers.
         
-        .. code-block:: cfg
+        .. code-block:: tsx
           :caption: src/FetchPostComponent.tsx
           :linenos:
           
@@ -1148,7 +1148,7 @@ Making GET Requests
     
     - Define a function component using axios to get phones and peoples from two public servers.
         
-        .. code-block:: cfg
+        .. code-block:: tsx
           :caption: src/AxiosGetComponent.tsx
           :linenos:
           
@@ -1300,7 +1300,7 @@ Making POST Requests
     
     - Define a function component using axios to add new phone and people from two public servers.
         
-        .. code-block:: cfg
+        .. code-block:: tsx
           :caption: src/AxiosPostComponent.tsx
           :linenos:
           
