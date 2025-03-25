@@ -171,83 +171,6 @@ ESLint and Prettier Configuration
           yarn lint
           yarn lint:fix
           
-        
-==================================================================================================
-Create Project CSS Styles
-==================================================================================================
-    
-    Create the src/list-styles.css file with the following contents: 
-        
-        .. code-block:: css
-          :caption: src/list-styles.css
-          :linenos:
-          
-          .list-container {
-            max-width: 800px;
-            width:max-content;
-            margin: 0 auto;
-            font-family: Arial, sans-serif;
-          }
-          
-          ol {
-            padding-left: 0;
-            counter-reset: list-counter;
-          }
-          
-          .list-item {
-            display: flex;
-            align-items: center;
-            margin: 10px 0;
-          }
-          
-          .list-item div button {
-            border-radius: 8px;
-            border: 1px solid rgb(90, 95, 82);
-          }
-          .list-item-number {
-            font-weight: bold;
-            margin-right: 10px;
-            counter-increment: list-counter;
-          }
-          
-          .list-item-number::before {
-            content: counter(list-counter) ". ";
-          }
-          
-          .list-item-content {
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 10px;
-            background-color: #f9f9f9;
-            flex-grow: 1;
-          }
-          
-          .list-item-content h3 {
-            margin: 0;
-            font-size: 1em;
-          }
-          
-          .list-item-content p {
-            margin: 5px 0;
-            font-size: 0.9em;
-          }
-          
-          .red-color {
-            color: #ff0000;
-          }
-          
-          .blue-color {
-            color: #0011ff;
-          }
-          
-          .bg-red {
-            background-color: #ff0000;
-          }
-          
-          .bg-blue {
-            background-color: #0011ff;
-          }
-          
 **************************************************************************************************
 React Router Components
 **************************************************************************************************
@@ -269,17 +192,68 @@ Routing Components structure :
         
     - NotFound
     
+React Router is a standard library for routing in React applications. It allows you to define navigation within your React app, enabling the rendering of different components based on the URL path. React Router allows you to handle dynamic URLs, nested routes, and more advanced routing mechanisms, making it a powerful tool for building single-page applications (SPAs).
+
+An overview of what React Router looks like:
+    
+    - BrowserRouter: The router that uses the HTML5 history API.
+    - Routes: Container for Route components
+    - Declarative Routing: Defining routes directly with <Route /> components.
+    - element prop: Renders components in the route
+    - Nested Routing with Outlet: Enables parent-child route rendering.
+    - Programmatic Navigation: Using useNavigate for route manipulation.
+    - Link: Used for navigation between routes without page reloads.
+    - Outlet: Placeholder for rendering nested routes inside a parent component.
+    - useNavigate: Programmatic navigation for routing within components.
+    - useLocation: Access the current location (URL) object, useful for querying URL parameters and state.
+    
+Key Concepts in React Router:
+    
+    - Router: The top-level component that holds the route information. There are different types of routers:
+        
+        - BrowserRouter: Uses the HTML5 history API to keep the UI in sync with the URL.
+        - HashRouter: Uses URL hash (#) for routing, suitable for environments where the HTML5 history API isn't available.
+        - MemoryRouter: Keeps the history in memory (useful for non-browser environments).
+        
+    - Routes: A component that holds the Route components. It is used to define different paths and map them to specific components.
+    - Route: Represents a single route and the associated component that should be rendered when the route is matched.
+    - Link: Allows users to navigate to different routes without a full page reload (client-side navigation).
+    - Outlet: A placeholder for rendering nested routes in React Router v6 and beyond.
+    - useNavigate and useLocation: Hooks provided by React Router for programmatic navigation and getting information about the current location (URL).
+    
+    
 ==================================================================================================
 Top Level Routing
 ==================================================================================================
+
+- Top Level Routing Components:
     
-    - Top Level Routing Components:
-        
-        - Home
-        - About
-        - NotFound
-        
-    - Define the <Home /> component ::
+    - Home
+    - NotFound
+    
+- Define Routes: ::
+    
+    {/* Define Routes */}
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/not-found" element={<NotFound />} />
+      ....
+    </Routes>
+    
+- Define Navigation Links: ::
+    
+    {/* Navigation Links */}
+    <nav>
+      <ul>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/not-found">Not Found</Link></li>
+        ....
+      </ul>
+    </nav>
+    
+- Routing components:
+    
+    - Define the <Home /> component
         
         .. code-block:: tsx
           :caption: src/Home.tsx
@@ -293,21 +267,7 @@ Top Level Routing
           
           export default Home;
           
-    - Define the <About /> component ::
-        
-        .. code-block:: tsx
-          :caption: src/About.tsx
-          :linenos:
-          
-          import "./../App.css";
-          
-          const About = () => {
-            return <h2 className="App">About Page</h2>;
-          };
-          
-          export default About;
-          
-    - Define the <NotFound /> component ::
+    - Define the <NotFound /> component
         
         .. code-block:: tsx
           :caption: src/NotFound.tsx
@@ -324,6 +284,53 @@ Top Level Routing
 ==================================================================================================
 Nested Routing
 ==================================================================================================
+In React, nested routing refers to having routes inside other routes. This is useful when you want to create a hierarchical structure where one route can display child components as part of its rendering.
+
+- Navlink:  ::
+    
+    # Top
+    {/* Navigation Links */}
+    <nav>
+      <ul>
+        ...
+        <li><Link to="/dashboard">Dashboard</Link></li>
+      </ul>
+    </nav>
+    # nested (optional)
+    <nav>
+      <ul>
+        <li><Link to="/dashboard/settings">Settings</Link></li>
+        <li><Link to="/dashboard/profile">Profile</Link></li>
+      </ul>
+    </nav>
+    
+    
+
+- Route: ::
+    
+    {/* Dashboard with nested routes */}
+    <Route path="/dashboard" element={<Dashboard />}>
+      {/* Nested Routes inside Dashboard */}
+      <Route path="settings" element={<Settings />} />
+      <Route path="profile" element={<Profile />} />
+    </Route>
+    
+- Outlet: for rendering child routes. ::
+    
+    <div>
+      ....
+      <nav>
+        {/* Navigation Links */}
+        <ul>
+          <li><Link to="settings">Settings</Link></li>
+          <li><Link to="profile">Profile</Link></li>
+        </ul>
+      </nav>
+      {/* This is where the nested routes will be rendered */}
+      <Outlet />
+    </div>
+    
+- Routing Components: 
     
     - Nested Routing Components:
         
@@ -332,7 +339,7 @@ Nested Routing
             - Profile
             - Settings
             
-    - Define the <Dashboard /> component ::
+    - Define the <Dashboard /> component
         
         .. code-block:: tsx
           :caption: src/Dashboard.tsx
@@ -382,7 +389,7 @@ Nested Routing
           
           export default Dashboard;
           
-    - Define the child <Profile /> component ::
+    - Define the child <Profile /> component
         
         .. code-block:: tsx
           :caption: src/Profile.tsx
@@ -408,7 +415,7 @@ Nested Routing
           
           export default Profile;
           
-    - Define the child <Settings /> component ::
+    - Define the child <Settings /> component
         
         .. code-block:: tsx
           :caption: src/Settings.tsx
@@ -437,6 +444,26 @@ Nested Routing
 ==================================================================================================
 Dynamic Routing
 ==================================================================================================
+React Router allows you to dynamically render components based on the URL, which is essential for creating dynamic, parameterized routes. Configure dynamic routes by using React Router’s Route component, where the path can include dynamic parameters, such as :productId, which will be captured and passed to the component. A route parameter is a segment in the path that varies. The value of the variable segment is available to components so that they can render something conditionally. In the following path, 1234 is the ``id`` of a customer('/customer/:id'): /customers/1234/
+
+There are two main steps to use dynamic routing:
+    
+    - First, defined route parameters in a route ::
+        
+        # Single
+        { path: '/customer/:id', element: <Customer /> }
+        # Multiple
+        { path: '/customer/:customerId/tasks/:taskId', element: <Customer /> }
+        
+    - Second, use route parameters in components using React Router’s useParams hook. ::
+        
+        # for route: { path: '/customer/:customerId/tasks/:taskId', element: <Customer /> }
+        const params = useParams<Params>()
+        console.log('Customer id', params.customerId);
+        console.log('Task id', params.taskId);
+        
+
+- Dynamic Routing Components structure :
     
     - Dynamic Routing Components:
         
@@ -446,7 +473,9 @@ Dynamic Routing
             - Product 2
             - Product 3
             
-    - Define the <Products /> component ::
+- Dynamic Routing Components:
+     
+    - Define the <Products /> component
         
         .. code-block:: tsx
           :caption: src/Products.tsx
@@ -495,7 +524,7 @@ Dynamic Routing
           
           export default Products;
           
-    - Define the child <ProductDetails /> component ::
+    - Define the child <ProductDetails /> component
         
         .. code-block:: tsx
           :caption: src/ProductDetails.tsx
@@ -532,15 +561,150 @@ Dynamic Routing
 ==================================================================================================
 Lazy Routing
 ==================================================================================================
+In React, lazy loading is a technique used to defer loading of components until they are needed, which can improve the performance of your app by reducing the initial bundle size. React provides a built-in way to achieve this with the React.lazy function and Suspense component.
+
+There are two main steps to lazy loading React components:
     
-    - Lazy Routing Components:
+    - First, the component must be dynamically imported as follows (Note: the lazy page must be a default export): ::
         
-        - About
+        const LazyPage = lazy(() => import('./LazyPage'));
+        
+    - The second step is to render the lazy component inside React’s Suspense component as follows: ::
+        
+        <Route
+            path="lazy"
+            element={
+                <Suspense fallback={<div>Loading…</div>}>
+                    <LazyPage />
+                </Suspense>
+            }
+        />
+        
+    - It's a good idea to use an Error Boundary around components that are lazily loaded, to handle errors in case the component fails to load:
+        
+        - Class ErrorBoundary ::
             
-            - Product 1
-            - Product 2
-            - Product 3
+            class ErrorBoundary extends Component {
+              state = { hasError: false };
             
+              static getDerivedStateFromError() {
+                return { hasError: true };
+              }
+            
+              componentDidCatch(error, info) {
+                console.error('Error loading component:', error, info);
+              }
+            
+              render() {
+                if (this.state.hasError) {
+                  return <div>Something went wrong!</div>;
+                }
+            
+                return this.props.children;
+              }
+            }
+            
+        - Lazy loading ::
+            
+            <Suspense fallback={<div>Loading...</div>}>
+                <ErrorBoundary>
+                    <MyComponent />
+                </ErrorBoundary>
+            </Suspense>
+            
+
+Lazy loading Components:
+    
+    - Define the <About /> component.
+        
+        .. code-block:: tsx
+          :caption: src/About.tsx
+          :linenos:
+          
+          import { useState } from "react";
+          import "./../App.css";
+          
+          const About = () => {
+            const [count, setCount] = useState(0);
+          
+            if (count === 3) {
+              throw new Error("Intentional error");
+            }
+          
+            return (
+              <div>
+                <h2 className="App">About Page</h2>
+                <h4>{count}</h4>
+                <button onClick={() => setCount(count + 1)}>Increment</button>
+              </div>
+            );
+          };
+          
+          export default About;
+    
+    - Define the <ErrorBoundary /> component.
+        
+        .. code-block::
+          :caption: src/ErrorBoundary.tsx
+          :linenos:
+          
+          import React, { Component, ReactNode } from "react";
+          
+          // Define the types for the state and props of the ErrorBoundary component
+          interface ErrorBoundaryState {
+            hasError: boolean;
+            error?: Error | null;
+            errorInfo?: React.ErrorInfo | null;
+          }
+          
+          interface ErrorBoundaryProps {
+            children: ReactNode;
+          }
+          
+          class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+            constructor(props: ErrorBoundaryProps) {
+              super(props);
+              this.state = { hasError: false, error: null, errorInfo: null };
+            }
+          
+            // This lifecycle method is called when an error is thrown in a child component
+            static getDerivedStateFromError(error: Error): ErrorBoundaryState {
+              // Update the state so the next render will show the fallback UI
+              return { hasError: true, error };
+            }
+          
+            // This lifecycle method is called after an error is caught
+            componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+              // You can log the error to an error reporting service
+              console.error("Error caught by ErrorBoundary:", error, errorInfo);
+              this.setState({
+                error,
+                errorInfo,
+              });
+            }
+          
+            render() {
+              if (this.state.hasError) {
+                // Render a fallback UI when an error is caught
+                return (
+                  <div>
+                    <h2>Something went wrong.</h2>
+                    <details style={{ whiteSpace: "pre-wrap" }}>
+                      {this.state.error && this.state.error.toString()}
+                      <br />
+                      {this.state.errorInfo && this.state.errorInfo.componentStack}
+                    </details>
+                  </div>
+                );
+              }
+          
+              // If there's no error, render the children normally
+              return this.props.children;
+            }
+          }
+          
+          export default ErrorBoundary;
+          
 ==================================================================================================
 Function Component - the User Interface
 ==================================================================================================
@@ -553,14 +717,15 @@ Function Component - the User Interface
           
           import { BrowserRouter, Route, Routes, NavLink } from "react-router";
           import Home from "./pages/Home";
-          import About from "./pages/About";
           import NotFound from "./pages/NotFound";
           import Dashboard from "./pages/Dashboard";
           import Profile from "./pages/Profile";
           import Settings from "./pages/Settings";
           import Products from "./pages/Products";
-          
           import ProductDetails from "./pages/ProductDetails";
+          //import About from "./pages/About";
+          import ErrorBoundary from "./pages/ErrorBoundary";
+          import { lazy, Suspense } from "react";
           
           function App() {
             const isActiveStyle = ({ isActive }: { isActive: boolean }) => ({
@@ -569,6 +734,7 @@ Function Component - the User Interface
               textDecoration: "none",
               marginRight: "15px",
             });
+            const About = lazy(() => import("./pages/About"));
             return (
               <BrowserRouter basename="/react-projects/react-projects-with-typescript/tut08-react-router">
                 <nav>
@@ -585,28 +751,27 @@ Function Component - the User Interface
                     </div>
                     <div>
                       <NavLink style={isActiveStyle} to="/dashboard">
-                        <div>Dashboard</div>
-          
-                        <nav>
-                          <ul
-                            style={{
-                              listStyle: "none",
-                              marginTop: "4px",
-                            }}
-                          >
-                            <li>
-                              <NavLink style={isActiveStyle} to="/dashboard/profile">
-                                Profile
-                              </NavLink>
-                            </li>
-                            <li>
-                              <NavLink style={isActiveStyle} to="/dashboard/settings">
-                                Settings
-                              </NavLink>
-                            </li>
-                          </ul>
-                        </nav>
+                        Dashboard
                       </NavLink>
+                      <nav>
+                        <ul
+                          style={{
+                            listStyle: "none",
+                            marginTop: "4px",
+                          }}
+                        >
+                          <li>
+                            <NavLink style={isActiveStyle} to="/dashboard/profile">
+                              Profile
+                            </NavLink>
+                          </li>
+                          <li>
+                            <NavLink style={isActiveStyle} to="/dashboard/settings">
+                              Settings
+                            </NavLink>
+                          </li>
+                        </ul>
+                      </nav>
                     </div>
                     <div>
                       <NavLink style={isActiveStyle} to="/products">
@@ -624,7 +789,17 @@ Function Component - the User Interface
                   {/* Define routes */}
                   <Route path="/" element={<Home />} />
                   <Route path="/home" element={<Home />} />
-                  <Route path="/about" element={<About />} />
+                  <Route
+                    path="/about"
+                    element={
+                      <Suspense fallback={<div>Loading...</div>}>
+                        <ErrorBoundary>
+                          <About />
+                        </ErrorBoundary>
+                      </Suspense>
+                    }
+                  />
+          
                   <Route path="/dashboard" element={<Dashboard />}>
                     {/* Nested Routes */}
                     <Route path="profile" element={<Profile />} />
@@ -644,7 +819,6 @@ Function Component - the User Interface
           }
           
           export default App;
-          
           
 **************************************************************************************************
 Run the development app
