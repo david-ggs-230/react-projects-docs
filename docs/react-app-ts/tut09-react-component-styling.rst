@@ -46,9 +46,29 @@ Create a React Project
         
         yarn install
         
-    - Install the react-hook-form library dependencies ::
+    - Install Tailwind CSS dependencies ::
         
-        yarn add react-hook-form
+        # Install
+        yarn add --dev tailwindcss @tailwindcss/vite
+        
+    - Configure the Vite plugin (edit vite.config.ts): Add the @tailwindcss/vite plugin to Vite configuration. ::
+        
+        // vite.config.ts
+        import { defineConfig } from 'vite'
+        import tailwindcss from '@tailwindcss/vite'
+        export default defineConfig({
+          plugins: [tailwindcss()],
+        })
+        
+    - Add Tailwind Directives to CSS Styles. Create a new CSS file (e.g., src/index.css or src/tailwind.css) and add the Tailwind CSS directives ::
+        
+        /* src/tailwind.css */
+        @import "tailwindcss";
+        
+    -  Import the CSS File into the React component. ::
+        
+        import './tailwind.css';  // Import the CSS file here
+        
         
 ==================================================================================================
 ESLint and Prettier Configuration
@@ -237,91 +257,23 @@ CSS stylesheet is usual, common and time-tested methodology. Simply create a CSS
     - Define a component using the regular plain CSS file ``list-style.css``. 
         
         .. code-block:: tsx
-          :caption: src/ReactFormControlledComponent.tsx
+          :caption: src/ComponentUsingPlainCSS.tsx
           :linenos:
           
-          import React, { useState } from "react";
-          import "./App.css";
+          import "./list-style.css";
           
-          const ReactFormControlledComponent: React.FC = () => {
-            const [formState, setFormState] = useState({
-              name: "",
-              age: "",
-              location: "",
-            });
-            const labelStyle = {
-              display: "inline-block",
-              width: "2.5rem",
-              marginRight: "1.5rem",
-            };
-            const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-              const { name, value } = e.target;
-              setFormState((prevState) => ({ ...prevState, [name]: value }));
-            };
-          
-            const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-              e.preventDefault();
-              alert(JSON.stringify(formState));
-            };
-          
+          const ComponentUsingPlainCSS = () => {
             return (
-              <div>
-                <div className="App">
-                  <form onSubmit={handleSubmit}>
-                    <div style={{ marginTop: 20 }}>
-                      <label htmlFor="name" style={labelStyle}>
-                        Name
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        placeholder="Enter name"
-                        value={formState.name}
-                        onChange={changeHandler}
-                      />
-                    </div>
-                    <div style={{ marginTop: 10 }}>
-                      <label htmlFor="age" style={labelStyle}>
-                        Age
-                      </label>
-                      <input
-                        type="number"
-                        id="age"
-                        name="age"
-                        placeholder="Enter age"
-                        value={formState.age}
-                        onChange={changeHandler}
-                      />
-                    </div>
-                    <div style={{ marginTop: 10 }}>
-                      <label htmlFor="location" style={labelStyle}>
-                        Location
-                      </label>
-                      <input
-                        type="text"
-                        id="location"
-                        name="location"
-                        placeholder="Enter location"
-                        value={formState.location}
-                        onChange={changeHandler}
-                      />
-                    </div>
-                    <div style={{ marginTop: 10 }}>
-                      <input type="submit" value="Submit" />
-                    </div>
-                  </form>
-                </div>
+              <div className="App">
+                <h4 className="blue-color"> Using Plain CSS File</h4>
                 <div>
-                  <h4 style={{ marginBottom: "0px" }}>Name: {formState.name}</h4>
-                  <div>Age: {formState.age}</div>
-                  <div>Location: {formState.location}</div>
+                  <div className="red-color bg-blue">Blue background with red text</div>
                 </div>
               </div>
             );
           };
           
-          export default ReactFormControlledComponent;
+          export default ComponentUsingPlainCSS;
           
 ==================================================================================================
 Inline Styling
@@ -332,108 +284,27 @@ Inline Styling is one of the safest ways to style the React component. It declar
 Declare a variable of type object and set the styles. All css properties can be used by representing it in camelCase format. Set style in the component using curly braces {}. Also, style can be directly set inside the component
 
     
-    - Define an uncontrolled react form function component.
+    - Define a component using inline styles. 
         
         .. code-block:: tsx
-          :caption: src/ReactFormUncontrolledComponent.tsx
+          :caption: src/ComponentUsingInlineStyle.tsx
           :linenos:
           
-          import React, { useRef } from "react";
-          import "./App.css";
-          
-          const ReactFormUncontrolledComponent: React.FC = () => {
-            const labelNameRef = useRef<HTMLSpanElement>(null);
-            const labelAgeRef = useRef<HTMLSpanElement>(null);
-            const labelLocationRef = useRef<HTMLSpanElement>(null);
-          
-            const labelStyle = {
-              display: "inline-block",
-              width: "2.5rem",
-              marginRight: "1.5rem",
-            };
-            const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-              e.preventDefault();
-              alert(
-                JSON.stringify({
-                  name: labelNameRef.current?.innerText,
-                  age: labelAgeRef.current?.innerText,
-                  location: labelLocationRef.current?.innerText,
-                }),
-              );
-            };
-          
-            const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-              const { name, value } = e.target;
-              if (name === "name" && labelNameRef.current) {
-                labelNameRef.current.innerText = value;
-              } else if (name === "age" && labelAgeRef.current) {
-                labelAgeRef.current.innerText = value;
-              } else if (name === "location" && labelLocationRef.current) {
-                labelLocationRef.current.innerText = value;
-              }
-            };
-          
+          const ComponentUsingInlineStyle = () => {
+            const styleObject = { backgroundColor: "blue", color: "red" };
             return (
-              <div>
-                <div className="App">
-                  <form onSubmit={handleSubmit}>
-                    <div style={{ marginTop: 10 }}>
-                      <label htmlFor="name" style={labelStyle}>
-                        Name
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        placeholder="Enter name"
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div style={{ marginTop: 10 }}>
-                      <label htmlFor="age" style={labelStyle}>
-                        Age
-                      </label>
-                      <input
-                        type="number"
-                        id="age"
-                        name="age"
-                        placeholder="Enter age"
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div style={{ marginTop: 10 }}>
-                      <label htmlFor="location" style={labelStyle}>
-                        Location
-                      </label>
-                      <input
-                        type="text"
-                        id="location"
-                        name="location"
-                        placeholder="Enter location"
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div style={{ marginTop: 10 }}>
-                      <input type="submit" value="Submit" />
-                    </div>
-                  </form>
-                </div>
+              <div className="App">
+                <h4 style={{ marginTop: "0px", marginBottom: "20px", color: "blue" }}>
+                  Using Inline Style
+                </h4>
                 <div>
-                  <h4 style={{ marginBottom: "0px" }}>
-                    Name: <span ref={labelNameRef}></span>
-                  </h4>
-                  <div>
-                    Age: <span ref={labelAgeRef}></span>
-                  </div>
-                  <div>
-                    Location: <span ref={labelLocationRef}></span>
-                  </div>
+                  <div style={styleObject}>Blue background with red text</div>
                 </div>
               </div>
             );
           };
           
-          export default ReactFormUncontrolledComponent;
+          export default ComponentUsingInlineStyle;
           
 ==================================================================================================
 CSS Modules
@@ -456,129 +327,61 @@ Styles within a CSS module are referenced in a component’s className attribute
     className={styles.headerIcon}
     
 
-    - Define a react hook form component.
+React components:
+    
+    - Define a CSS module file ``custom-style.module.css``. 
         
-        .. code-block::
-          :caption: src/ReactHookFormComponent.tsx
+        .. code-block:: css
+          :caption: src/custom-style.module.css
           :linenos:
           
-          import { useRef } from "react";
-          import { useForm } from "react-hook-form";
-          import "./App.css";
           
-          const ReactHookFormComponent = () => {
-            const { register, handleSubmit } = useForm();
+          .redColor {
+            color:red;
+          }
           
-            const labelNameRef = useRef<HTMLSpanElement>(null);
-            const labelAgeRef = useRef<HTMLSpanElement>(null);
-            const labelLocationRef = useRef<HTMLSpanElement>(null);
+          .blueColor {
+            color:blue;
+          }
+          .bgBlue {
+            background-color: blue;
+          }
           
-            const labelStyle = {
-              display: "inline-block",
-              width: "2.5rem",
-              marginRight: "1.5rem",
-            };
-            const onFormSubmit = () => {
-              if (
-                labelNameRef.current &&
-                labelAgeRef.current &&
-                labelLocationRef.current
-              ) {
-                alert(
-                  JSON.stringify({
-                    name: labelNameRef.current.innerText,
-                    age: labelAgeRef.current.innerText,
-                    location: labelLocationRef.current.innerText,
-                  }),
-                );
-              }
-            };
+          .margin-top-0 {
+            margin-top: 0px;
+          }
           
-            const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-              const name = e.target.name;
-              if (name === "name") {
-                if (labelNameRef.current) {
-                  labelNameRef.current.innerText = e.target.value;
-                }
-              } else if (name === "age") {
-                if (labelAgeRef.current) {
-                  labelAgeRef.current.innerText = e.target.value;
-                }
-              } else if (name === "location") {
-                if (labelLocationRef.current) {
-                  labelLocationRef.current.innerText = e.target.value;
-                }
-              }
-            };
+          .margin-bottom-20 {
+            margin-bottom: 20px;
+          }
           
+    
+    - Define a component using CSS modules. 
+        
+        .. code-block:: tsx
+          :caption: src/ComponentUsingCSSModules.tsx
+          :linenos:
+          
+          import styles from "./custom-style.module.css";
+          
+          const ComponentUsingCSSModules = () => {
             return (
-              <div>
-                <div className="App">
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      handleSubmit(onFormSubmit)().catch((error) => {
-                        console.error("Form submission error:", error);
-                      });
-                    }}
-                  >
-                    <div style={{ marginTop: 10 }}>
-                      <label htmlFor="name" style={labelStyle}>
-                        Name
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        placeholder="Enter name"
-                        {...register("name")}
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div style={{ marginTop: 10 }}>
-                      <label htmlFor="age" style={labelStyle}>
-                        Age
-                      </label>
-                      <input
-                        type="number"
-                        id="age"
-                        placeholder="Enter age"
-                        {...register("age")}
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div style={{ marginTop: 10 }}>
-                      <label htmlFor="location" style={labelStyle}>
-                        Location
-                      </label>
-                      <input
-                        type="text"
-                        id="location"
-                        placeholder="Enter location"
-                        {...register("location")}
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div style={{ marginTop: 10 }}>
-                      <input type="submit" value="Submit" />
-                    </div>
-                  </form>
-                </div>
+              <div className="App">
+                <h4
+                  className={`${styles.blueColor} ${styles["margin-top-0"]} ${styles["margin-bottom-20"]}`}
+                >
+                  Using CSS Modules
+                </h4>
                 <div>
-                  <h4 style={{ marginBottom: "0px" }}>
-                    Name: <span ref={labelNameRef}></span>
-                  </h4>
-                  <div>
-                    Age: <span ref={labelAgeRef}></span>
-                  </div>
-                  <div>
-                    Location: <span ref={labelLocationRef}></span>
+                  <div className={`${styles.bgBlue} ${styles.redColor}`}>
+                    Blue background with red text
                   </div>
                 </div>
               </div>
             );
           };
           
-          export default ReactHookFormComponent;
+          export default ComponentUsingCSSModules;
           
 ==================================================================================================
 Tailwind CSS
@@ -593,177 +396,136 @@ Key Concepts of Tailwind CSS:
     - Responsive Design: Tailwind includes built-in support for responsive design, allowing you to apply different styles based on the screen size using simple class names.
     - No custom CSS required: You can create fully styled components without writing any traditional CSS.
     
-
-
-    - Define a react hook form component with inputs validation.
+Steps to Set Up Tailwind CSS with Yarn:
+    
+    - Install Tailwind CSS dependencies ::
         
-        .. code-block::
-          :caption: src/ReactHookFormInputsValidation.tsx
+        # Install
+        yarn add --dev tailwindcss @tailwindcss/vite
+        
+    - Configure the Vite plugin (edit vite.config.ts): Add the @tailwindcss/vite plugin to Vite configuration. ::
+        
+        // vite.config.ts
+        import { defineConfig } from 'vite'
+        import tailwindcss from '@tailwindcss/vite'
+        export default defineConfig({
+          plugins: [tailwindcss()],
+        })
+        
+    - Add Tailwind Directives to CSS Styles. Create a new CSS file (e.g., src/index.css or src/tailwind.css) and add the Tailwind CSS directives ::
+        
+        /* src/tailwind.css */
+        @import "tailwindcss";
+        
+    -  Import the CSS File into the React component. ::
+        
+        import './tailwind.css';  // Import the CSS file here
+        
+React components:
+    
+    - Define a component using Tailwind CSS 
+        
+        .. code-block:: tsx
+          :caption: src/ComponentUsingTailwindCSS.tsx
           :linenos:
           
-          import { useRef } from "react";
-          import { useForm } from "react-hook-form";
-          import "./App.css";
+          import "./tailwind.css";
           
-          const ReactHookFormInputsValidation = () => {
-            const {
-              register,
-              handleSubmit,
-              formState: { errors },
-              reset,
-            } = useForm({
-              mode: "all",
-            });
-          
-            const labelNameRef = useRef<HTMLSpanElement>(null);
-            const labelAgeRef = useRef<HTMLSpanElement>(null);
-            const labelLocationRef = useRef<HTMLSpanElement>(null);
-          
-            const labelStyle = {
-              display: "inline-block",
-              width: "2.5rem",
-              marginRight: "1.5rem",
-            };
-            const onFormSubmit = () => {
-              if (
-                labelNameRef.current &&
-                labelAgeRef.current &&
-                labelLocationRef.current
-              ) {
-                alert(
-                  JSON.stringify({
-                    name: labelNameRef.current.innerText,
-                    age: labelAgeRef.current.innerText,
-                    location: labelLocationRef.current.innerText,
-                  }),
-                );
-              }
-              reset();
-            };
-          
-            const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-              const name = e.target.name;
-              if (name === "name") {
-                if (labelNameRef.current) {
-                  labelNameRef.current.innerText = e.target.value;
-                }
-              } else if (name === "age") {
-                if (labelAgeRef.current) {
-                  labelAgeRef.current.innerText = e.target.value;
-                }
-              } else if (name === "location") {
-                if (labelLocationRef.current) {
-                  labelLocationRef.current.innerText = e.target.value;
-                }
-              }
-            };
-          
+          const ComponentUsingTailwindCSS = () => {
             return (
-              <div>
-                <div className="App">
-                  <form
-                    noValidate
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      handleSubmit(onFormSubmit)().catch((error) => {
-                        console.error("Form submission error:", error);
-                      });
-                    }}
-                  >
-                    <div style={{ marginTop: 10 }} className="form-group">
-                      <label htmlFor="name" style={labelStyle}>
-                        Name
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        placeholder="Enter name"
-                        {...register("name", {
-                          required: "You must enter a name",
-                          minLength: {
-                            value: 4,
-                            message: "Name must be at least 4 characters",
-                          },
-                          maxLength: {
-                            value: 128,
-                            message: "Name must be at most 128 characters",
-                          },
-                        })}
-                        onChange={handleChange}
-                      />
-                      {/*<p><ErrorMessage errors={errors} name="name" /></div>*/}
-                      {errors.name && typeof errors.name.message === "string" && (
-                        <div className="red-color">{errors.name.message}</div>
-                      )}
-                    </div>
-                    <div style={{ marginTop: 10 }} className="form-group">
-                      <label htmlFor="age" style={labelStyle}>
-                        Age
-                      </label>
-                      <input
-                        type="number"
-                        id="age"
-                        placeholder="Enter age"
-                        {...register("age", {
-                          valueAsNumber: true,
-                          min: { value: 1, message: "Age must be at least 1 years old" },
-                          max: {
-                            value: 150,
-                            message: "Age must be at most 150 years old",
-                          },
-                        })}
-                        onChange={handleChange}
-                      />
-                      {errors.age && typeof errors.age.message === "string" && (
-                        <div className="red-color">{errors.age.message}</div>
-                      )}
-                    </div>
-                    <div style={{ marginTop: 10 }} className="form-group">
-                      <label htmlFor="location" style={labelStyle}>
-                        Location
-                      </label>
-                      <input
-                        type="text"
-                        id="location"
-                        placeholder="Enter location"
-                        {...register("location", {
-                          required: "You must enter a location",
-                          minLength: {
-                            value: 2,
-                            message: "Location must be at least 2 characters",
-                          },
-                          maxLength: {
-                            value: 128,
-                            message: "Location must be at most 128 characters",
-                          },
-                        })}
-                        onChange={handleChange}
-                      />
-                      {errors.location && typeof errors.location.message === "string" && (
-                        <div className="red-color">{errors.location.message}</div>
-                      )}
-                    </div>
-                    <div style={{ marginTop: 10 }} className="form-group">
-                      <input type="submit" value="Submit" />
-                    </div>
-                  </form>
+              <div className="App">
+                <div className="text-sm font-bold underline text-blue-600 mb-4">
+                  Using Tailwind CSS
                 </div>
                 <div>
-                  <h4 style={{ marginBottom: "0px" }}>
-                    Name: <span ref={labelNameRef}></span>
-                  </h4>
-                  <div>
-                    Age: <span ref={labelAgeRef}></span>
-                  </div>
-                  <div>
-                    Location: <span ref={labelLocationRef}></span>
+                  <div className="text-green-900 bg-blue-300">
+                    Blue background with green text
                   </div>
                 </div>
               </div>
             );
           };
           
-          export default ReactHookFormInputsValidation;
+          export default ComponentUsingTailwindCSS;
+          
+==================================================================================================
+Using SVG
+==================================================================================================
+
+SVG stands for Scalable Vector Graphics and it is made up of points, lines, curves, and shapes based on mathematical formulas rather than specific pixels. This allows them to scale when resized without distortion. The quality of icons is important to get right – if they are distorted, they make the whole app feel unprofessional. Using SVGs for icons is common in modern web development.
+
+Steps to Set Up SVG support with Yarn:
+    
+    - Install dependencies ::
+        
+        # Install
+        yarn add -D vite-plugin-svgr
+        
+    - Configure the Vite plugin (edit vite.config.ts): Add the vite-plugin-svgr plugin to Vite configuration. ::
+        
+        // vite.config.ts
+        import svgr from "vite-plugin-svgr";
+        export default defineConfig({
+          plugins: [svgr()],
+        })
+        
+    - Configure TypeScript type inference by adding the following to ``vite-env.d.ts``: ::
+        
+        /// <reference types="vite-plugin-svgr/client" />
+        
+    -  Import SVG files as React components ::
+        
+        import Logo from "./logo.svg?react";
+        
+    - Usage:
+        
+        - Use with <img  />tag: <img src={svg-file} /> ::
+            
+            # import as a path to the SVG file, which is then used on the src attribute on the img element to display the SVG.
+            import logo from './logo.svg';
+            <img src={logo} className="App-logo" alt="logo" />
+            
+        - Import SVG files as React components ::
+            
+            # referencing SVG as a component
+            import Logo from "./logo.svg?react";
+            <div>
+                <Logo />
+            </div>
+            
+React Components
+    
+    - Define a component using SVG 
+        
+        .. code-block:: tsx
+          :caption: src/ComponentUsingTailwindCSS.tsx
+          :linenos:
+          
+          import "./tailwind.css";
+          import logo from "./assets/react.svg";
+          import ViteLogo from "../public/vite.svg?react";
+          
+          const ComponentUsingSVG = () => {
+            return (
+              <div className="App">
+                <div className="text-sm font-bold underline text-blue-600 mb-1 mt-4">
+                  As {`<img />`} Element
+                </div>
+                <div className="flex justify-center">
+                  <img src={logo} className="App-logo" alt="logo" />
+                </div>
+          
+                <div className="text-sm font-bold underline text-blue-600 mb-1 mt-4">
+                  As ReactComponent {`<SvgComponent />`}
+                </div>
+                <div className="flex justify-center">
+                  <ViteLogo />
+                </div>
+              </div>
+            );
+          };
+          
+          export default ComponentUsingSVG;
           
 ==================================================================================================
 Function Component - the User Interface
@@ -775,50 +537,60 @@ Function Component - the User Interface
           :caption: src/FunctionComponentsDisplay.tsx
           :linenos:
           
+          import ComponentUsingCSSModules from "./ComponentUsingCSSModules";
+          import ComponentUsingInlineStyle from "./ComponentUsingInlineStyle";
+          import ComponentUsingPlainCSS from "./ComponentUsingPlainCSS";
+          import ComponentUsingSVG from "./ComponentUsingSVG";
+          import ComponentUsingTailwindCSS from "./ComponentUsingTailwindCSS";
           import "./list-style.css";
-          import ReactHookFormInputsValidation from "./ReactHookFormInputsValidation";
-          import ReactFormControlledComponent from "./ReactFormControlledComponent";
-          import ReactFormUncontrolledComponent from "./ReactFormUncontrolledComponent";
-          import ReactHookFormComponent from "./ReactHookFormComponent";
           
           const FunctionComponentsDisplay = () => {
             return (
               <div className="list-container">
-                <h2>React Form</h2>
+                <h2>React Component Styling</h2>
                 <ol>
                   <li className="list-item">
                     <div className="list-item-number"></div>
                     <div className="list-item-content">
-                      <h3>Controlled Component</h3>
+                      <h3>Plain CSS</h3>
                       <div>
-                        <ReactFormControlledComponent />
+                        <ComponentUsingPlainCSS />
                       </div>
                     </div>
                   </li>
                   <li className="list-item">
                     <div className="list-item-number"></div>
                     <div className="list-item-content">
-                      <h3>Uncontrolled Component</h3>
+                      <h3>Inline Styling</h3>
                       <div>
-                        <ReactFormUncontrolledComponent />
+                        <ComponentUsingInlineStyle />
                       </div>
                     </div>
                   </li>
                   <li className="list-item">
                     <div className="list-item-number"></div>
                     <div className="list-item-content">
-                      <h3>The useForm Library</h3>
+                      <h3>CSS Modules</h3>
                       <div>
-                        <ReactHookFormComponent />
+                        <ComponentUsingCSSModules />
                       </div>
                     </div>
                   </li>
                   <li className="list-item">
                     <div className="list-item-number"></div>
                     <div className="list-item-content">
-                      <h3>useForm with Validation</h3>
+                      <h3>Tailwind CSS in React</h3>
                       <div>
-                        <ReactHookFormInputsValidation />
+                        <ComponentUsingTailwindCSS />
+                      </div>
+                    </div>
+                  </li>
+                  <li className="list-item">
+                    <div className="list-item-number"></div>
+                    <div className="list-item-content">
+                      <h3>Using SVG</h3>
+                      <div>
+                        <ComponentUsingSVG />
                       </div>
                     </div>
                   </li>
@@ -896,11 +668,11 @@ Sources and Demos
     - Live Demo: https://david-ggs-230.github.io/react-projects/react-projects-with-typescript/tut09-react-component-styling/
     - Screenshot
         
-        .. figure:: images/tut06/tut06-react-form.png
+        .. figure:: images/tut09/tut09-react-component-styling.png
            :align: center
            :class: sd-my-2
            :width: 60%
-           :alt: React Forms
+           :alt: React Component Styling
            
-           :custom-color-primary-bold:`React Forms`
+           :custom-color-primary-bold:`React Component Styling`
            
