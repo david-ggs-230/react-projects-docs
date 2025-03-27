@@ -1,0 +1,1134 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8. React Router &mdash; React Tutorial with Typescript 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom-theme.css?v=e6852a23" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="9. React Component Styling" href="tut09-react-component-styling.html" />
+    <link rel="prev" title="7. React RESTful API" href="tut07-react-restapi.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            React Tutorial with Typescript
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">React Projects with Typescript</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tut01-create-reactjs-app.html">1. Tut01-Create a React App on Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut02-writing-markup-with-jsx.html">2. Tut02-Writing Markup with JSX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut03-react-components.html">3. Tut03-React Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut04-class-components.html">4. Tut04-React Class Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut05-function-components.html">5. Tut05-React Function Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut06-react-form.html">6. React Form</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut07-react-restapi.html">7. React RESTful API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">8. React Router</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-a-react-project-structure">8.1. Create a React Project Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-a-react-project">8.1.1. Create a React Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eslint-and-prettier-configuration">8.1.2. ESLint and Prettier Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#react-router-components">8.2. React Router Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#top-level-routing">8.2.1. Top Level Routing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nested-routing">8.2.2. Nested Routing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dynamic-routing">8.2.3. Dynamic Routing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lazy-routing">8.2.4. Lazy Routing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#function-component-the-user-interface">8.2.5. Function Component - the User Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#run-the-development-app">8.3. Run the development app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hosting-the-react-app-on-github-pages">8.4. Hosting the React App on GitHub Pages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#build-the-app">8.4.1. Build the App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hosting-the-app">8.4.2. Hosting the App</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#sources-and-demos">8.5. Sources and Demos</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tut09-react-component-styling.html">9. React Component Styling</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">React Tutorial with Typescript</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">8. </span>React Router</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="title-center h1" id="react-router">
+<span id="tut08-react-router"></span><h1><span class="section-number">8. </span>React Router<a class="headerlink" href="#react-router" title="Link to this heading"></a></h1>
+<p>A router is responsible for selecting what to show in the app for a requested path. React Router is a routing library for React apps. React Router provides several components to help manage navigation and routing in a React application. The primary components for handling routing and navigation are:</p>
+<blockquote>
+<div><ul>
+<li><p>Installing React Router</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># npm</span>
+<span class="n">npm</span> <span class="n">i</span> <span class="n">react</span><span class="o">-</span><span class="n">router</span>
+<span class="c1"># yarn</span>
+<span class="n">yarn</span> <span class="n">add</span> <span class="n">react</span><span class="o">-</span><span class="n">router</span>
+</pre></div>
+</div>
+</li>
+<li><p>BrowserRouter (or Router for custom history) - Router is th top level component. It encloses the entire application.</p></li>
+<li><p>Route − The Route component is used to define which components to render based on the current URL path</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Route</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;/home&quot;</span> <span class="n">element</span><span class="o">=</span><span class="p">{</span><span class="o">&lt;</span><span class="n">Home</span> <span class="o">/&gt;</span><span class="p">}</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Link - The Link component is used to create navigational links in the app that change the URL when clicked, without causing a full page reload. It’s a replacement for the traditional &lt;a&gt; tag for navigation in a React SPA.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here, to attribute is used to set the target url.</span>
+<span class="o">&lt;</span><span class="n">Link</span> <span class="n">to</span><span class="o">=</span><span class="s2">&quot;/&quot;</span><span class="o">&gt;</span><span class="n">Home</span><span class="o">&lt;/</span><span class="n">Link</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Routers - Routers is used to group Route components, rendering the first Route or Redirect that matches the current location.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Routers</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">Route</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;/home&quot;</span> <span class="n">element</span><span class="o">=</span><span class="p">{</span><span class="o">&lt;</span><span class="n">Home</span> <span class="o">/&gt;</span><span class="p">}</span> <span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="n">Route</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;/about&quot;</span> <span class="n">element</span><span class="o">=</span><span class="p">{</span><span class="o">&lt;</span><span class="n">About</span> <span class="o">/&gt;</span><span class="p">}</span> <span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="n">Route</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;/not-found&quot;</span> <span class="n">element</span><span class="o">=</span><span class="p">{</span><span class="o">&lt;</span><span class="n">NotFound</span> <span class="o">/&gt;</span><span class="p">}</span> <span class="o">/&gt;</span>
+  <span class="p">{</span><span class="o">/*</span> <span class="n">Fallback</span> <span class="n">route</span> <span class="k">for</span> <span class="mi">404</span> <span class="o">*/</span><span class="p">}</span>
+  <span class="o">&lt;</span><span class="n">Route</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;*&quot;</span> <span class="n">element</span><span class="o">=</span><span class="p">{</span><span class="o">&lt;</span><span class="n">NotFound</span> <span class="o">/&gt;</span><span class="p">}</span> <span class="o">/&gt;</span>
+<span class="o">&lt;/</span><span class="n">Routers</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Redirect - Redirects the user to a different route when a certain condition is met (e.g., after a login).</p></li>
+<li><p>useHistory, useLocation, useParams, useRouteMatch - These hooks allow you to access the history, location, route parameters, and match data in functional components.</p></li>
+</ul>
+</div></blockquote>
+<section id="create-a-react-project-structure">
+<h2><span class="section-number">8.1. </span>Create a React Project Structure<a class="headerlink" href="#create-a-react-project-structure" title="Link to this heading"></a></h2>
+<section id="create-a-react-project">
+<h3><span class="section-number">8.1.1. </span>Create a React Project<a class="headerlink" href="#create-a-react-project" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul>
+<li><p>Create a ReactJS Project</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">create</span> <span class="n">vite</span> <span class="n">tut08</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">router</span> <span class="o">--</span><span class="n">template</span> <span class="n">react</span><span class="o">-</span><span class="n">ts</span>
+</pre></div>
+</div>
+</li>
+<li><p>Move inside the ReactJS project folder &lt;tut08-react-router&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut08</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">router</span>
+</pre></div>
+</div>
+</li>
+<li><p>Install the dependencies</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">install</span>
+</pre></div>
+</div>
+</li>
+<li><p>Install the react-router library dependencies</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">add</span> <span class="n">react</span><span class="o">-</span><span class="n">router</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="eslint-and-prettier-configuration">
+<h3><span class="section-number">8.1.2. </span>ESLint and Prettier Configuration<a class="headerlink" href="#eslint-and-prettier-configuration" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul>
+<li><p>Install the <code class="docutils literal notranslate"><span class="pre">EditorConfig</span></code> extension for VS Code if you haven’t already.</p></li>
+<li><p>Add .editorconfig (<a class="reference external" href="https://editorconfig.org">https://editorconfig.org</a>) to the root of the project</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 8.1 </span><span class="caption-text">contents of .editorconfig</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-cfg notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="na">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="k">[*]</span>
+<span class="linenos">4</span><span class="na">indent_style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">space</span>
+<span class="linenos">5</span><span class="na">indent_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">2</span>
+<span class="linenos">6</span><span class="na">end_of_line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">lf</span>
+<span class="linenos">7</span><span class="na">insert_final_newline</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<span class="linenos">8</span><span class="na">trim_trailing_whitespace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Reload VS Code (open the command palette, find and use <code class="docutils literal notranslate"><span class="pre">Reload</span> <span class="pre">Window</span></code>).</p></li>
+<li><p>Install dependencies</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">add</span> <span class="o">--</span><span class="n">dev</span> <span class="n">prettier</span> <span class="n">eslint</span><span class="o">-</span><span class="n">plugin</span><span class="o">-</span><span class="n">prettier</span> <span class="n">eslint</span><span class="o">-</span><span class="n">config</span><span class="o">-</span><span class="n">prettier</span> <span class="n">eslint</span><span class="o">-</span><span class="n">plugin</span><span class="o">-</span><span class="n">react</span>
+</pre></div>
+</div>
+</li>
+<li><p>Modify the eslint.config.js file with following contents:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 8.2 </span><span class="caption-text">contents of eslint.config.js</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="nx">js</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@eslint/js&quot;</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="nx">globals</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;globals&quot;</span><span class="p">;</span>
+<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="nx">reactHooks</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;eslint-plugin-react-hooks&quot;</span><span class="p">;</span>
+<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="nx">reactRefresh</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;eslint-plugin-react-refresh&quot;</span><span class="p">;</span>
+<span class="linenos"> 5</span><span class="k">import</span><span class="w"> </span><span class="nx">tseslint</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;typescript-eslint&quot;</span><span class="p">;</span>
+<span class="linenos"> 6</span><span class="k">import</span><span class="w"> </span><span class="nx">react</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;eslint-plugin-react&quot;</span><span class="p">;</span>
+<span class="linenos"> 7</span><span class="k">import</span><span class="w"> </span><span class="nx">eslintPluginPrettier</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;eslint-plugin-prettier/recommended&quot;</span><span class="p">;</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">tseslint</span>
+<span class="linenos">10</span><span class="w">  </span><span class="p">.</span><span class="nx">config</span><span class="p">(</span>
+<span class="linenos">11</span><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">ignores</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;dist&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="linenos">12</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">13</span><span class="w">      </span><span class="c1">//extends: [js.configs.recommended, ...tseslint.configs.recommended],</span>
+<span class="linenos">14</span><span class="w">      </span><span class="k">extends</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="linenos">15</span><span class="w">        </span><span class="nx">js</span><span class="p">.</span><span class="nx">configs</span><span class="p">.</span><span class="nx">recommended</span><span class="p">,</span>
+<span class="linenos">16</span><span class="w">        </span><span class="p">...</span><span class="nx">tseslint</span><span class="p">.</span><span class="nx">configs</span><span class="p">.</span><span class="nx">recommendedTypeChecked</span><span class="p">,</span>
+<span class="linenos">17</span><span class="w">      </span><span class="p">],</span>
+<span class="linenos">18</span><span class="w">      </span><span class="nx">files</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;**/*.{ts,tsx}&quot;</span><span class="p">],</span>
+<span class="linenos">19</span><span class="w">      </span><span class="nx">languageOptions</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">20</span><span class="w">        </span><span class="nx">ecmaVersion</span><span class="o">:</span><span class="w"> </span><span class="mf">2020</span><span class="p">,</span>
+<span class="linenos">21</span><span class="w">        </span><span class="nx">globals</span><span class="o">:</span><span class="w"> </span><span class="nx">globals</span><span class="p">.</span><span class="nx">browser</span><span class="p">,</span>
+<span class="linenos">22</span><span class="w">        </span><span class="nx">parserOptions</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">23</span><span class="w">          </span><span class="nx">project</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;./tsconfig.node.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;./tsconfig.app.json&quot;</span><span class="p">],</span>
+<span class="linenos">24</span><span class="w">          </span><span class="nx">tsconfigRootDir</span><span class="o">:</span><span class="w"> </span><span class="k">import</span><span class="p">.</span><span class="nx">meta</span><span class="p">.</span><span class="nx">dirname</span><span class="p">,</span>
+<span class="linenos">25</span><span class="w">        </span><span class="p">},</span>
+<span class="linenos">26</span><span class="w">      </span><span class="p">},</span>
+<span class="linenos">27</span><span class="w">      </span><span class="nx">settings</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">28</span><span class="w">        </span><span class="nx">react</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">29</span><span class="w">          </span><span class="nx">version</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;detect&quot;</span><span class="p">,</span>
+<span class="linenos">30</span><span class="w">        </span><span class="p">},</span>
+<span class="linenos">31</span><span class="w">      </span><span class="p">},</span>
+<span class="linenos">32</span><span class="w">      </span><span class="nx">plugins</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">33</span><span class="w">        </span><span class="s2">&quot;react-hooks&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">reactHooks</span><span class="p">,</span>
+<span class="linenos">34</span><span class="w">        </span><span class="s2">&quot;react-refresh&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">reactRefresh</span><span class="p">,</span>
+<span class="linenos">35</span><span class="w">        </span><span class="nx">react</span><span class="o">:</span><span class="w"> </span><span class="nx">react</span><span class="p">,</span>
+<span class="linenos">36</span><span class="w">      </span><span class="p">},</span>
+<span class="linenos">37</span><span class="w">      </span><span class="nx">rules</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">38</span><span class="w">        </span><span class="p">...</span><span class="nx">reactHooks</span><span class="p">.</span><span class="nx">configs</span><span class="p">.</span><span class="nx">recommended</span><span class="p">.</span><span class="nx">rules</span><span class="p">,</span>
+<span class="linenos">39</span><span class="w">        </span><span class="s2">&quot;react-refresh/only-export-components&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="linenos">40</span><span class="w">          </span><span class="s2">&quot;warn&quot;</span><span class="p">,</span>
+<span class="linenos">41</span><span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nx">allowConstantExport</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">},</span>
+<span class="linenos">42</span><span class="w">        </span><span class="p">],</span>
+<span class="linenos">43</span><span class="w">        </span><span class="p">...</span><span class="nx">react</span><span class="p">.</span><span class="nx">configs</span><span class="p">.</span><span class="nx">recommended</span><span class="p">.</span><span class="nx">rules</span><span class="p">,</span>
+<span class="linenos">44</span><span class="w">        </span><span class="p">...</span><span class="nx">react</span><span class="p">.</span><span class="nx">configs</span><span class="p">[</span><span class="s2">&quot;jsx-runtime&quot;</span><span class="p">].</span><span class="nx">rules</span><span class="p">,</span>
+<span class="linenos">45</span><span class="w">      </span><span class="p">},</span>
+<span class="linenos">46</span><span class="w">    </span><span class="p">},</span>
+<span class="linenos">47</span><span class="w">  </span><span class="p">)</span>
+<span class="linenos">48</span><span class="w">  </span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">eslintPluginPrettier</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Edit the eslint scripts in the package.json file:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 8.3 </span><span class="caption-text">contents of package.json</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="highlight-cfg notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="na">&quot;scripts&quot;</span><span class="o">:</span><span class="w"> </span><span class="s">{</span>
+<span class="linenos">2</span><span class="w">  </span><span class="na">... ,</span>
+<span class="linenos">3</span><span class="w">  </span><span class="na">&quot;lint&quot;</span><span class="o">:</span><span class="w"> </span><span class="s">&quot;eslint src ./*.js ./*.ts --ext ts,tsx --report-unused-disable-directives --max-warnings 0&quot;</span><span class="na">,</span>
+<span class="linenos">4</span><span class="w">  </span><span class="na">&quot;lint:fix&quot;</span><span class="o">:</span><span class="w"> </span><span class="s">&quot;eslint src ./*.js ./*.ts --ext ts,tsx --fix&quot;</span><span class="na">,</span>
+<span class="linenos">5</span><span class="na">},</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Run ESLint:</p>
+<blockquote>
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>yarn<span class="w"> </span>lint
+<span class="linenos">2</span>yarn<span class="w"> </span>lint:fix
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="react-router-components">
+<h2><span class="section-number">8.2. </span>React Router Components<a class="headerlink" href="#react-router-components" title="Link to this heading"></a></h2>
+<p>Routing Components structure :</p>
+<blockquote>
+<div><ul>
+<li><p>Home</p></li>
+<li><p>About</p></li>
+<li><p>Dashboard</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Profile</p></li>
+<li><p>Settings</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Products</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Product 1</p></li>
+<li><p>Product 2</p></li>
+<li><p>Product 3</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>NotFound</p></li>
+</ul>
+</div></blockquote>
+<p>React Router is a standard library for routing in React applications. It allows you to define navigation within your React app, enabling the rendering of different components based on the URL path. React Router allows you to handle dynamic URLs, nested routes, and more advanced routing mechanisms, making it a powerful tool for building single-page applications (SPAs).</p>
+<p>An overview of what React Router looks like:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>BrowserRouter: The router that uses the HTML5 history API.</p></li>
+<li><p>Routes: Container for Route components</p></li>
+<li><p>Declarative Routing: Defining routes directly with &lt;Route /&gt; components.</p></li>
+<li><p>element prop: Renders components in the route</p></li>
+<li><p>Nested Routing with Outlet: Enables parent-child route rendering.</p></li>
+<li><p>Programmatic Navigation: Using useNavigate for route manipulation.</p></li>
+<li><p>Link: Used for navigation between routes without page reloads.</p></li>
+<li><p>Outlet: Placeholder for rendering nested routes inside a parent component.</p></li>
+<li><p>useNavigate: Programmatic navigation for routing within components.</p></li>
+<li><p>useLocation: Access the current location (URL) object, useful for querying URL parameters and state.</p></li>
+</ul>
+</div></blockquote>
+<p>Key Concepts in React Router:</p>
+<blockquote>
+<div><ul>
+<li><p>Router: The top-level component that holds the route information. There are different types of routers:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>BrowserRouter: Uses the HTML5 history API to keep the UI in sync with the URL.</p></li>
+<li><p>HashRouter: Uses URL hash (#) for routing, suitable for environments where the HTML5 history API isn’t available.</p></li>
+<li><p>MemoryRouter: Keeps the history in memory (useful for non-browser environments).</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Routes: A component that holds the Route components. It is used to define different paths and map them to specific components.</p></li>
+<li><p>Route: Represents a single route and the associated component that should be rendered when the route is matched.</p></li>
+<li><p>Link: Allows users to navigate to different routes without a full page reload (client-side navigation).</p></li>
+<li><p>Outlet: A placeholder for rendering nested routes in React Router v6 and beyond.</p></li>
+<li><p>useNavigate and useLocation: Hooks provided by React Router for programmatic navigation and getting information about the current location (URL).</p></li>
+</ul>
+</div></blockquote>
+<section id="top-level-routing">
+<h3><span class="section-number">8.2.1. </span>Top Level Routing<a class="headerlink" href="#top-level-routing" title="Link to this heading"></a></h3>
+<ul>
+<li><p>Top Level Routing Components:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Home</p></li>
+<li><p>NotFound</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Define Routes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">/*</span> <span class="n">Define</span> <span class="n">Routes</span> <span class="o">*/</span><span class="p">}</span>
+<span class="o">&lt;</span><span class="n">Routes</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">Route</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;/&quot;</span> <span class="n">element</span><span class="o">=</span><span class="p">{</span><span class="o">&lt;</span><span class="n">Home</span> <span class="o">/&gt;</span><span class="p">}</span> <span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="n">Route</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;/not-found&quot;</span> <span class="n">element</span><span class="o">=</span><span class="p">{</span><span class="o">&lt;</span><span class="n">NotFound</span> <span class="o">/&gt;</span><span class="p">}</span> <span class="o">/&gt;</span>
+  <span class="o">....</span>
+<span class="o">&lt;/</span><span class="n">Routes</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Define Navigation Links:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">/*</span> <span class="n">Navigation</span> <span class="n">Links</span> <span class="o">*/</span><span class="p">}</span>
+<span class="o">&lt;</span><span class="n">nav</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="n">Link</span> <span class="n">to</span><span class="o">=</span><span class="s2">&quot;/&quot;</span><span class="o">&gt;</span><span class="n">Home</span><span class="o">&lt;/</span><span class="n">Link</span><span class="o">&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="n">Link</span> <span class="n">to</span><span class="o">=</span><span class="s2">&quot;/not-found&quot;</span><span class="o">&gt;</span><span class="n">Not</span> <span class="n">Found</span><span class="o">&lt;/</span><span class="n">Link</span><span class="o">&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+    <span class="o">....</span>
+  <span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">nav</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Routing components:</p>
+<blockquote>
+<div><ul>
+<li><p>Define the &lt;Home /&gt; component</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 8.4 </span><span class="caption-text">src/Home.tsx</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">import</span><span class="w"> </span><span class="s2">&quot;./../App.css&quot;</span><span class="p">;</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="kd">const</span><span class="w"> </span><span class="nx">Home</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">4</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">&lt;</span><span class="nt">h2</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;App&quot;</span><span class="p">&gt;</span><span class="nx">Home</span><span class="w"> </span><span class="nx">Page</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;;</span>
+<span class="linenos">5</span><span class="p">};</span>
+<span class="linenos">6</span>
+<span class="linenos">7</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">Home</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Define the &lt;NotFound /&gt; component</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">Listing 8.5 </span><span class="caption-text">src/NotFound.tsx</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">import</span><span class="w"> </span><span class="s2">&quot;./../App.css&quot;</span><span class="p">;</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="kd">const</span><span class="w"> </span><span class="nx">NotFound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">4</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">&lt;</span><span class="nt">h2</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;App&quot;</span><span class="p">&gt;</span><span class="nx">Page</span><span class="w"> </span><span class="nx">Not</span><span class="w"> </span><span class="nx">Found</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;;</span>
+<span class="linenos">5</span><span class="p">};</span>
+<span class="linenos">6</span>
+<span class="linenos">7</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">NotFound</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="nested-routing">
+<h3><span class="section-number">8.2.2. </span>Nested Routing<a class="headerlink" href="#nested-routing" title="Link to this heading"></a></h3>
+<p>In React, nested routing refers to having routes inside other routes. This is useful when you want to create a hierarchical structure where one route can display child components as part of its rendering.</p>
+<ul>
+<li><p>Navlink:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Top</span>
+<span class="p">{</span><span class="o">/*</span> <span class="n">Navigation</span> <span class="n">Links</span> <span class="o">*/</span><span class="p">}</span>
+<span class="o">&lt;</span><span class="n">nav</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+    <span class="o">...</span>
+    <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="n">Link</span> <span class="n">to</span><span class="o">=</span><span class="s2">&quot;/dashboard&quot;</span><span class="o">&gt;</span><span class="n">Dashboard</span><span class="o">&lt;/</span><span class="n">Link</span><span class="o">&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">nav</span><span class="o">&gt;</span>
+<span class="c1"># nested (optional)</span>
+<span class="o">&lt;</span><span class="n">nav</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="n">Link</span> <span class="n">to</span><span class="o">=</span><span class="s2">&quot;/dashboard/settings&quot;</span><span class="o">&gt;</span><span class="n">Settings</span><span class="o">&lt;/</span><span class="n">Link</span><span class="o">&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="n">Link</span> <span class="n">to</span><span class="o">=</span><span class="s2">&quot;/dashboard/profile&quot;</span><span class="o">&gt;</span><span class="n">Profile</span><span class="o">&lt;/</span><span class="n">Link</span><span class="o">&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">nav</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Route:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">/*</span> <span class="n">Dashboard</span> <span class="k">with</span> <span class="n">nested</span> <span class="n">routes</span> <span class="o">*/</span><span class="p">}</span>
+<span class="o">&lt;</span><span class="n">Route</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;/dashboard&quot;</span> <span class="n">element</span><span class="o">=</span><span class="p">{</span><span class="o">&lt;</span><span class="n">Dashboard</span> <span class="o">/&gt;</span><span class="p">}</span><span class="o">&gt;</span>
+  <span class="p">{</span><span class="o">/*</span> <span class="n">Nested</span> <span class="n">Routes</span> <span class="n">inside</span> <span class="n">Dashboard</span> <span class="o">*/</span><span class="p">}</span>
+  <span class="o">&lt;</span><span class="n">Route</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;settings&quot;</span> <span class="n">element</span><span class="o">=</span><span class="p">{</span><span class="o">&lt;</span><span class="n">Settings</span> <span class="o">/&gt;</span><span class="p">}</span> <span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="n">Route</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;profile&quot;</span> <span class="n">element</span><span class="o">=</span><span class="p">{</span><span class="o">&lt;</span><span class="n">Profile</span> <span class="o">/&gt;</span><span class="p">}</span> <span class="o">/&gt;</span>
+<span class="o">&lt;/</span><span class="n">Route</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Outlet: for rendering child routes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="o">....</span>
+  <span class="o">&lt;</span><span class="n">nav</span><span class="o">&gt;</span>
+    <span class="p">{</span><span class="o">/*</span> <span class="n">Navigation</span> <span class="n">Links</span> <span class="o">*/</span><span class="p">}</span>
+    <span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="n">Link</span> <span class="n">to</span><span class="o">=</span><span class="s2">&quot;settings&quot;</span><span class="o">&gt;</span><span class="n">Settings</span><span class="o">&lt;/</span><span class="n">Link</span><span class="o">&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="n">Link</span> <span class="n">to</span><span class="o">=</span><span class="s2">&quot;profile&quot;</span><span class="o">&gt;</span><span class="n">Profile</span><span class="o">&lt;/</span><span class="n">Link</span><span class="o">&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">nav</span><span class="o">&gt;</span>
+  <span class="p">{</span><span class="o">/*</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">where</span> <span class="n">the</span> <span class="n">nested</span> <span class="n">routes</span> <span class="n">will</span> <span class="n">be</span> <span class="n">rendered</span> <span class="o">*/</span><span class="p">}</span>
+  <span class="o">&lt;</span><span class="n">Outlet</span> <span class="o">/&gt;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Routing Components:</p>
+<blockquote>
+<div><ul>
+<li><p>Nested Routing Components:</p>
+<blockquote>
+<div><ul>
+<li><p>Dashboard</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Profile</p></li>
+<li><p>Settings</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Define the &lt;Dashboard /&gt; component</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-number">Listing 8.6 </span><span class="caption-text">src/Dashboard.tsx</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Link</span><span class="p">,</span><span class="w"> </span><span class="nx">Outlet</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;react-router&quot;</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="s2">&quot;./../App.css&quot;</span><span class="p">;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="kd">const</span><span class="w"> </span><span class="nx">Dashboard</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 5</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="linenos"> 6</span><span class="w">    </span><span class="p">&lt;</span><span class="nt">div</span>
+<span class="linenos"> 7</span><span class="w">      </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;App&quot;</span>
+<span class="linenos"> 8</span><span class="w">      </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span>
+<span class="linenos"> 9</span><span class="w">        </span><span class="nx">borderWidth</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1px&quot;</span><span class="p">,</span>
+<span class="linenos">10</span><span class="w">        </span><span class="nx">borderStyle</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;solid&quot;</span><span class="p">,</span>
+<span class="linenos">11</span><span class="w">        </span><span class="nx">borderColor</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;red&quot;</span><span class="p">,</span>
+<span class="linenos">12</span><span class="w">        </span><span class="nx">padding</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;10px&quot;</span><span class="p">,</span>
+<span class="linenos">13</span><span class="w">      </span><span class="p">}}</span>
+<span class="linenos">14</span><span class="w">    </span><span class="p">&gt;</span>
+<span class="linenos">15</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span><span class="nx">Parent</span><span class="w"> </span><span class="nx">Component</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="linenos">16</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">h4</span><span class="p">&gt;</span><span class="nx">Dashboard</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="nx">Nested</span><span class="w"> </span><span class="nx">Routing</span><span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
+<span class="linenos">17</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">nav</span>
+<span class="linenos">18</span><span class="w">        </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span>
+<span class="linenos">19</span><span class="w">          </span><span class="nx">borderWidth</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1px&quot;</span><span class="p">,</span>
+<span class="linenos">20</span><span class="w">          </span><span class="nx">borderStyle</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;solid&quot;</span><span class="p">,</span>
+<span class="linenos">21</span><span class="w">          </span><span class="nx">borderColor</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;blue&quot;</span><span class="p">,</span>
+<span class="linenos">22</span><span class="w">        </span><span class="p">}}</span>
+<span class="linenos">23</span><span class="w">      </span><span class="p">&gt;</span>
+<span class="linenos">24</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span><span class="nx">Link</span><span class="w"> </span><span class="nx">inside</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">parent</span><span class="w"> </span><span class="nx">component</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">25</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">ul</span>
+<span class="linenos">26</span><span class="w">          </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span>
+<span class="linenos">27</span><span class="w">            </span><span class="nx">listStyle</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+<span class="linenos">28</span><span class="w">          </span><span class="p">}}</span>
+<span class="linenos">29</span><span class="w">        </span><span class="p">&gt;</span>
+<span class="linenos">30</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos">31</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">Link</span><span class="w"> </span><span class="na">to</span><span class="o">=</span><span class="s">&quot;profile&quot;</span><span class="p">&gt;</span><span class="nx">Profile</span><span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;</span>
+<span class="linenos">32</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos">33</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos">34</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">Link</span><span class="w"> </span><span class="na">to</span><span class="o">=</span><span class="s">&quot;settings&quot;</span><span class="p">&gt;</span><span class="nx">Settings</span><span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;</span>
+<span class="linenos">35</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos">36</span><span class="w">        </span><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="linenos">37</span><span class="w">      </span><span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+<span class="linenos">38</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">Outlet</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="linenos">39</span><span class="w">    </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">40</span><span class="w">  </span><span class="p">);</span>
+<span class="linenos">41</span><span class="p">};</span>
+<span class="linenos">42</span>
+<span class="linenos">43</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">Dashboard</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Define the child &lt;Profile /&gt; component</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-number">Listing 8.7 </span><span class="caption-text">src/Profile.tsx</span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s2">&quot;./../App.css&quot;</span><span class="p">;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="kd">const</span><span class="w"> </span><span class="nx">Profile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 4</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="linenos"> 5</span><span class="w">    </span><span class="p">&lt;</span><span class="nt">div</span>
+<span class="linenos"> 6</span><span class="w">      </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span>
+<span class="linenos"> 7</span><span class="w">        </span><span class="nx">borderWidth</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1px&quot;</span><span class="p">,</span>
+<span class="linenos"> 8</span><span class="w">        </span><span class="nx">borderStyle</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;solid&quot;</span><span class="p">,</span>
+<span class="linenos"> 9</span><span class="w">        </span><span class="nx">borderColor</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;green&quot;</span><span class="p">,</span>
+<span class="linenos">10</span><span class="w">        </span><span class="nx">marginTop</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;20px&quot;</span><span class="p">,</span>
+<span class="linenos">11</span><span class="w">      </span><span class="p">}}</span>
+<span class="linenos">12</span><span class="w">    </span><span class="p">&gt;</span>
+<span class="linenos">13</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">h2</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;App&quot;</span><span class="p">&gt;</span><span class="nx">Nested</span><span class="w"> </span><span class="nx">Child</span><span class="w"> </span><span class="nx">Components</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="linenos">14</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">h4</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;App&quot;</span><span class="p">&gt;</span><span class="nx">Profile</span><span class="w"> </span><span class="nx">Contents</span><span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
+<span class="linenos">15</span><span class="w">    </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">16</span><span class="w">  </span><span class="p">);</span>
+<span class="linenos">17</span><span class="p">};</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">Profile</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Define the child &lt;Settings /&gt; component</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-number">Listing 8.8 </span><span class="caption-text">src/Settings.tsx</span><a class="headerlink" href="#id8" title="Link to this code"></a></div>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s2">&quot;./../App.css&quot;</span><span class="p">;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="kd">const</span><span class="w"> </span><span class="nx">Settings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 4</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="linenos"> 5</span><span class="w">    </span><span class="p">&lt;</span><span class="nt">div</span>
+<span class="linenos"> 6</span><span class="w">      </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span>
+<span class="linenos"> 7</span><span class="w">        </span><span class="nx">borderWidth</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1px&quot;</span><span class="p">,</span>
+<span class="linenos"> 8</span><span class="w">        </span><span class="nx">borderStyle</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;solid&quot;</span><span class="p">,</span>
+<span class="linenos"> 9</span><span class="w">        </span><span class="nx">borderColor</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;green&quot;</span><span class="p">,</span>
+<span class="linenos">10</span><span class="w">        </span><span class="nx">marginTop</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;20px&quot;</span><span class="p">,</span>
+<span class="linenos">11</span><span class="w">      </span><span class="p">}}</span>
+<span class="linenos">12</span><span class="w">    </span><span class="p">&gt;</span>
+<span class="linenos">13</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">h2</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;App&quot;</span><span class="p">&gt;</span><span class="nx">Nested</span><span class="w"> </span><span class="nx">Child</span><span class="w"> </span><span class="nx">Components</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="linenos">14</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">h4</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;App&quot;</span><span class="p">&gt;</span><span class="nx">Settings</span><span class="w"> </span><span class="nx">Contents</span><span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
+<span class="linenos">15</span><span class="w">    </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">16</span><span class="w">  </span><span class="p">);</span>
+<span class="linenos">17</span><span class="p">};</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">Settings</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="dynamic-routing">
+<h3><span class="section-number">8.2.3. </span>Dynamic Routing<a class="headerlink" href="#dynamic-routing" title="Link to this heading"></a></h3>
+<p>React Router allows you to dynamically render components based on the URL, which is essential for creating dynamic, parameterized routes. Configure dynamic routes by using React Router’s Route component, where the path can include dynamic parameters, such as :productId, which will be captured and passed to the component. A route parameter is a segment in the path that varies. The value of the variable segment is available to components so that they can render something conditionally. In the following path, 1234 is the <code class="docutils literal notranslate"><span class="pre">id</span></code> of a customer(‘/customer/:id’): /customers/1234/</p>
+<p>There are two main steps to use dynamic routing:</p>
+<blockquote>
+<div><ul>
+<li><p>First, defined route parameters in a route</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Single</span>
+<span class="p">{</span> <span class="n">path</span><span class="p">:</span> <span class="s1">&#39;/customer/:id&#39;</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Customer</span> <span class="o">/&gt;</span> <span class="p">}</span>
+<span class="c1"># Multiple</span>
+<span class="p">{</span> <span class="n">path</span><span class="p">:</span> <span class="s1">&#39;/customer/:customerId/tasks/:taskId&#39;</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Customer</span> <span class="o">/&gt;</span> <span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Second, use route parameters in components using React Router’s useParams hook.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># for route: { path: &#39;/customer/:customerId/tasks/:taskId&#39;, element: &lt;Customer /&gt; }</span>
+<span class="n">const</span> <span class="n">params</span> <span class="o">=</span> <span class="n">useParams</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;Customer id&#39;</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">customerId</span><span class="p">);</span>
+<span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;Task id&#39;</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">taskId</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+<ul>
+<li><p>Dynamic Routing Components structure :</p>
+<blockquote>
+<div><ul>
+<li><p>Dynamic Routing Components:</p>
+<blockquote>
+<div><ul>
+<li><p>Products</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Product 1</p></li>
+<li><p>Product 2</p></li>
+<li><p>Product 3</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Dynamic Routing Components:</p>
+<blockquote>
+<div><ul>
+<li><p>Define the &lt;Products /&gt; component</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-number">Listing 8.9 </span><span class="caption-text">src/Products.tsx</span><a class="headerlink" href="#id9" title="Link to this code"></a></div>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Link</span><span class="p">,</span><span class="w"> </span><span class="nx">Outlet</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;react-router&quot;</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="s2">&quot;./../App.css&quot;</span><span class="p">;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="kd">const</span><span class="w"> </span><span class="nx">Products</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 5</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="linenos"> 6</span><span class="w">    </span><span class="p">&lt;</span><span class="nt">div</span>
+<span class="linenos"> 7</span><span class="w">      </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;App&quot;</span>
+<span class="linenos"> 8</span><span class="w">      </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span>
+<span class="linenos"> 9</span><span class="w">        </span><span class="nx">borderWidth</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1px&quot;</span><span class="p">,</span>
+<span class="linenos">10</span><span class="w">        </span><span class="nx">borderStyle</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;solid&quot;</span><span class="p">,</span>
+<span class="linenos">11</span><span class="w">        </span><span class="nx">borderColor</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;red&quot;</span><span class="p">,</span>
+<span class="linenos">12</span><span class="w">        </span><span class="nx">padding</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;10px&quot;</span><span class="p">,</span>
+<span class="linenos">13</span><span class="w">      </span><span class="p">}}</span>
+<span class="linenos">14</span><span class="w">    </span><span class="p">&gt;</span>
+<span class="linenos">15</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span><span class="nx">Parent</span><span class="w"> </span><span class="nx">Component</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="linenos">16</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">h4</span><span class="p">&gt;</span><span class="nx">Products</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="nx">Nested</span><span class="w"> </span><span class="nx">Routing</span><span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
+<span class="linenos">17</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">nav</span>
+<span class="linenos">18</span><span class="w">        </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span>
+<span class="linenos">19</span><span class="w">          </span><span class="nx">borderWidth</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1px&quot;</span><span class="p">,</span>
+<span class="linenos">20</span><span class="w">          </span><span class="nx">borderStyle</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;solid&quot;</span><span class="p">,</span>
+<span class="linenos">21</span><span class="w">          </span><span class="nx">borderColor</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;blue&quot;</span><span class="p">,</span>
+<span class="linenos">22</span><span class="w">        </span><span class="p">}}</span>
+<span class="linenos">23</span><span class="w">      </span><span class="p">&gt;</span>
+<span class="linenos">24</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span><span class="nx">Link</span><span class="w"> </span><span class="nx">inside</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">parent</span><span class="w"> </span><span class="nx">component</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">25</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">ul</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">listStyle</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;none&quot;</span><span class="w"> </span><span class="p">}}&gt;</span>
+<span class="linenos">26</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos">27</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">Link</span><span class="w"> </span><span class="na">to</span><span class="o">=</span><span class="s">&quot;/products/1&quot;</span><span class="p">&gt;</span><span class="nx">Product</span><span class="w"> </span><span class="mf">1</span><span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;</span>
+<span class="linenos">28</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos">29</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos">30</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">Link</span><span class="w"> </span><span class="na">to</span><span class="o">=</span><span class="s">&quot;/products/2&quot;</span><span class="p">&gt;</span><span class="nx">Product</span><span class="w"> </span><span class="mf">2</span><span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;</span>
+<span class="linenos">31</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos">32</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos">33</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">Link</span><span class="w"> </span><span class="na">to</span><span class="o">=</span><span class="s">&quot;/products/3&quot;</span><span class="p">&gt;</span><span class="nx">Product</span><span class="w"> </span><span class="mf">3</span><span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;</span>
+<span class="linenos">34</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos">35</span><span class="w">        </span><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="linenos">36</span><span class="w">      </span><span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+<span class="linenos">37</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">Outlet</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="linenos">38</span><span class="w">    </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">39</span><span class="w">  </span><span class="p">);</span>
+<span class="linenos">40</span><span class="p">};</span>
+<span class="linenos">41</span>
+<span class="linenos">42</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">Products</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Define the child &lt;ProductDetails /&gt; component</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-number">Listing 8.10 </span><span class="caption-text">src/ProductDetails.tsx</span><a class="headerlink" href="#id10" title="Link to this code"></a></div>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">useParams</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;react-router&quot;</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="s2">&quot;./../App.css&quot;</span><span class="p">;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="kd">function</span><span class="w"> </span><span class="nx">ProductDetails</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 5</span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">productId</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useParams</span><span class="p">();</span>
+<span class="linenos"> 6</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="linenos"> 7</span><span class="w">    </span><span class="p">&lt;</span><span class="nt">div</span>
+<span class="linenos"> 8</span><span class="w">      </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span>
+<span class="linenos"> 9</span><span class="w">        </span><span class="nx">borderWidth</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1px&quot;</span><span class="p">,</span>
+<span class="linenos">10</span><span class="w">        </span><span class="nx">borderStyle</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;solid&quot;</span><span class="p">,</span>
+<span class="linenos">11</span><span class="w">        </span><span class="nx">borderColor</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;green&quot;</span><span class="p">,</span>
+<span class="linenos">12</span><span class="w">        </span><span class="nx">marginTop</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;20px&quot;</span><span class="p">,</span>
+<span class="linenos">13</span><span class="w">      </span><span class="p">}}</span>
+<span class="linenos">14</span><span class="w">    </span><span class="p">&gt;</span>
+<span class="linenos">15</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">h2</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;App&quot;</span><span class="p">&gt;</span><span class="nx">Nested</span><span class="w"> </span><span class="nx">Child</span><span class="w"> </span><span class="nx">Components</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="linenos">16</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">h4</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;App&quot;</span><span class="p">&gt;</span><span class="nx">Product</span><span class="w"> </span><span class="nx">Contents</span><span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
+<span class="linenos">17</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">h5</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;App&quot;</span><span class="p">&gt;</span>
+<span class="linenos">18</span><span class="w">        </span><span class="nx">Product</span><span class="w"> </span><span class="nx">ID</span><span class="o">:</span>
+<span class="linenos">19</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">span</span>
+<span class="linenos">20</span><span class="w">          </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">fontSize</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1.5rem&quot;</span><span class="w"> </span><span class="p">}}</span>
+<span class="linenos">21</span><span class="w">        </span><span class="p">&gt;{</span><span class="sb">` </span><span class="si">${</span><span class="nx">productId</span><span class="si">}</span><span class="sb">`</span><span class="p">}&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<span class="linenos">22</span><span class="w">      </span><span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
+<span class="linenos">23</span><span class="w">    </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">24</span><span class="w">  </span><span class="p">);</span>
+<span class="linenos">25</span><span class="p">}</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">ProductDetails</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="lazy-routing">
+<h3><span class="section-number">8.2.4. </span>Lazy Routing<a class="headerlink" href="#lazy-routing" title="Link to this heading"></a></h3>
+<p>In React, lazy loading is a technique used to defer loading of components until they are needed, which can improve the performance of your app by reducing the initial bundle size. React provides a built-in way to achieve this with the React.lazy function and Suspense component.</p>
+<p>There are two main steps to lazy loading React components:</p>
+<blockquote>
+<div><ul>
+<li><p>First, the component must be dynamically imported as follows (Note: the lazy page must be a default export):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">LazyPage</span> <span class="o">=</span> <span class="n">lazy</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="n">import</span><span class="p">(</span><span class="s1">&#39;./LazyPage&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+</li>
+<li><p>The second step is to render the lazy component inside React’s Suspense component as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;Route
+    path=&quot;lazy&quot;
+    element={
+        &lt;Suspense fallback={&lt;div&gt;Loading…&lt;/div&gt;}&gt;
+            &lt;LazyPage /&gt;
+        &lt;/Suspense&gt;
+    }
+/&gt;
+</pre></div>
+</div>
+</li>
+<li><p>It’s a good idea to use an Error Boundary around components that are lazily loaded, to handle errors in case the component fails to load:</p>
+<blockquote>
+<div><ul>
+<li><p>Class ErrorBoundary</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>class ErrorBoundary extends Component {
+  state = { hasError: false };
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, info) {
+    console.error(&#39;Error loading component:&#39;, error, info);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return &lt;div&gt;Something went wrong!&lt;/div&gt;;
+    }
+
+    return this.props.children;
+  }
+}
+</pre></div>
+</div>
+</li>
+<li><p>Lazy loading</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Suspense</span> <span class="n">fallback</span><span class="o">=</span><span class="p">{</span><span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span><span class="n">Loading</span><span class="o">...&lt;/</span><span class="n">div</span><span class="o">&gt;</span><span class="p">}</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">ErrorBoundary</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">MyComponent</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">ErrorBoundary</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">Suspense</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<p>Lazy loading Components:</p>
+<blockquote>
+<div><ul>
+<li><p>Define the &lt;About /&gt; component.</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-number">Listing 8.11 </span><span class="caption-text">src/About.tsx</span><a class="headerlink" href="#id11" title="Link to this code"></a></div>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">useState</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;react&quot;</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="s2">&quot;./../App.css&quot;</span><span class="p">;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="kd">const</span><span class="w"> </span><span class="nx">About</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 5</span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">count</span><span class="p">,</span><span class="w"> </span><span class="nx">setCount</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">count</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 8</span><span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s2">&quot;Intentional error&quot;</span><span class="p">);</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="linenos">12</span><span class="w">    </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">13</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">h2</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;App&quot;</span><span class="p">&gt;</span><span class="nx">About</span><span class="w"> </span><span class="nx">Page</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="linenos">14</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">h4</span><span class="p">&gt;{</span><span class="nx">count</span><span class="p">}&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
+<span class="linenos">15</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">button</span><span class="w"> </span><span class="na">onClick</span><span class="o">=</span><span class="p">{()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">setCount</span><span class="p">(</span><span class="nx">count</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">)}&gt;</span><span class="nx">Increment</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="linenos">16</span><span class="w">    </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">17</span><span class="w">  </span><span class="p">);</span>
+<span class="linenos">18</span><span class="p">};</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">About</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Define the &lt;ErrorBoundary /&gt; component.</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id12">
+<div class="code-block-caption"><span class="caption-number">Listing 8.12 </span><span class="caption-text">src/ErrorBoundary.tsx</span><a class="headerlink" href="#id12" title="Link to this code"></a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>import React, { Component, ReactNode } from &quot;react&quot;;
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>// Define the types for the state and props of the ErrorBoundary component
+<span class="linenos"> 4</span>interface ErrorBoundaryState {
+<span class="linenos"> 5</span>  hasError: boolean;
+<span class="linenos"> 6</span>  error?: Error | null;
+<span class="linenos"> 7</span>  errorInfo?: React.ErrorInfo | null;
+<span class="linenos"> 8</span>}
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>interface ErrorBoundaryProps {
+<span class="linenos">11</span>  children: ReactNode;
+<span class="linenos">12</span>}
+<span class="linenos">13</span>
+<span class="linenos">14</span>class ErrorBoundary extends Component&lt;ErrorBoundaryProps, ErrorBoundaryState&gt; {
+<span class="linenos">15</span>  constructor(props: ErrorBoundaryProps) {
+<span class="linenos">16</span>    super(props);
+<span class="linenos">17</span>    this.state = { hasError: false, error: null, errorInfo: null };
+<span class="linenos">18</span>  }
+<span class="linenos">19</span>
+<span class="linenos">20</span>  // This lifecycle method is called when an error is thrown in a child component
+<span class="linenos">21</span>  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
+<span class="linenos">22</span>    // Update the state so the next render will show the fallback UI
+<span class="linenos">23</span>    return { hasError: true, error };
+<span class="linenos">24</span>  }
+<span class="linenos">25</span>
+<span class="linenos">26</span>  // This lifecycle method is called after an error is caught
+<span class="linenos">27</span>  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+<span class="linenos">28</span>    // You can log the error to an error reporting service
+<span class="linenos">29</span>    console.error(&quot;Error caught by ErrorBoundary:&quot;, error, errorInfo);
+<span class="linenos">30</span>    this.setState({
+<span class="linenos">31</span>      error,
+<span class="linenos">32</span>      errorInfo,
+<span class="linenos">33</span>    });
+<span class="linenos">34</span>  }
+<span class="linenos">35</span>
+<span class="linenos">36</span>  render() {
+<span class="linenos">37</span>    if (this.state.hasError) {
+<span class="linenos">38</span>      // Render a fallback UI when an error is caught
+<span class="linenos">39</span>      return (
+<span class="linenos">40</span>        &lt;div&gt;
+<span class="linenos">41</span>          &lt;h2&gt;Something went wrong.&lt;/h2&gt;
+<span class="linenos">42</span>          &lt;details style={{ whiteSpace: &quot;pre-wrap&quot; }}&gt;
+<span class="linenos">43</span>            {this.state.error &amp;&amp; this.state.error.toString()}
+<span class="linenos">44</span>            &lt;br /&gt;
+<span class="linenos">45</span>            {this.state.errorInfo &amp;&amp; this.state.errorInfo.componentStack}
+<span class="linenos">46</span>          &lt;/details&gt;
+<span class="linenos">47</span>        &lt;/div&gt;
+<span class="linenos">48</span>      );
+<span class="linenos">49</span>    }
+<span class="linenos">50</span>
+<span class="linenos">51</span>    // If there&#39;s no error, render the children normally
+<span class="linenos">52</span>    return this.props.children;
+<span class="linenos">53</span>  }
+<span class="linenos">54</span>}
+<span class="linenos">55</span>
+<span class="linenos">56</span>export default ErrorBoundary;
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="function-component-the-user-interface">
+<h3><span class="section-number">8.2.5. </span>Function Component - the User Interface<a class="headerlink" href="#function-component-the-user-interface" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul>
+<li><p>Edit <code class="docutils literal notranslate"><span class="pre">App.tsx</span></code> to show the user interface and render the components:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id13">
+<div class="code-block-caption"><span class="caption-number">Listing 8.13 </span><span class="caption-text">src/App.tsx</span><a class="headerlink" href="#id13" title="Link to this code"></a></div>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">BrowserRouter</span><span class="p">,</span><span class="w"> </span><span class="nx">Route</span><span class="p">,</span><span class="w"> </span><span class="nx">Routes</span><span class="p">,</span><span class="w"> </span><span class="nx">NavLink</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;react-router&quot;</span><span class="p">;</span>
+<span class="linenos">  2</span><span class="k">import</span><span class="w"> </span><span class="nx">Home</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./pages/Home&quot;</span><span class="p">;</span>
+<span class="linenos">  3</span><span class="k">import</span><span class="w"> </span><span class="nx">NotFound</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./pages/NotFound&quot;</span><span class="p">;</span>
+<span class="linenos">  4</span><span class="k">import</span><span class="w"> </span><span class="nx">Dashboard</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./pages/Dashboard&quot;</span><span class="p">;</span>
+<span class="linenos">  5</span><span class="k">import</span><span class="w"> </span><span class="nx">Profile</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./pages/Profile&quot;</span><span class="p">;</span>
+<span class="linenos">  6</span><span class="k">import</span><span class="w"> </span><span class="nx">Settings</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./pages/Settings&quot;</span><span class="p">;</span>
+<span class="linenos">  7</span><span class="k">import</span><span class="w"> </span><span class="nx">Products</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./pages/Products&quot;</span><span class="p">;</span>
+<span class="linenos">  8</span><span class="k">import</span><span class="w"> </span><span class="nx">ProductDetails</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./pages/ProductDetails&quot;</span><span class="p">;</span>
+<span class="linenos">  9</span><span class="c1">//import About from &quot;./pages/About&quot;;</span>
+<span class="linenos"> 10</span><span class="k">import</span><span class="w"> </span><span class="nx">ErrorBoundary</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./pages/ErrorBoundary&quot;</span><span class="p">;</span>
+<span class="linenos"> 11</span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">lazy</span><span class="p">,</span><span class="w"> </span><span class="nx">Suspense</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;react&quot;</span><span class="p">;</span>
+<span class="linenos"> 12</span>
+<span class="linenos"> 13</span><span class="kd">function</span><span class="w"> </span><span class="nx">App</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 14</span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">isActiveStyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">isActive</span><span class="w"> </span><span class="p">}</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">isActive</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<span class="linenos"> 15</span><span class="w">    </span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="kt">isActive</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s2">&quot;red&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
+<span class="linenos"> 16</span><span class="w">    </span><span class="nx">fontWeight</span><span class="o">:</span><span class="w"> </span><span class="kt">isActive</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s2">&quot;bold&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;normal&quot;</span><span class="p">,</span>
+<span class="linenos"> 17</span><span class="w">    </span><span class="nx">textDecoration</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+<span class="linenos"> 18</span><span class="w">    </span><span class="nx">marginRight</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;15px&quot;</span><span class="p">,</span>
+<span class="linenos"> 19</span><span class="w">  </span><span class="p">});</span>
+<span class="linenos"> 20</span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">About</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">lazy</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">import</span><span class="p">(</span><span class="s2">&quot;./pages/About&quot;</span><span class="p">));</span>
+<span class="linenos"> 21</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="linenos"> 22</span><span class="w">    </span><span class="p">&lt;</span><span class="nt">BrowserRouter</span><span class="w"> </span><span class="na">basename</span><span class="o">=</span><span class="s">&quot;/react-projects/react-projects-with-typescript/tut08-react-router&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 23</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">nav</span><span class="p">&gt;</span>
+<span class="linenos"> 24</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">display</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;flex&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">gap</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;20px&quot;</span><span class="w"> </span><span class="p">}}&gt;</span>
+<span class="linenos"> 25</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 26</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">NavLink</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{</span><span class="nx">isActiveStyle</span><span class="p">}</span><span class="w"> </span><span class="na">to</span><span class="o">=</span><span class="s">&quot;/&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 27</span><span class="w">              </span><span class="nx">Home</span>
+<span class="linenos"> 28</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">NavLink</span><span class="p">&gt;</span>
+<span class="linenos"> 29</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 30</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 31</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">NavLink</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{</span><span class="nx">isActiveStyle</span><span class="p">}</span><span class="w"> </span><span class="na">to</span><span class="o">=</span><span class="s">&quot;/about&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 32</span><span class="w">              </span><span class="nx">About</span>
+<span class="linenos"> 33</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">NavLink</span><span class="p">&gt;</span>
+<span class="linenos"> 34</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 35</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 36</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">NavLink</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{</span><span class="nx">isActiveStyle</span><span class="p">}</span><span class="w"> </span><span class="na">to</span><span class="o">=</span><span class="s">&quot;/dashboard&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 37</span><span class="w">              </span><span class="nx">Dashboard</span>
+<span class="linenos"> 38</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">NavLink</span><span class="p">&gt;</span>
+<span class="linenos"> 39</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">nav</span><span class="p">&gt;</span>
+<span class="linenos"> 40</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">ul</span>
+<span class="linenos"> 41</span><span class="w">                </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span>
+<span class="linenos"> 42</span><span class="w">                  </span><span class="nx">listStyle</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+<span class="linenos"> 43</span><span class="w">                  </span><span class="nx">marginTop</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;4px&quot;</span><span class="p">,</span>
+<span class="linenos"> 44</span><span class="w">                </span><span class="p">}}</span>
+<span class="linenos"> 45</span><span class="w">              </span><span class="p">&gt;</span>
+<span class="linenos"> 46</span><span class="w">                </span><span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos"> 47</span><span class="w">                  </span><span class="p">&lt;</span><span class="nt">NavLink</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{</span><span class="nx">isActiveStyle</span><span class="p">}</span><span class="w"> </span><span class="na">to</span><span class="o">=</span><span class="s">&quot;/dashboard/profile&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 48</span><span class="w">                    </span><span class="nx">Profile</span>
+<span class="linenos"> 49</span><span class="w">                  </span><span class="p">&lt;/</span><span class="nt">NavLink</span><span class="p">&gt;</span>
+<span class="linenos"> 50</span><span class="w">                </span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos"> 51</span><span class="w">                </span><span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos"> 52</span><span class="w">                  </span><span class="p">&lt;</span><span class="nt">NavLink</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{</span><span class="nx">isActiveStyle</span><span class="p">}</span><span class="w"> </span><span class="na">to</span><span class="o">=</span><span class="s">&quot;/dashboard/settings&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 53</span><span class="w">                    </span><span class="nx">Settings</span>
+<span class="linenos"> 54</span><span class="w">                  </span><span class="p">&lt;/</span><span class="nt">NavLink</span><span class="p">&gt;</span>
+<span class="linenos"> 55</span><span class="w">                </span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos"> 56</span><span class="w">              </span><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="linenos"> 57</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+<span class="linenos"> 58</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 59</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 60</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">NavLink</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{</span><span class="nx">isActiveStyle</span><span class="p">}</span><span class="w"> </span><span class="na">to</span><span class="o">=</span><span class="s">&quot;/products&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 61</span><span class="w">              </span><span class="nx">Products</span>
+<span class="linenos"> 62</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">NavLink</span><span class="p">&gt;</span>
+<span class="linenos"> 63</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 64</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 65</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">NavLink</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{</span><span class="nx">isActiveStyle</span><span class="p">}</span><span class="w"> </span><span class="na">to</span><span class="o">=</span><span class="s">&quot;/abcde&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 66</span><span class="w">              </span><span class="nx">Not</span><span class="w"> </span><span class="nx">Found</span>
+<span class="linenos"> 67</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">NavLink</span><span class="p">&gt;</span>
+<span class="linenos"> 68</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 69</span><span class="w">        </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 70</span><span class="w">      </span><span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+<span class="linenos"> 71</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">Routes</span><span class="p">&gt;</span>
+<span class="linenos"> 72</span><span class="w">        </span><span class="p">{</span><span class="cm">/* Define routes */</span><span class="p">}</span>
+<span class="linenos"> 73</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">Route</span><span class="w"> </span><span class="na">path</span><span class="o">=</span><span class="s">&quot;/&quot;</span><span class="w"> </span><span class="na">element</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">Home</span><span class="w"> </span><span class="p">/&gt;}</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="linenos"> 74</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">Route</span><span class="w"> </span><span class="na">path</span><span class="o">=</span><span class="s">&quot;/home&quot;</span><span class="w"> </span><span class="na">element</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">Home</span><span class="w"> </span><span class="p">/&gt;}</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="linenos"> 75</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">Route</span>
+<span class="linenos"> 76</span><span class="w">          </span><span class="na">path</span><span class="o">=</span><span class="s">&quot;/about&quot;</span>
+<span class="linenos"> 77</span><span class="w">          </span><span class="na">element</span><span class="o">=</span><span class="p">{</span>
+<span class="linenos"> 78</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">Suspense</span><span class="w"> </span><span class="na">fallback</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">div</span><span class="p">&gt;</span><span class="nx">Loading</span><span class="p">...&lt;/</span><span class="nt">div</span><span class="p">&gt;}&gt;</span>
+<span class="linenos"> 79</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">ErrorBoundary</span><span class="p">&gt;</span>
+<span class="linenos"> 80</span><span class="w">                </span><span class="p">&lt;</span><span class="nt">About</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="linenos"> 81</span><span class="w">              </span><span class="p">&lt;/</span><span class="nt">ErrorBoundary</span><span class="p">&gt;</span>
+<span class="linenos"> 82</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">Suspense</span><span class="p">&gt;</span>
+<span class="linenos"> 83</span><span class="w">          </span><span class="p">}</span>
+<span class="linenos"> 84</span><span class="w">        </span><span class="p">/&gt;</span>
+<span class="linenos"> 85</span>
+<span class="linenos"> 86</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">Route</span><span class="w"> </span><span class="na">path</span><span class="o">=</span><span class="s">&quot;/dashboard&quot;</span><span class="w"> </span><span class="na">element</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">Dashboard</span><span class="w"> </span><span class="p">/&gt;}&gt;</span>
+<span class="linenos"> 87</span><span class="w">          </span><span class="p">{</span><span class="cm">/* Nested Routes */</span><span class="p">}</span>
+<span class="linenos"> 88</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">Route</span><span class="w"> </span><span class="na">path</span><span class="o">=</span><span class="s">&quot;profile&quot;</span><span class="w"> </span><span class="na">element</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">Profile</span><span class="w"> </span><span class="p">/&gt;}</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="linenos"> 89</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">Route</span><span class="w"> </span><span class="na">path</span><span class="o">=</span><span class="s">&quot;settings&quot;</span><span class="w"> </span><span class="na">element</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">Settings</span><span class="w"> </span><span class="p">/&gt;}</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="linenos"> 90</span><span class="w">        </span><span class="p">&lt;/</span><span class="nt">Route</span><span class="p">&gt;</span>
+<span class="linenos"> 91</span>
+<span class="linenos"> 92</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">Route</span><span class="w"> </span><span class="na">path</span><span class="o">=</span><span class="s">&quot;/products&quot;</span><span class="w"> </span><span class="na">element</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">Products</span><span class="w"> </span><span class="p">/&gt;}&gt;</span>
+<span class="linenos"> 93</span><span class="w">          </span><span class="p">{</span><span class="cm">/* Dynamic route */</span><span class="p">}</span>
+<span class="linenos"> 94</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">Route</span><span class="w"> </span><span class="na">path</span><span class="o">=</span><span class="s">&quot;/products/:productId&quot;</span><span class="w"> </span><span class="na">element</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">ProductDetails</span><span class="w"> </span><span class="p">/&gt;}</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="linenos"> 95</span><span class="w">        </span><span class="p">&lt;/</span><span class="nt">Route</span><span class="p">&gt;</span>
+<span class="linenos"> 96</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">Route</span><span class="w"> </span><span class="na">path</span><span class="o">=</span><span class="s">&quot;/non-existent&quot;</span><span class="w"> </span><span class="na">element</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">NotFound</span><span class="w"> </span><span class="p">/&gt;}</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="linenos"> 97</span><span class="w">        </span><span class="p">{</span><span class="cm">/* Fallback route for 404 */</span><span class="p">}</span>
+<span class="linenos"> 98</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">Route</span><span class="w"> </span><span class="na">path</span><span class="o">=</span><span class="s">&quot;*&quot;</span><span class="w"> </span><span class="na">element</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">NotFound</span><span class="w"> </span><span class="p">/&gt;}</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="linenos"> 99</span><span class="w">      </span><span class="p">&lt;/</span><span class="nt">Routes</span><span class="p">&gt;</span>
+<span class="linenos">100</span><span class="w">    </span><span class="p">&lt;/</span><span class="nt">BrowserRouter</span><span class="p">&gt;</span>
+<span class="linenos">101</span><span class="w">  </span><span class="p">);</span>
+<span class="linenos">102</span><span class="p">}</span>
+<span class="linenos">103</span>
+<span class="linenos">104</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">App</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="run-the-development-app">
+<h2><span class="section-number">8.3. </span>Run the development app<a class="headerlink" href="#run-the-development-app" title="Link to this heading"></a></h2>
+<blockquote>
+<div><ul>
+<li><p>Run dev</p>
+<blockquote>
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>yarn<span class="w"> </span>dev
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="hosting-the-react-app-on-github-pages">
+<h2><span class="section-number">8.4. </span>Hosting the React App on GitHub Pages<a class="headerlink" href="#hosting-the-react-app-on-github-pages" title="Link to this heading"></a></h2>
+<section id="build-the-app">
+<h3><span class="section-number">8.4.1. </span>Build the App<a class="headerlink" href="#build-the-app" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul>
+<li><p>Configure the build base url:</p>
+<blockquote>
+<div><ul>
+<li><p>open vite.config.js file</p></li>
+<li><p>set base to <code class="docutils literal notranslate"><span class="pre">/react-projects/react-projects-with-typescript/tut08-react-router/</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">default</span> <span class="n">defineConfig</span><span class="p">({</span>
+    <span class="n">plugins</span><span class="p">:</span> <span class="p">[</span><span class="n">react</span><span class="p">()],</span>
+    <span class="n">base</span><span class="p">:</span> <span class="s2">&quot;/react-projects/react-projects-with-typescript/tut08-react-router/&quot;</span><span class="p">,</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Build the app</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">run</span> <span class="n">build</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="hosting-the-app">
+<h3><span class="section-number">8.4.2. </span>Hosting the App<a class="headerlink" href="#hosting-the-app" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>Hosting address: <a class="reference external" href="https://&lt;USERNAME&gt;.github.io/react-projects/react-projects-with-typescript/tut08-react-router/">https://&lt;USERNAME&gt;.github.io/react-projects/react-projects-with-typescript/tut08-react-router/</a></p></li>
+<li><p>Github login as &lt;USERNAME&gt;</p></li>
+<li><p>Create the <code class="docutils literal notranslate"><span class="pre">react-projects</span></code> repo if not exist</p></li>
+<li><p>Create the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch in the <code class="docutils literal notranslate"><span class="pre">react-projects</span></code> repo if not exist</p></li>
+<li><p>Push the &lt;dist&gt; folder contents to the deploying folder <code class="docutils literal notranslate"><span class="pre">react-projects-with-typescript/tut08-react-router/</span></code> in the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="sources-and-demos">
+<h2><span class="section-number">8.5. </span>Sources and Demos<a class="headerlink" href="#sources-and-demos" title="Link to this heading"></a></h2>
+<blockquote>
+<div><ul>
+<li><p>Sources: <a class="reference external" href="https://github.com/david-ggs-230/react-projects/tree/main/react-projects-with-typescript/tut08-react-router">https://github.com/david-ggs-230/react-projects/tree/main/react-projects-with-typescript/tut08-react-router</a></p></li>
+<li><p>Live Demo: <a class="reference external" href="https://david-ggs-230.github.io/react-projects/react-projects-with-typescript/tut08-react-router/">https://david-ggs-230.github.io/react-projects/react-projects-with-typescript/tut08-react-router/</a></p></li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><figure class="align-center" id="id14">
+<a class="sd-my-2 reference internal image-reference" href="../_images/tut08-react-router.png"><img alt="React Routers" class="sd-my-2" src="../_images/tut08-react-router.png" style="width: 60%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 8.1 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React Routers</span></span><a class="headerlink" href="#id14" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tut07-react-restapi.html" class="btn btn-neutral float-left" title="7. React RESTful API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tut09-react-component-styling.html" class="btn btn-neutral float-right" title="9. React Component Styling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, David G..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

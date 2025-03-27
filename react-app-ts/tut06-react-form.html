@@ -1,0 +1,1328 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6. React Form &mdash; React Tutorial with Typescript 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom-theme.css?v=e6852a23" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="7. React RESTful API" href="tut07-react-restapi.html" />
+    <link rel="prev" title="5.5.7. React Hooks - useCallback" href="tut05-function-components-hooks-usecallback.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            React Tutorial with Typescript
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">React Projects with Typescript</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tut01-create-reactjs-app.html">1. Tut01-Create a React App on Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut02-writing-markup-with-jsx.html">2. Tut02-Writing Markup with JSX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut03-react-components.html">3. Tut03-React Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut04-class-components.html">4. Tut04-React Class Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut05-function-components.html">5. Tut05-React Function Components</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">6. React Form</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">6.1. Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#controlled-components">6.1.1. Controlled Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uncontrolled-components">6.1.2. Uncontrolled Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#react-hook-form-library">6.1.3. React Hook Form Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#react-hook-form">6.1.3.1. React Hook Form</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#react-hook-form-inputs-validation">6.1.3.2. React Hook Form Inputs Validation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#create-a-react-project-structure">6.2. Create a React Project Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-a-react-project">6.2.1. Create a React Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eslint-and-prettier-configuration">6.2.2. ESLint and Prettier Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-project-css-styles">6.2.3. Create Project CSS Styles</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#react-form-components">6.3. React Form Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">6.3.1. Controlled Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uncontrolled-component">6.3.2. Uncontrolled Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#react-hook-form-component">6.3.3. React Hook Form Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#react-hook-form-validation">6.3.4. React Hook Form Validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#function-component-the-user-interface">6.3.5. Function Component - the User Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#run-the-development-app">6.4. Run the development app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hosting-the-react-app-on-github-pages">6.5. Hosting the React App on GitHub Pages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#build-the-app">6.5.1. Build the App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hosting-the-app">6.5.2. Hosting the App</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#sources-and-demos">6.6. Sources and Demos</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tut07-react-restapi.html">7. React RESTful API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut08-react-router.html">8. React Router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut09-react-component-styling.html">9. React Component Styling</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">React Tutorial with Typescript</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">6. </span>React Form</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="title-center h1" id="react-form">
+<span id="tut06-react-form"></span><h1><span class="section-number">6. </span>React Form<a class="headerlink" href="#react-form" title="Link to this heading"></a></h1>
+<section id="introduction">
+<h2><span class="section-number">6.1. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>Forms are an essential part of any application used for collecting user data, processing payments, or handling authentication. React Forms are the components used to collect and manage the user inputs. These components include the input elements like text field, check box, date input, dropdowns etc. The nature of form programming needs the state to be maintained and the input field information will get changed as the user interacts with the form.</p>
+<p>In React, there are two ways of handling form data:</p>
+<blockquote>
+<div><ul>
+<li><p>Controlled Components: In this approach, form data is handled by React through the use of hooks such as the useState hook. When a component is controlled, the value of form elements is stored in a state, and any changes made to the value are immediately reflected in the state.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>To create a controlled component, you need to use the value prop to set the value of form elements and the onChange event to handle changes made to the value.</p></li>
+<li><p>The value prop sets the initial value of a form element</p></li>
+<li><p>The onChange event is triggered whenever the value of a form element changes.</p></li>
+<li><p>Inside the onChange event, you need to update the state with the new value using a state update function.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Uncontrolled Components: In uncontrolled components, React does not manage the state of input elements and doesn’t track the value of the input fields. Form data is handled by the Document Object Model (DOM) rather than by React. The DOM maintains the state of form data and updates it based on user input. When a user enters text into a text input field or selects an option from a select box, the browser updates the DOM’s state for that element automatically.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>React provides a ref attribute for all its DOM element.</p></li>
+<li><p>React use the useRef hook to create a new reference and then attach it to the form element.</p></li>
+<li><p>When a user interacts with a form element in uncontrolled component, the browser automatically updates the DOM’s state for that element.</p></li>
+<li><p>React use the attached reference to retrieve the current values of each form element during runtime.</p></li>
+<li><p>Uncontrolled components can be useful in certain situations, such as when you need to integrate with third-party libraries or when you don’t need to manipulate the form data.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<section id="controlled-components">
+<h3><span class="section-number">6.1.1. </span>Controlled Components<a class="headerlink" href="#controlled-components" title="Link to this heading"></a></h3>
+<p>In controlled component, React provides a special attribute, value for all input elements and controls the input elements, and use the useState Hook to keep track of each inputs value. React control the values of more than one input field by adding a name attribute to each element.</p>
+<p>The sample usage to set and update the user’s form input is as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="p">[</span><span class="n">inputs</span><span class="p">,</span> <span class="n">setInputs</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="p">({});</span>
+
+<span class="o">&lt;</span><span class="nb">input</span>
+    <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;fieldname&quot;</span>
+    <span class="n">value</span><span class="o">=</span><span class="p">{</span><span class="n">inputs</span><span class="o">.</span><span class="n">fieldname</span> <span class="o">||</span> <span class="s2">&quot;&quot;</span><span class="p">}</span>
+    <span class="n">onChange</span><span class="o">=</span><span class="p">{</span><span class="n">handleChange</span><span class="p">}</span>
+<span class="o">/&gt;</span>
+
+<span class="o">//</span> <span class="n">update</span> <span class="n">the</span> <span class="n">state</span>
+<span class="n">const</span> <span class="n">handleChange</span> <span class="o">=</span> <span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="n">const</span> <span class="n">name</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">name</span><span class="p">;</span>
+  <span class="n">const</span> <span class="n">value</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">value</span><span class="p">;</span>
+  <span class="n">setInputs</span><span class="p">(</span><span class="n">values</span> <span class="o">=&gt;</span> <span class="p">({</span><span class="o">...</span><span class="n">values</span><span class="p">,</span> <span class="p">[</span><span class="n">name</span><span class="p">]:</span> <span class="n">value</span><span class="p">}))</span>
+<span class="p">}</span>
+
+<span class="o">//</span> <span class="n">Handle</span> <span class="n">form</span> <span class="n">submit</span>
+<span class="n">const</span> <span class="n">handleSubmit</span> <span class="o">=</span> <span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="n">event</span><span class="o">.</span><span class="n">preventDefault</span><span class="p">();</span>
+  <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="uncontrolled-components">
+<h3><span class="section-number">6.1.2. </span>Uncontrolled Components<a class="headerlink" href="#uncontrolled-components" title="Link to this heading"></a></h3>
+<p>In uncontrolled components, React does not manage the state of input elements and doesn’t track the value of the input fields. Instead, it allows the DOM to handle the input’s state. React provides a ref attribute for all its DOM element and a corresponding api, React.createRef() to create a new reference (this.ref). The newly created reference can be attached to the form element and the attached form element’s value can be accessed using this.ref.current.value whenever necessary.</p>
+<p>The sample usage to do form programming in uncontrolled component:</p>
+<blockquote>
+<div><ul>
+<li><p>Step 1 − Create a reference</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span><span class="o">.</span><span class="n">inputRef</span> <span class="o">=</span> <span class="n">React</span><span class="o">.</span><span class="n">createRef</span><span class="p">();</span>
+</pre></div>
+</div>
+</li>
+<li><p>Step 2 − Create a form element</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nb">input</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;username&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Step 3 − Attach the already created reference in the form element</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nb">input</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;username&quot;</span> <span class="n">ref</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">inputRef</span><span class="p">}</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Step 4 − Get the input value using this.inputRef.current.value during validation and submission</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span> <span class="nb">input</span><span class="p">:</span> <span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">inputRef</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">value</span><span class="p">}</span> <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+<p>React libraries for handling forms:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>React Hook Form: React Hook Form is a React library for building forms. It is very flexible and can be used for simple forms as well as large forms with complex validation and submission logic. It is also very performant and optimised not to cause unnecessary re-renders.</p></li>
+<li><p>React Router Form: Form is a wrapper around the HTML form element that handles the form submission on the client side. React Router’s form submission mimics how a native form element submits to a server path. However, React Router submits the form to a client-side route instead. In addition, Form mimics an HTTP GET request by default</p></li>
+<li><p>Other libraries</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="react-hook-form-library">
+<h3><span class="section-number">6.1.3. </span>React Hook Form Library<a class="headerlink" href="#react-hook-form-library" title="Link to this heading"></a></h3>
+<section id="react-hook-form">
+<h4><span class="section-number">6.1.3.1. </span>React Hook Form<a class="headerlink" href="#react-hook-form" title="Link to this heading"></a></h4>
+<p>React Hook Form is a React library for building forms. It is very flexible and can be used for simple forms as well as large forms with complex validation and submission logic. It is also very performant and optimised not to cause unnecessary re-renders.</p>
+<blockquote>
+<div><ul>
+<li><p>install the react-hook-form library</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># npm install the react-hook-form library</span>
+<span class="n">npm</span> <span class="n">install</span> <span class="n">react</span><span class="o">-</span><span class="n">hook</span><span class="o">-</span><span class="n">form</span>
+<span class="c1"># yarn install the react-hook-form library</span>
+<span class="n">yarn</span> <span class="n">add</span> <span class="n">react</span><span class="o">-</span><span class="n">hook</span><span class="o">-</span><span class="n">form</span>
+</pre></div>
+</div>
+</li>
+<li><p>import the useForm hook from the library</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># import the useForm hook</span>
+<span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">useForm</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s2">&quot;react-hook-form&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>use the useForm hook</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># destructure the register and handleSubmit properties</span>
+<span class="n">const</span> <span class="p">{</span> <span class="n">register</span><span class="p">,</span> <span class="n">handleSubmit</span><span class="p">,</span> <span class="n">formState</span><span class="p">:</span> <span class="p">{</span><span class="n">errors</span><span class="p">,</span> <span class="n">isSubmitting</span><span class="p">,</span> <span class="n">isSubmitSuccessful</span><span class="p">}</span> <span class="p">}</span> <span class="o">=</span> <span class="n">useForm</span><span class="p">();</span>
+</pre></div>
+</div>
+</li>
+<li><p>register an input element</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># register an input element with a variable name. This spread operator syntax is a new implementation to</span>
+<span class="c1">#    the library that enables strict type checking in forms with TypeScript.</span>
+<span class="o">&lt;</span><span class="nb">input</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;firstName&quot;</span> <span class="p">{</span><span class="o">...</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;firstName&#39;</span><span class="p">)}</span> <span class="o">/&gt;</span>
+<span class="c1"># React Hook Form versions older than v7 had the register method attached to the ref attribute as such:</span>
+<span class="c1">#    &lt;input type=&quot;text&quot; name=&quot;firstName&quot; ref={register} /&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>form submission. The handleSubmit method can handle two functions as arguments. The first function passed as an argument will be invoked when the form validation is successful. The second function is called with errors when the validation fails</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># create onSubmit and onErrors methods to handle form submission</span>
+<span class="n">const</span> <span class="n">onFormSubmit</span>  <span class="o">=</span> <span class="n">data</span> <span class="o">=&gt;</span> <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+<span class="n">const</span> <span class="n">onErrors</span> <span class="o">=</span> <span class="n">errors</span> <span class="o">=&gt;</span> <span class="n">console</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">errors</span><span class="p">);</span>
+<span class="o">&lt;</span><span class="n">form</span> <span class="n">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="n">handleSubmit</span><span class="p">(</span><span class="n">onFormSubmit</span><span class="p">,</span> <span class="n">onErrors</span><span class="p">)}</span><span class="o">&gt;</span>
+    <span class="p">{</span><span class="o">/*</span> <span class="o">...</span> <span class="o">*/</span><span class="p">}</span>
+<span class="o">&lt;/</span><span class="n">form</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="react-hook-form-inputs-validation">
+<h4><span class="section-number">6.1.3.2. </span>React Hook Form Inputs Validation<a class="headerlink" href="#react-hook-form-inputs-validation" title="Link to this heading"></a></h4>
+<blockquote>
+<div><ul>
+<li><p>The validation parameters include the following properties:</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt>required</dt><dd><p>indicates if the field is required or not. If this property is set to true, then the field cannot be empty</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>minlength and maxlength</dt><dd><p>set the minimum and maximum length for a string input value</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>min and max</dt><dd><p>set the minimum and maximum values for a numerical value</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>type</dt><dd><p>indicates the type of the input field; it can be email, number, text, or any other standard HTML input types</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>pattern</dt><dd><p>defines a pattern for the input value using a regular expression</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Install ErrorMessage component to handle errors if desired</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt>install by npm</dt><dd><p>npm install &#64;hookform/error-message</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>install by yarn</dt><dd><p>yarn add &#64;hookform/error-message</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Validate with RegisterOptions</p>
+<blockquote>
+<div><ul>
+<li><p>Specifying validation</p>
+<blockquote>
+<div><ul>
+<li><p>Field validation is defined in the register field in an options parameter as follows:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>&lt;input {…register(‘name’, { required: true })} /&gt;</p></li>
+<li><p>&lt;input {…register(‘name’, { required: ‘You must enter a name’ })} /&gt;</p></li>
+<li><p>&lt;input {…register(‘name’, { required: ‘You must enter a name’, pattern: { value: /S+/, message: ‘Entered value does not match pattern format’, } }) } /&gt;</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Add a noValidate attribute to the form element to prevent any native HTML validation</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>&lt;form noValidate onSubmit={handleSubmit(onSubmit)}&gt;</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Obtaining validation errors</p>
+<blockquote>
+<div><ul>
+<li><p>The useForm returns a state called errors, which contains the form validation errors</p></li>
+<li><p>The errors state is an object containing invalid field error messages.</p>
+<blockquote>
+<div><p>For example, if a name field is invalid because a required rule has been violated, the errors object could be as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">name</span><span class="p">:</span> <span class="p">{</span>
+             <span class="n">message</span><span class="p">:</span> <span class="s1">&#39;You must enter your name&#39;</span><span class="p">,</span>
+             <span class="nb">type</span><span class="p">:</span> <span class="s1">&#39;required&#39;</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Use the errors object to display custom error messages</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>{ errors.name &amp;&amp; &lt;p className=”errorMsg”&gt;{errors.name.message}&lt;/p&gt; }</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Handling submission with form validation</p>
+<blockquote>
+<div><ul>
+<li><p>The isSubmitting state can be used to disable elements whilst the form is being submitted</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">button</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span> <span class="n">disabled</span><span class="o">=</span><span class="p">{</span><span class="n">isSubmitting</span><span class="p">}</span><span class="o">&gt;</span><span class="n">Submit</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>The isSubmitSuccessful can be used to conditionally render a successful submission message</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">isSubmitSuccessful</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span><span class="n">The</span> <span class="n">form</span> <span class="n">was</span> <span class="n">successfully</span> <span class="n">submitted</span><span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+</section>
+<section id="create-a-react-project-structure">
+<h2><span class="section-number">6.2. </span>Create a React Project Structure<a class="headerlink" href="#create-a-react-project-structure" title="Link to this heading"></a></h2>
+<section id="create-a-react-project">
+<h3><span class="section-number">6.2.1. </span>Create a React Project<a class="headerlink" href="#create-a-react-project" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul>
+<li><p>Create a ReactJS Project</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">create</span> <span class="n">vite</span> <span class="n">tut06</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">form</span> <span class="o">--</span><span class="n">template</span> <span class="n">react</span><span class="o">-</span><span class="n">ts</span>
+</pre></div>
+</div>
+</li>
+<li><p>Move inside the ReactJS project folder &lt;tut06-react-form&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut06</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">form</span>
+</pre></div>
+</div>
+</li>
+<li><p>Install the dependencies</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">install</span>
+</pre></div>
+</div>
+</li>
+<li><p>Install the react-hook-form library dependencies</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">add</span> <span class="n">react</span><span class="o">-</span><span class="n">hook</span><span class="o">-</span><span class="n">form</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="eslint-and-prettier-configuration">
+<h3><span class="section-number">6.2.2. </span>ESLint and Prettier Configuration<a class="headerlink" href="#eslint-and-prettier-configuration" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul>
+<li><p>Install the <code class="docutils literal notranslate"><span class="pre">EditorConfig</span></code> extension for VS Code if you haven’t already.</p></li>
+<li><p>Add .editorconfig (<a class="reference external" href="https://editorconfig.org">https://editorconfig.org</a>) to the root of the project</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 6.1 </span><span class="caption-text">contents of .editorconfig</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-cfg notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="na">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="k">[*]</span>
+<span class="linenos">4</span><span class="na">indent_style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">space</span>
+<span class="linenos">5</span><span class="na">indent_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">2</span>
+<span class="linenos">6</span><span class="na">end_of_line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">lf</span>
+<span class="linenos">7</span><span class="na">insert_final_newline</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<span class="linenos">8</span><span class="na">trim_trailing_whitespace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Reload VS Code (open the command palette, find and use <code class="docutils literal notranslate"><span class="pre">Reload</span> <span class="pre">Window</span></code>).</p></li>
+<li><p>Install dependencies</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">add</span> <span class="o">--</span><span class="n">dev</span> <span class="n">prettier</span> <span class="n">eslint</span><span class="o">-</span><span class="n">plugin</span><span class="o">-</span><span class="n">prettier</span> <span class="n">eslint</span><span class="o">-</span><span class="n">config</span><span class="o">-</span><span class="n">prettier</span> <span class="n">eslint</span><span class="o">-</span><span class="n">plugin</span><span class="o">-</span><span class="n">react</span>
+</pre></div>
+</div>
+</li>
+<li><p>Modify the eslint.config.js file with following contents:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 6.2 </span><span class="caption-text">contents of eslint.config.js</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="nx">js</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@eslint/js&quot;</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="nx">globals</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;globals&quot;</span><span class="p">;</span>
+<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="nx">reactHooks</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;eslint-plugin-react-hooks&quot;</span><span class="p">;</span>
+<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="nx">reactRefresh</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;eslint-plugin-react-refresh&quot;</span><span class="p">;</span>
+<span class="linenos"> 5</span><span class="k">import</span><span class="w"> </span><span class="nx">tseslint</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;typescript-eslint&quot;</span><span class="p">;</span>
+<span class="linenos"> 6</span><span class="k">import</span><span class="w"> </span><span class="nx">react</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;eslint-plugin-react&quot;</span><span class="p">;</span>
+<span class="linenos"> 7</span><span class="k">import</span><span class="w"> </span><span class="nx">eslintPluginPrettier</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;eslint-plugin-prettier/recommended&quot;</span><span class="p">;</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">tseslint</span>
+<span class="linenos">10</span><span class="w">  </span><span class="p">.</span><span class="nx">config</span><span class="p">(</span>
+<span class="linenos">11</span><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">ignores</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;dist&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="linenos">12</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">13</span><span class="w">      </span><span class="c1">//extends: [js.configs.recommended, ...tseslint.configs.recommended],</span>
+<span class="linenos">14</span><span class="w">      </span><span class="k">extends</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="linenos">15</span><span class="w">        </span><span class="nx">js</span><span class="p">.</span><span class="nx">configs</span><span class="p">.</span><span class="nx">recommended</span><span class="p">,</span>
+<span class="linenos">16</span><span class="w">        </span><span class="p">...</span><span class="nx">tseslint</span><span class="p">.</span><span class="nx">configs</span><span class="p">.</span><span class="nx">recommendedTypeChecked</span><span class="p">,</span>
+<span class="linenos">17</span><span class="w">      </span><span class="p">],</span>
+<span class="linenos">18</span><span class="w">      </span><span class="nx">files</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;**/*.{ts,tsx}&quot;</span><span class="p">],</span>
+<span class="linenos">19</span><span class="w">      </span><span class="nx">languageOptions</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">20</span><span class="w">        </span><span class="nx">ecmaVersion</span><span class="o">:</span><span class="w"> </span><span class="mf">2020</span><span class="p">,</span>
+<span class="linenos">21</span><span class="w">        </span><span class="nx">globals</span><span class="o">:</span><span class="w"> </span><span class="nx">globals</span><span class="p">.</span><span class="nx">browser</span><span class="p">,</span>
+<span class="linenos">22</span><span class="w">        </span><span class="nx">parserOptions</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">23</span><span class="w">          </span><span class="nx">project</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;./tsconfig.node.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;./tsconfig.app.json&quot;</span><span class="p">],</span>
+<span class="linenos">24</span><span class="w">          </span><span class="nx">tsconfigRootDir</span><span class="o">:</span><span class="w"> </span><span class="k">import</span><span class="p">.</span><span class="nx">meta</span><span class="p">.</span><span class="nx">dirname</span><span class="p">,</span>
+<span class="linenos">25</span><span class="w">        </span><span class="p">},</span>
+<span class="linenos">26</span><span class="w">      </span><span class="p">},</span>
+<span class="linenos">27</span><span class="w">      </span><span class="nx">settings</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">28</span><span class="w">        </span><span class="nx">react</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">29</span><span class="w">          </span><span class="nx">version</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;detect&quot;</span><span class="p">,</span>
+<span class="linenos">30</span><span class="w">        </span><span class="p">},</span>
+<span class="linenos">31</span><span class="w">      </span><span class="p">},</span>
+<span class="linenos">32</span><span class="w">      </span><span class="nx">plugins</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">33</span><span class="w">        </span><span class="s2">&quot;react-hooks&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">reactHooks</span><span class="p">,</span>
+<span class="linenos">34</span><span class="w">        </span><span class="s2">&quot;react-refresh&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">reactRefresh</span><span class="p">,</span>
+<span class="linenos">35</span><span class="w">        </span><span class="nx">react</span><span class="o">:</span><span class="w"> </span><span class="nx">react</span><span class="p">,</span>
+<span class="linenos">36</span><span class="w">      </span><span class="p">},</span>
+<span class="linenos">37</span><span class="w">      </span><span class="nx">rules</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">38</span><span class="w">        </span><span class="p">...</span><span class="nx">reactHooks</span><span class="p">.</span><span class="nx">configs</span><span class="p">.</span><span class="nx">recommended</span><span class="p">.</span><span class="nx">rules</span><span class="p">,</span>
+<span class="linenos">39</span><span class="w">        </span><span class="s2">&quot;react-refresh/only-export-components&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="linenos">40</span><span class="w">          </span><span class="s2">&quot;warn&quot;</span><span class="p">,</span>
+<span class="linenos">41</span><span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nx">allowConstantExport</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">},</span>
+<span class="linenos">42</span><span class="w">        </span><span class="p">],</span>
+<span class="linenos">43</span><span class="w">        </span><span class="p">...</span><span class="nx">react</span><span class="p">.</span><span class="nx">configs</span><span class="p">.</span><span class="nx">recommended</span><span class="p">.</span><span class="nx">rules</span><span class="p">,</span>
+<span class="linenos">44</span><span class="w">        </span><span class="p">...</span><span class="nx">react</span><span class="p">.</span><span class="nx">configs</span><span class="p">[</span><span class="s2">&quot;jsx-runtime&quot;</span><span class="p">].</span><span class="nx">rules</span><span class="p">,</span>
+<span class="linenos">45</span><span class="w">      </span><span class="p">},</span>
+<span class="linenos">46</span><span class="w">    </span><span class="p">},</span>
+<span class="linenos">47</span><span class="w">  </span><span class="p">)</span>
+<span class="linenos">48</span><span class="w">  </span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">eslintPluginPrettier</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Edit the eslint scripts in the package.json file:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 6.3 </span><span class="caption-text">contents of package.json</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="highlight-cfg notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="na">&quot;scripts&quot;</span><span class="o">:</span><span class="w"> </span><span class="s">{</span>
+<span class="linenos">2</span><span class="w">  </span><span class="na">... ,</span>
+<span class="linenos">3</span><span class="w">  </span><span class="na">&quot;lint&quot;</span><span class="o">:</span><span class="w"> </span><span class="s">&quot;eslint src ./*.js ./*.ts --ext ts,tsx --report-unused-disable-directives --max-warnings 0&quot;</span><span class="na">,</span>
+<span class="linenos">4</span><span class="w">  </span><span class="na">&quot;lint:fix&quot;</span><span class="o">:</span><span class="w"> </span><span class="s">&quot;eslint src ./*.js ./*.ts --ext ts,tsx --fix&quot;</span><span class="na">,</span>
+<span class="linenos">5</span><span class="na">},</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Run ESLint:</p>
+<blockquote>
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>yarn<span class="w"> </span>lint
+<span class="linenos">2</span>yarn<span class="w"> </span>lint:fix
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="create-project-css-styles">
+<h3><span class="section-number">6.2.3. </span>Create Project CSS Styles<a class="headerlink" href="#create-project-css-styles" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>Create the src/list-styles.css file with the following contents:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">Listing 6.4 </span><span class="caption-text">src/list-styles.css</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="p">.</span><span class="nc">list-container</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 2</span><span class="w">  </span><span class="k">max-width</span><span class="p">:</span><span class="w"> </span><span class="mi">800</span><span class="kt">px</span><span class="p">;</span>
+<span class="linenos"> 3</span><span class="w">  </span><span class="k">width</span><span class="p">:</span><span class="n">max-content</span><span class="p">;</span>
+<span class="linenos"> 4</span><span class="w">  </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span>
+<span class="linenos"> 5</span><span class="w">  </span><span class="k">font-family</span><span class="p">:</span><span class="w"> </span><span class="n">Arial</span><span class="p">,</span><span class="w"> </span><span class="kc">sans-serif</span><span class="p">;</span>
+<span class="linenos"> 6</span><span class="p">}</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="nt">ol</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="k">padding-left</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">10</span><span class="w">  </span><span class="k">counter-reset</span><span class="p">:</span><span class="w"> </span><span class="n">list-counter</span><span class="p">;</span>
+<span class="linenos">11</span><span class="p">}</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="p">.</span><span class="nc">list-item</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">14</span><span class="w">  </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
+<span class="linenos">15</span><span class="w">  </span><span class="k">align-items</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+<span class="linenos">16</span><span class="w">  </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">17</span><span class="p">}</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="p">.</span><span class="nc">list-item</span><span class="w"> </span><span class="nt">div</span><span class="w"> </span><span class="nt">button</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">20</span><span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="kt">px</span><span class="p">;</span>
+<span class="linenos">21</span><span class="w">  </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="nb">rgb</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span><span class="w"> </span><span class="mi">95</span><span class="p">,</span><span class="w"> </span><span class="mi">82</span><span class="p">);</span>
+<span class="linenos">22</span><span class="p">}</span>
+<span class="linenos">23</span><span class="p">.</span><span class="nc">list-item-number</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">24</span><span class="w">  </span><span class="k">font-weight</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="p">;</span>
+<span class="linenos">25</span><span class="w">  </span><span class="k">margin-right</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+<span class="linenos">26</span><span class="w">  </span><span class="k">counter-increment</span><span class="p">:</span><span class="w"> </span><span class="n">list-counter</span><span class="p">;</span>
+<span class="linenos">27</span><span class="p">}</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span><span class="p">.</span><span class="nc">list-item-number</span><span class="p">::</span><span class="nd">before</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">30</span><span class="w">  </span><span class="k">content</span><span class="p">:</span><span class="w"> </span><span class="nb">counter</span><span class="p">(</span><span class="n">list</span><span class="nv">-counter</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;. &quot;</span><span class="p">;</span>
+<span class="linenos">31</span><span class="p">}</span>
+<span class="linenos">32</span>
+<span class="linenos">33</span><span class="p">.</span><span class="nc">list-item-content</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">34</span><span class="w">  </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="mh">#ccc</span><span class="p">;</span>
+<span class="linenos">35</span><span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+<span class="linenos">36</span><span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+<span class="linenos">37</span><span class="w">  </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#f9f9f9</span><span class="p">;</span>
+<span class="linenos">38</span><span class="w">  </span><span class="k">flex-grow</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">39</span><span class="p">}</span>
+<span class="linenos">40</span>
+<span class="linenos">41</span><span class="p">.</span><span class="nc">list-item-content</span><span class="w"> </span><span class="nt">h3</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">42</span><span class="w">  </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">43</span><span class="w">  </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">em</span><span class="p">;</span>
+<span class="linenos">44</span><span class="p">}</span>
+<span class="linenos">45</span>
+<span class="linenos">46</span><span class="p">.</span><span class="nc">list-item-content</span><span class="w"> </span><span class="nt">p</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">47</span><span class="w">  </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">48</span><span class="w">  </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9</span><span class="kt">em</span><span class="p">;</span>
+<span class="linenos">49</span><span class="p">}</span>
+<span class="linenos">50</span>
+<span class="linenos">51</span><span class="p">.</span><span class="nc">red-color</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">52</span><span class="w">  </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#ff0000</span><span class="p">;</span>
+<span class="linenos">53</span><span class="p">}</span>
+<span class="linenos">54</span>
+<span class="linenos">55</span><span class="p">.</span><span class="nc">blue-color</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">56</span><span class="w">  </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#0011ff</span><span class="p">;</span>
+<span class="linenos">57</span><span class="p">}</span>
+<span class="linenos">58</span>
+<span class="linenos">59</span><span class="p">.</span><span class="nc">bg-red</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">60</span><span class="w">  </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#ff0000</span><span class="p">;</span>
+<span class="linenos">61</span><span class="p">}</span>
+<span class="linenos">62</span>
+<span class="linenos">63</span><span class="p">.</span><span class="nc">bg-blue</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">64</span><span class="w">  </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#0011ff</span><span class="p">;</span>
+<span class="linenos">65</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</div></blockquote>
+</section>
+</section>
+<section id="react-form-components">
+<h2><span class="section-number">6.3. </span>React Form Components<a class="headerlink" href="#react-form-components" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3><span class="section-number">6.3.1. </span>Controlled Components<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul>
+<li><p>Define a controlled react form function component.</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-number">Listing 6.5 </span><span class="caption-text">src/ReactFormControlledComponent.tsx</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="nx">React</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">useState</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;react&quot;</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="s2">&quot;./App.css&quot;</span><span class="p">;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="kd">const</span><span class="w"> </span><span class="nx">ReactFormControlledComponent</span><span class="o">:</span><span class="w"> </span><span class="kt">React.FC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 5</span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">formState</span><span class="p">,</span><span class="w"> </span><span class="nx">setFormState</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useState</span><span class="p">({</span>
+<span class="linenos"> 6</span><span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="linenos"> 7</span><span class="w">    </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="linenos"> 8</span><span class="w">    </span><span class="nx">location</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="p">});</span>
+<span class="linenos">10</span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">labelStyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">11</span><span class="w">    </span><span class="nx">display</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;inline-block&quot;</span><span class="p">,</span>
+<span class="linenos">12</span><span class="w">    </span><span class="nx">width</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2.5rem&quot;</span><span class="p">,</span>
+<span class="linenos">13</span><span class="w">    </span><span class="nx">marginRight</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1.5rem&quot;</span><span class="p">,</span>
+<span class="linenos">14</span><span class="w">  </span><span class="p">};</span>
+<span class="linenos">15</span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">changeHandler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="o">:</span><span class="w"> </span><span class="kt">React.ChangeEvent</span><span class="p">&lt;</span><span class="nt">HTMLInputElement</span><span class="p">&gt;)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">16</span><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+<span class="linenos">17</span><span class="w">    </span><span class="nx">setFormState</span><span class="p">((</span><span class="nx">prevState</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="p">...</span><span class="nx">prevState</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="nx">name</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="p">}));</span>
+<span class="linenos">18</span><span class="w">  </span><span class="p">};</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">handleSubmit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="o">:</span><span class="w"> </span><span class="kt">React.FormEvent</span><span class="p">&lt;</span><span class="nt">HTMLFormElement</span><span class="p">&gt;)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">21</span><span class="w">    </span><span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+<span class="linenos">22</span><span class="w">    </span><span class="nx">alert</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">formState</span><span class="p">));</span>
+<span class="linenos">23</span><span class="w">  </span><span class="p">};</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="linenos">26</span><span class="w">    </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">27</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;App&quot;</span><span class="p">&gt;</span>
+<span class="linenos">28</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">form</span><span class="w"> </span><span class="na">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="nx">handleSubmit</span><span class="p">}&gt;</span>
+<span class="linenos">29</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">marginTop</span><span class="o">:</span><span class="w"> </span><span class="kt">20</span><span class="w"> </span><span class="p">}}&gt;</span>
+<span class="linenos">30</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">label</span><span class="w"> </span><span class="na">htmlFor</span><span class="o">=</span><span class="s">&quot;name&quot;</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{</span><span class="nx">labelStyle</span><span class="p">}&gt;</span>
+<span class="linenos">31</span><span class="w">              </span><span class="nx">Name</span>
+<span class="linenos">32</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+<span class="linenos">33</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">input</span>
+<span class="linenos">34</span><span class="w">              </span><span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span>
+<span class="linenos">35</span><span class="w">              </span><span class="na">id</span><span class="o">=</span><span class="s">&quot;name&quot;</span>
+<span class="linenos">36</span><span class="w">              </span><span class="na">name</span><span class="o">=</span><span class="s">&quot;name&quot;</span>
+<span class="linenos">37</span><span class="w">              </span><span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Enter name&quot;</span>
+<span class="linenos">38</span><span class="w">              </span><span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="nx">formState</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span>
+<span class="linenos">39</span><span class="w">              </span><span class="na">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">changeHandler</span><span class="p">}</span>
+<span class="linenos">40</span><span class="w">            </span><span class="p">/&gt;</span>
+<span class="linenos">41</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">42</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">marginTop</span><span class="o">:</span><span class="w"> </span><span class="kt">10</span><span class="w"> </span><span class="p">}}&gt;</span>
+<span class="linenos">43</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">label</span><span class="w"> </span><span class="na">htmlFor</span><span class="o">=</span><span class="s">&quot;age&quot;</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{</span><span class="nx">labelStyle</span><span class="p">}&gt;</span>
+<span class="linenos">44</span><span class="w">              </span><span class="nx">Age</span>
+<span class="linenos">45</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+<span class="linenos">46</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">input</span>
+<span class="linenos">47</span><span class="w">              </span><span class="na">type</span><span class="o">=</span><span class="s">&quot;number&quot;</span>
+<span class="linenos">48</span><span class="w">              </span><span class="na">id</span><span class="o">=</span><span class="s">&quot;age&quot;</span>
+<span class="linenos">49</span><span class="w">              </span><span class="na">name</span><span class="o">=</span><span class="s">&quot;age&quot;</span>
+<span class="linenos">50</span><span class="w">              </span><span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Enter age&quot;</span>
+<span class="linenos">51</span><span class="w">              </span><span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="nx">formState</span><span class="p">.</span><span class="nx">age</span><span class="p">}</span>
+<span class="linenos">52</span><span class="w">              </span><span class="na">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">changeHandler</span><span class="p">}</span>
+<span class="linenos">53</span><span class="w">            </span><span class="p">/&gt;</span>
+<span class="linenos">54</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">55</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">marginTop</span><span class="o">:</span><span class="w"> </span><span class="kt">10</span><span class="w"> </span><span class="p">}}&gt;</span>
+<span class="linenos">56</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">label</span><span class="w"> </span><span class="na">htmlFor</span><span class="o">=</span><span class="s">&quot;location&quot;</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{</span><span class="nx">labelStyle</span><span class="p">}&gt;</span>
+<span class="linenos">57</span><span class="w">              </span><span class="nx">Location</span>
+<span class="linenos">58</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+<span class="linenos">59</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">input</span>
+<span class="linenos">60</span><span class="w">              </span><span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span>
+<span class="linenos">61</span><span class="w">              </span><span class="na">id</span><span class="o">=</span><span class="s">&quot;location&quot;</span>
+<span class="linenos">62</span><span class="w">              </span><span class="na">name</span><span class="o">=</span><span class="s">&quot;location&quot;</span>
+<span class="linenos">63</span><span class="w">              </span><span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Enter location&quot;</span>
+<span class="linenos">64</span><span class="w">              </span><span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="nx">formState</span><span class="p">.</span><span class="nx">location</span><span class="p">}</span>
+<span class="linenos">65</span><span class="w">              </span><span class="na">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">changeHandler</span><span class="p">}</span>
+<span class="linenos">66</span><span class="w">            </span><span class="p">/&gt;</span>
+<span class="linenos">67</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">68</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">marginTop</span><span class="o">:</span><span class="w"> </span><span class="kt">10</span><span class="w"> </span><span class="p">}}&gt;</span>
+<span class="linenos">69</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">input</span><span class="w"> </span><span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span><span class="w"> </span><span class="na">value</span><span class="o">=</span><span class="s">&quot;Submit&quot;</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="linenos">70</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">71</span><span class="w">        </span><span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+<span class="linenos">72</span><span class="w">      </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">73</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">74</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">h4</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">marginBottom</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0px&quot;</span><span class="w"> </span><span class="p">}}&gt;</span><span class="nx">Name</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">formState</span><span class="p">.</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
+<span class="linenos">75</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span><span class="nx">Age</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">formState</span><span class="p">.</span><span class="nx">age</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">76</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span><span class="nx">Location</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">formState</span><span class="p">.</span><span class="nx">location</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">77</span><span class="w">      </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">78</span><span class="w">    </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">79</span><span class="w">  </span><span class="p">);</span>
+<span class="linenos">80</span><span class="p">};</span>
+<span class="linenos">81</span>
+<span class="linenos">82</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">ReactFormControlledComponent</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="uncontrolled-component">
+<h3><span class="section-number">6.3.2. </span>Uncontrolled Component<a class="headerlink" href="#uncontrolled-component" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul>
+<li><p>Define an uncontrolled react form function component.</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-number">Listing 6.6 </span><span class="caption-text">src/ReactFormUncontrolledComponent.tsx</span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="nx">React</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">useRef</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;react&quot;</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="s2">&quot;./App.css&quot;</span><span class="p">;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="kd">const</span><span class="w"> </span><span class="nx">ReactFormUncontrolledComponent</span><span class="o">:</span><span class="w"> </span><span class="kt">React.FC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 5</span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">labelNameRef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useRef</span><span class="p">&lt;</span><span class="nt">HTMLSpanElement</span><span class="p">&gt;(</span><span class="kc">null</span><span class="p">);</span>
+<span class="linenos"> 6</span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">labelAgeRef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useRef</span><span class="p">&lt;</span><span class="nt">HTMLSpanElement</span><span class="p">&gt;(</span><span class="kc">null</span><span class="p">);</span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">labelLocationRef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useRef</span><span class="p">&lt;</span><span class="nt">HTMLSpanElement</span><span class="p">&gt;(</span><span class="kc">null</span><span class="p">);</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">labelStyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">10</span><span class="w">    </span><span class="nx">display</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;inline-block&quot;</span><span class="p">,</span>
+<span class="linenos">11</span><span class="w">    </span><span class="nx">width</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2.5rem&quot;</span><span class="p">,</span>
+<span class="linenos">12</span><span class="w">    </span><span class="nx">marginRight</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1.5rem&quot;</span><span class="p">,</span>
+<span class="linenos">13</span><span class="w">  </span><span class="p">};</span>
+<span class="linenos">14</span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">handleSubmit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="o">:</span><span class="w"> </span><span class="kt">React.FormEvent</span><span class="p">&lt;</span><span class="nt">HTMLFormElement</span><span class="p">&gt;)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">15</span><span class="w">    </span><span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+<span class="linenos">16</span><span class="w">    </span><span class="nx">alert</span><span class="p">(</span>
+<span class="linenos">17</span><span class="w">      </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+<span class="linenos">18</span><span class="w">        </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kt">labelNameRef.current?.innerText</span><span class="p">,</span>
+<span class="linenos">19</span><span class="w">        </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="kt">labelAgeRef.current?.innerText</span><span class="p">,</span>
+<span class="linenos">20</span><span class="w">        </span><span class="nx">location</span><span class="o">:</span><span class="w"> </span><span class="kt">labelLocationRef.current?.innerText</span><span class="p">,</span>
+<span class="linenos">21</span><span class="w">      </span><span class="p">}),</span>
+<span class="linenos">22</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos">23</span><span class="w">  </span><span class="p">};</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">handleChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="o">:</span><span class="w"> </span><span class="kt">React.ChangeEvent</span><span class="p">&lt;</span><span class="nt">HTMLInputElement</span><span class="p">&gt;)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">26</span><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+<span class="linenos">27</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">name</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;name&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">labelNameRef</span><span class="p">.</span><span class="nx">current</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">28</span><span class="w">      </span><span class="nx">labelNameRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">innerText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">value</span><span class="p">;</span>
+<span class="linenos">29</span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">name</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;age&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">labelAgeRef</span><span class="p">.</span><span class="nx">current</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">30</span><span class="w">      </span><span class="nx">labelAgeRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">innerText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">value</span><span class="p">;</span>
+<span class="linenos">31</span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">name</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;location&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">labelLocationRef</span><span class="p">.</span><span class="nx">current</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">32</span><span class="w">      </span><span class="nx">labelLocationRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">innerText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">value</span><span class="p">;</span>
+<span class="linenos">33</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">34</span><span class="w">  </span><span class="p">};</span>
+<span class="linenos">35</span>
+<span class="linenos">36</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="linenos">37</span><span class="w">    </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">38</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;App&quot;</span><span class="p">&gt;</span>
+<span class="linenos">39</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">form</span><span class="w"> </span><span class="na">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="nx">handleSubmit</span><span class="p">}&gt;</span>
+<span class="linenos">40</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">marginTop</span><span class="o">:</span><span class="w"> </span><span class="kt">10</span><span class="w"> </span><span class="p">}}&gt;</span>
+<span class="linenos">41</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">label</span><span class="w"> </span><span class="na">htmlFor</span><span class="o">=</span><span class="s">&quot;name&quot;</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{</span><span class="nx">labelStyle</span><span class="p">}&gt;</span>
+<span class="linenos">42</span><span class="w">              </span><span class="nx">Name</span>
+<span class="linenos">43</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+<span class="linenos">44</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">input</span>
+<span class="linenos">45</span><span class="w">              </span><span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span>
+<span class="linenos">46</span><span class="w">              </span><span class="na">id</span><span class="o">=</span><span class="s">&quot;name&quot;</span>
+<span class="linenos">47</span><span class="w">              </span><span class="na">name</span><span class="o">=</span><span class="s">&quot;name&quot;</span>
+<span class="linenos">48</span><span class="w">              </span><span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Enter name&quot;</span>
+<span class="linenos">49</span><span class="w">              </span><span class="na">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">handleChange</span><span class="p">}</span>
+<span class="linenos">50</span><span class="w">            </span><span class="p">/&gt;</span>
+<span class="linenos">51</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">52</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">marginTop</span><span class="o">:</span><span class="w"> </span><span class="kt">10</span><span class="w"> </span><span class="p">}}&gt;</span>
+<span class="linenos">53</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">label</span><span class="w"> </span><span class="na">htmlFor</span><span class="o">=</span><span class="s">&quot;age&quot;</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{</span><span class="nx">labelStyle</span><span class="p">}&gt;</span>
+<span class="linenos">54</span><span class="w">              </span><span class="nx">Age</span>
+<span class="linenos">55</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+<span class="linenos">56</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">input</span>
+<span class="linenos">57</span><span class="w">              </span><span class="na">type</span><span class="o">=</span><span class="s">&quot;number&quot;</span>
+<span class="linenos">58</span><span class="w">              </span><span class="na">id</span><span class="o">=</span><span class="s">&quot;age&quot;</span>
+<span class="linenos">59</span><span class="w">              </span><span class="na">name</span><span class="o">=</span><span class="s">&quot;age&quot;</span>
+<span class="linenos">60</span><span class="w">              </span><span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Enter age&quot;</span>
+<span class="linenos">61</span><span class="w">              </span><span class="na">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">handleChange</span><span class="p">}</span>
+<span class="linenos">62</span><span class="w">            </span><span class="p">/&gt;</span>
+<span class="linenos">63</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">64</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">marginTop</span><span class="o">:</span><span class="w"> </span><span class="kt">10</span><span class="w"> </span><span class="p">}}&gt;</span>
+<span class="linenos">65</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">label</span><span class="w"> </span><span class="na">htmlFor</span><span class="o">=</span><span class="s">&quot;location&quot;</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{</span><span class="nx">labelStyle</span><span class="p">}&gt;</span>
+<span class="linenos">66</span><span class="w">              </span><span class="nx">Location</span>
+<span class="linenos">67</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+<span class="linenos">68</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">input</span>
+<span class="linenos">69</span><span class="w">              </span><span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span>
+<span class="linenos">70</span><span class="w">              </span><span class="na">id</span><span class="o">=</span><span class="s">&quot;location&quot;</span>
+<span class="linenos">71</span><span class="w">              </span><span class="na">name</span><span class="o">=</span><span class="s">&quot;location&quot;</span>
+<span class="linenos">72</span><span class="w">              </span><span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Enter location&quot;</span>
+<span class="linenos">73</span><span class="w">              </span><span class="na">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">handleChange</span><span class="p">}</span>
+<span class="linenos">74</span><span class="w">            </span><span class="p">/&gt;</span>
+<span class="linenos">75</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">76</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">marginTop</span><span class="o">:</span><span class="w"> </span><span class="kt">10</span><span class="w"> </span><span class="p">}}&gt;</span>
+<span class="linenos">77</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">input</span><span class="w"> </span><span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span><span class="w"> </span><span class="na">value</span><span class="o">=</span><span class="s">&quot;Submit&quot;</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="linenos">78</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">79</span><span class="w">        </span><span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+<span class="linenos">80</span><span class="w">      </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">81</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">82</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">h4</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">marginBottom</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0px&quot;</span><span class="w"> </span><span class="p">}}&gt;</span>
+<span class="linenos">83</span><span class="w">          </span><span class="nx">Name</span><span class="o">:</span><span class="w"> </span><span class="p">&lt;</span><span class="nt">span</span><span class="w"> </span><span class="na">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">labelNameRef</span><span class="p">}&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<span class="linenos">84</span><span class="w">        </span><span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
+<span class="linenos">85</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">86</span><span class="w">          </span><span class="nx">Age</span><span class="o">:</span><span class="w"> </span><span class="p">&lt;</span><span class="nt">span</span><span class="w"> </span><span class="na">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">labelAgeRef</span><span class="p">}&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<span class="linenos">87</span><span class="w">        </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">88</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">89</span><span class="w">          </span><span class="nx">Location</span><span class="o">:</span><span class="w"> </span><span class="p">&lt;</span><span class="nt">span</span><span class="w"> </span><span class="na">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">labelLocationRef</span><span class="p">}&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<span class="linenos">90</span><span class="w">        </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">91</span><span class="w">      </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">92</span><span class="w">    </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">93</span><span class="w">  </span><span class="p">);</span>
+<span class="linenos">94</span><span class="p">};</span>
+<span class="linenos">95</span>
+<span class="linenos">96</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">ReactFormUncontrolledComponent</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="react-hook-form-component">
+<h3><span class="section-number">6.3.3. </span>React Hook Form Component<a class="headerlink" href="#react-hook-form-component" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul>
+<li><p>Define a react hook form component.</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-number">Listing 6.7 </span><span class="caption-text">src/ReactHookFormComponent.tsx</span><a class="headerlink" href="#id8" title="Link to this code"></a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">useRef</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s2">&quot;react&quot;</span><span class="p">;</span>
+<span class="linenos">  2</span><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">useForm</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s2">&quot;react-hook-form&quot;</span><span class="p">;</span>
+<span class="linenos">  3</span><span class="kn">import</span><span class="w"> </span><span class="s2">&quot;./App.css&quot;</span><span class="p">;</span>
+<span class="linenos">  4</span>
+<span class="linenos">  5</span><span class="n">const</span> <span class="n">ReactHookFormComponent</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="linenos">  6</span>  <span class="n">const</span> <span class="p">{</span> <span class="n">register</span><span class="p">,</span> <span class="n">handleSubmit</span> <span class="p">}</span> <span class="o">=</span> <span class="n">useForm</span><span class="p">();</span>
+<span class="linenos">  7</span>
+<span class="linenos">  8</span>  <span class="n">const</span> <span class="n">labelNameRef</span> <span class="o">=</span> <span class="n">useRef</span><span class="o">&lt;</span><span class="n">HTMLSpanElement</span><span class="o">&gt;</span><span class="p">(</span><span class="n">null</span><span class="p">);</span>
+<span class="linenos">  9</span>  <span class="n">const</span> <span class="n">labelAgeRef</span> <span class="o">=</span> <span class="n">useRef</span><span class="o">&lt;</span><span class="n">HTMLSpanElement</span><span class="o">&gt;</span><span class="p">(</span><span class="n">null</span><span class="p">);</span>
+<span class="linenos"> 10</span>  <span class="n">const</span> <span class="n">labelLocationRef</span> <span class="o">=</span> <span class="n">useRef</span><span class="o">&lt;</span><span class="n">HTMLSpanElement</span><span class="o">&gt;</span><span class="p">(</span><span class="n">null</span><span class="p">);</span>
+<span class="linenos"> 11</span>
+<span class="linenos"> 12</span>  <span class="n">const</span> <span class="n">labelStyle</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos"> 13</span>    <span class="n">display</span><span class="p">:</span> <span class="s2">&quot;inline-block&quot;</span><span class="p">,</span>
+<span class="linenos"> 14</span>    <span class="n">width</span><span class="p">:</span> <span class="s2">&quot;2.5rem&quot;</span><span class="p">,</span>
+<span class="linenos"> 15</span>    <span class="n">marginRight</span><span class="p">:</span> <span class="s2">&quot;1.5rem&quot;</span><span class="p">,</span>
+<span class="linenos"> 16</span>  <span class="p">};</span>
+<span class="linenos"> 17</span>  <span class="n">const</span> <span class="n">onFormSubmit</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="linenos"> 18</span>    <span class="k">if</span> <span class="p">(</span>
+<span class="linenos"> 19</span>      <span class="n">labelNameRef</span><span class="o">.</span><span class="n">current</span> <span class="o">&amp;&amp;</span>
+<span class="linenos"> 20</span>      <span class="n">labelAgeRef</span><span class="o">.</span><span class="n">current</span> <span class="o">&amp;&amp;</span>
+<span class="linenos"> 21</span>      <span class="n">labelLocationRef</span><span class="o">.</span><span class="n">current</span>
+<span class="linenos"> 22</span>    <span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 23</span>      <span class="n">alert</span><span class="p">(</span>
+<span class="linenos"> 24</span>        <span class="n">JSON</span><span class="o">.</span><span class="n">stringify</span><span class="p">({</span>
+<span class="linenos"> 25</span>          <span class="n">name</span><span class="p">:</span> <span class="n">labelNameRef</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">innerText</span><span class="p">,</span>
+<span class="linenos"> 26</span>          <span class="n">age</span><span class="p">:</span> <span class="n">labelAgeRef</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">innerText</span><span class="p">,</span>
+<span class="linenos"> 27</span>          <span class="n">location</span><span class="p">:</span> <span class="n">labelLocationRef</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">innerText</span><span class="p">,</span>
+<span class="linenos"> 28</span>        <span class="p">}),</span>
+<span class="linenos"> 29</span>      <span class="p">);</span>
+<span class="linenos"> 30</span>    <span class="p">}</span>
+<span class="linenos"> 31</span>  <span class="p">};</span>
+<span class="linenos"> 32</span>
+<span class="linenos"> 33</span>  <span class="n">const</span> <span class="n">handleChange</span> <span class="o">=</span> <span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="n">React</span><span class="o">.</span><span class="n">ChangeEvent</span><span class="o">&lt;</span><span class="n">HTMLInputElement</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="linenos"> 34</span>    <span class="n">const</span> <span class="n">name</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">name</span><span class="p">;</span>
+<span class="linenos"> 35</span>    <span class="k">if</span> <span class="p">(</span><span class="n">name</span> <span class="o">===</span> <span class="s2">&quot;name&quot;</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 36</span>      <span class="k">if</span> <span class="p">(</span><span class="n">labelNameRef</span><span class="o">.</span><span class="n">current</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 37</span>        <span class="n">labelNameRef</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">innerText</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">value</span><span class="p">;</span>
+<span class="linenos"> 38</span>      <span class="p">}</span>
+<span class="linenos"> 39</span>    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">name</span> <span class="o">===</span> <span class="s2">&quot;age&quot;</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 40</span>      <span class="k">if</span> <span class="p">(</span><span class="n">labelAgeRef</span><span class="o">.</span><span class="n">current</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 41</span>        <span class="n">labelAgeRef</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">innerText</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">value</span><span class="p">;</span>
+<span class="linenos"> 42</span>      <span class="p">}</span>
+<span class="linenos"> 43</span>    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">name</span> <span class="o">===</span> <span class="s2">&quot;location&quot;</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 44</span>      <span class="k">if</span> <span class="p">(</span><span class="n">labelLocationRef</span><span class="o">.</span><span class="n">current</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 45</span>        <span class="n">labelLocationRef</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">innerText</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">value</span><span class="p">;</span>
+<span class="linenos"> 46</span>      <span class="p">}</span>
+<span class="linenos"> 47</span>    <span class="p">}</span>
+<span class="linenos"> 48</span>  <span class="p">};</span>
+<span class="linenos"> 49</span>
+<span class="linenos"> 50</span>  <span class="k">return</span> <span class="p">(</span>
+<span class="linenos"> 51</span>    <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos"> 52</span>      <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+<span class="linenos"> 53</span>        <span class="o">&lt;</span><span class="n">form</span>
+<span class="linenos"> 54</span>          <span class="n">onSubmit</span><span class="o">=</span><span class="p">{(</span><span class="n">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="linenos"> 55</span>            <span class="n">e</span><span class="o">.</span><span class="n">preventDefault</span><span class="p">();</span>
+<span class="linenos"> 56</span>            <span class="n">handleSubmit</span><span class="p">(</span><span class="n">onFormSubmit</span><span class="p">)()</span><span class="o">.</span><span class="n">catch</span><span class="p">((</span><span class="n">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="linenos"> 57</span>              <span class="n">console</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Form submission error:&quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">);</span>
+<span class="linenos"> 58</span>            <span class="p">});</span>
+<span class="linenos"> 59</span>          <span class="p">}}</span>
+<span class="linenos"> 60</span>        <span class="o">&gt;</span>
+<span class="linenos"> 61</span>          <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span> <span class="n">marginTop</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}}</span><span class="o">&gt;</span>
+<span class="linenos"> 62</span>            <span class="o">&lt;</span><span class="n">label</span> <span class="n">htmlFor</span><span class="o">=</span><span class="s2">&quot;name&quot;</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="n">labelStyle</span><span class="p">}</span><span class="o">&gt;</span>
+<span class="linenos"> 63</span>              <span class="n">Name</span>
+<span class="linenos"> 64</span>            <span class="o">&lt;/</span><span class="n">label</span><span class="o">&gt;</span>
+<span class="linenos"> 65</span>            <span class="o">&lt;</span><span class="nb">input</span>
+<span class="linenos"> 66</span>              <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span>
+<span class="linenos"> 67</span>              <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;name&quot;</span>
+<span class="linenos"> 68</span>              <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Enter name&quot;</span>
+<span class="linenos"> 69</span>              <span class="p">{</span><span class="o">...</span><span class="n">register</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)}</span>
+<span class="linenos"> 70</span>              <span class="n">onChange</span><span class="o">=</span><span class="p">{</span><span class="n">handleChange</span><span class="p">}</span>
+<span class="linenos"> 71</span>            <span class="o">/&gt;</span>
+<span class="linenos"> 72</span>          <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos"> 73</span>          <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span> <span class="n">marginTop</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}}</span><span class="o">&gt;</span>
+<span class="linenos"> 74</span>            <span class="o">&lt;</span><span class="n">label</span> <span class="n">htmlFor</span><span class="o">=</span><span class="s2">&quot;age&quot;</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="n">labelStyle</span><span class="p">}</span><span class="o">&gt;</span>
+<span class="linenos"> 75</span>              <span class="n">Age</span>
+<span class="linenos"> 76</span>            <span class="o">&lt;/</span><span class="n">label</span><span class="o">&gt;</span>
+<span class="linenos"> 77</span>            <span class="o">&lt;</span><span class="nb">input</span>
+<span class="linenos"> 78</span>              <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;number&quot;</span>
+<span class="linenos"> 79</span>              <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;age&quot;</span>
+<span class="linenos"> 80</span>              <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Enter age&quot;</span>
+<span class="linenos"> 81</span>              <span class="p">{</span><span class="o">...</span><span class="n">register</span><span class="p">(</span><span class="s2">&quot;age&quot;</span><span class="p">)}</span>
+<span class="linenos"> 82</span>              <span class="n">onChange</span><span class="o">=</span><span class="p">{</span><span class="n">handleChange</span><span class="p">}</span>
+<span class="linenos"> 83</span>            <span class="o">/&gt;</span>
+<span class="linenos"> 84</span>          <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos"> 85</span>          <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span> <span class="n">marginTop</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}}</span><span class="o">&gt;</span>
+<span class="linenos"> 86</span>            <span class="o">&lt;</span><span class="n">label</span> <span class="n">htmlFor</span><span class="o">=</span><span class="s2">&quot;location&quot;</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="n">labelStyle</span><span class="p">}</span><span class="o">&gt;</span>
+<span class="linenos"> 87</span>              <span class="n">Location</span>
+<span class="linenos"> 88</span>            <span class="o">&lt;/</span><span class="n">label</span><span class="o">&gt;</span>
+<span class="linenos"> 89</span>            <span class="o">&lt;</span><span class="nb">input</span>
+<span class="linenos"> 90</span>              <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span>
+<span class="linenos"> 91</span>              <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;location&quot;</span>
+<span class="linenos"> 92</span>              <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Enter location&quot;</span>
+<span class="linenos"> 93</span>              <span class="p">{</span><span class="o">...</span><span class="n">register</span><span class="p">(</span><span class="s2">&quot;location&quot;</span><span class="p">)}</span>
+<span class="linenos"> 94</span>              <span class="n">onChange</span><span class="o">=</span><span class="p">{</span><span class="n">handleChange</span><span class="p">}</span>
+<span class="linenos"> 95</span>            <span class="o">/&gt;</span>
+<span class="linenos"> 96</span>          <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos"> 97</span>          <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span> <span class="n">marginTop</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}}</span><span class="o">&gt;</span>
+<span class="linenos"> 98</span>            <span class="o">&lt;</span><span class="nb">input</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;Submit&quot;</span> <span class="o">/&gt;</span>
+<span class="linenos"> 99</span>          <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos">100</span>        <span class="o">&lt;/</span><span class="n">form</span><span class="o">&gt;</span>
+<span class="linenos">101</span>      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos">102</span>      <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos">103</span>        <span class="o">&lt;</span><span class="n">h4</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span> <span class="n">marginBottom</span><span class="p">:</span> <span class="s2">&quot;0px&quot;</span> <span class="p">}}</span><span class="o">&gt;</span>
+<span class="linenos">104</span>          <span class="n">Name</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">span</span> <span class="n">ref</span><span class="o">=</span><span class="p">{</span><span class="n">labelNameRef</span><span class="p">}</span><span class="o">&gt;&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+<span class="linenos">105</span>        <span class="o">&lt;/</span><span class="n">h4</span><span class="o">&gt;</span>
+<span class="linenos">106</span>        <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos">107</span>          <span class="n">Age</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">span</span> <span class="n">ref</span><span class="o">=</span><span class="p">{</span><span class="n">labelAgeRef</span><span class="p">}</span><span class="o">&gt;&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+<span class="linenos">108</span>        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos">109</span>        <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos">110</span>          <span class="n">Location</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">span</span> <span class="n">ref</span><span class="o">=</span><span class="p">{</span><span class="n">labelLocationRef</span><span class="p">}</span><span class="o">&gt;&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+<span class="linenos">111</span>        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos">112</span>      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos">113</span>    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos">114</span>  <span class="p">);</span>
+<span class="linenos">115</span><span class="p">};</span>
+<span class="linenos">116</span>
+<span class="linenos">117</span><span class="n">export</span> <span class="n">default</span> <span class="n">ReactHookFormComponent</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="react-hook-form-validation">
+<h3><span class="section-number">6.3.4. </span>React Hook Form Validation<a class="headerlink" href="#react-hook-form-validation" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul>
+<li><p>Define a react hook form component with inputs validation.</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-number">Listing 6.8 </span><span class="caption-text">src/ReactHookFormInputsValidation.tsx</span><a class="headerlink" href="#id9" title="Link to this code"></a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">useRef</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s2">&quot;react&quot;</span><span class="p">;</span>
+<span class="linenos">  2</span><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">useForm</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s2">&quot;react-hook-form&quot;</span><span class="p">;</span>
+<span class="linenos">  3</span><span class="kn">import</span><span class="w"> </span><span class="s2">&quot;./App.css&quot;</span><span class="p">;</span>
+<span class="linenos">  4</span>
+<span class="linenos">  5</span><span class="n">const</span> <span class="n">ReactHookFormInputsValidation</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="linenos">  6</span>  <span class="n">const</span> <span class="p">{</span>
+<span class="linenos">  7</span>    <span class="n">register</span><span class="p">,</span>
+<span class="linenos">  8</span>    <span class="n">handleSubmit</span><span class="p">,</span>
+<span class="linenos">  9</span>    <span class="n">formState</span><span class="p">:</span> <span class="p">{</span> <span class="n">errors</span> <span class="p">},</span>
+<span class="linenos"> 10</span>    <span class="n">reset</span><span class="p">,</span>
+<span class="linenos"> 11</span>  <span class="p">}</span> <span class="o">=</span> <span class="n">useForm</span><span class="p">({</span>
+<span class="linenos"> 12</span>    <span class="n">mode</span><span class="p">:</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span>
+<span class="linenos"> 13</span>  <span class="p">});</span>
+<span class="linenos"> 14</span>
+<span class="linenos"> 15</span>  <span class="n">const</span> <span class="n">labelNameRef</span> <span class="o">=</span> <span class="n">useRef</span><span class="o">&lt;</span><span class="n">HTMLSpanElement</span><span class="o">&gt;</span><span class="p">(</span><span class="n">null</span><span class="p">);</span>
+<span class="linenos"> 16</span>  <span class="n">const</span> <span class="n">labelAgeRef</span> <span class="o">=</span> <span class="n">useRef</span><span class="o">&lt;</span><span class="n">HTMLSpanElement</span><span class="o">&gt;</span><span class="p">(</span><span class="n">null</span><span class="p">);</span>
+<span class="linenos"> 17</span>  <span class="n">const</span> <span class="n">labelLocationRef</span> <span class="o">=</span> <span class="n">useRef</span><span class="o">&lt;</span><span class="n">HTMLSpanElement</span><span class="o">&gt;</span><span class="p">(</span><span class="n">null</span><span class="p">);</span>
+<span class="linenos"> 18</span>
+<span class="linenos"> 19</span>  <span class="n">const</span> <span class="n">labelStyle</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos"> 20</span>    <span class="n">display</span><span class="p">:</span> <span class="s2">&quot;inline-block&quot;</span><span class="p">,</span>
+<span class="linenos"> 21</span>    <span class="n">width</span><span class="p">:</span> <span class="s2">&quot;2.5rem&quot;</span><span class="p">,</span>
+<span class="linenos"> 22</span>    <span class="n">marginRight</span><span class="p">:</span> <span class="s2">&quot;1.5rem&quot;</span><span class="p">,</span>
+<span class="linenos"> 23</span>  <span class="p">};</span>
+<span class="linenos"> 24</span>  <span class="n">const</span> <span class="n">onFormSubmit</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="linenos"> 25</span>    <span class="k">if</span> <span class="p">(</span>
+<span class="linenos"> 26</span>      <span class="n">labelNameRef</span><span class="o">.</span><span class="n">current</span> <span class="o">&amp;&amp;</span>
+<span class="linenos"> 27</span>      <span class="n">labelAgeRef</span><span class="o">.</span><span class="n">current</span> <span class="o">&amp;&amp;</span>
+<span class="linenos"> 28</span>      <span class="n">labelLocationRef</span><span class="o">.</span><span class="n">current</span>
+<span class="linenos"> 29</span>    <span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 30</span>      <span class="n">alert</span><span class="p">(</span>
+<span class="linenos"> 31</span>        <span class="n">JSON</span><span class="o">.</span><span class="n">stringify</span><span class="p">({</span>
+<span class="linenos"> 32</span>          <span class="n">name</span><span class="p">:</span> <span class="n">labelNameRef</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">innerText</span><span class="p">,</span>
+<span class="linenos"> 33</span>          <span class="n">age</span><span class="p">:</span> <span class="n">labelAgeRef</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">innerText</span><span class="p">,</span>
+<span class="linenos"> 34</span>          <span class="n">location</span><span class="p">:</span> <span class="n">labelLocationRef</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">innerText</span><span class="p">,</span>
+<span class="linenos"> 35</span>        <span class="p">}),</span>
+<span class="linenos"> 36</span>      <span class="p">);</span>
+<span class="linenos"> 37</span>    <span class="p">}</span>
+<span class="linenos"> 38</span>    <span class="n">reset</span><span class="p">();</span>
+<span class="linenos"> 39</span>  <span class="p">};</span>
+<span class="linenos"> 40</span>
+<span class="linenos"> 41</span>  <span class="n">const</span> <span class="n">handleChange</span> <span class="o">=</span> <span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="n">React</span><span class="o">.</span><span class="n">ChangeEvent</span><span class="o">&lt;</span><span class="n">HTMLInputElement</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="linenos"> 42</span>    <span class="n">const</span> <span class="n">name</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">name</span><span class="p">;</span>
+<span class="linenos"> 43</span>    <span class="k">if</span> <span class="p">(</span><span class="n">name</span> <span class="o">===</span> <span class="s2">&quot;name&quot;</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 44</span>      <span class="k">if</span> <span class="p">(</span><span class="n">labelNameRef</span><span class="o">.</span><span class="n">current</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 45</span>        <span class="n">labelNameRef</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">innerText</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">value</span><span class="p">;</span>
+<span class="linenos"> 46</span>      <span class="p">}</span>
+<span class="linenos"> 47</span>    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">name</span> <span class="o">===</span> <span class="s2">&quot;age&quot;</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 48</span>      <span class="k">if</span> <span class="p">(</span><span class="n">labelAgeRef</span><span class="o">.</span><span class="n">current</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 49</span>        <span class="n">labelAgeRef</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">innerText</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">value</span><span class="p">;</span>
+<span class="linenos"> 50</span>      <span class="p">}</span>
+<span class="linenos"> 51</span>    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">name</span> <span class="o">===</span> <span class="s2">&quot;location&quot;</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 52</span>      <span class="k">if</span> <span class="p">(</span><span class="n">labelLocationRef</span><span class="o">.</span><span class="n">current</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos"> 53</span>        <span class="n">labelLocationRef</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">innerText</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">value</span><span class="p">;</span>
+<span class="linenos"> 54</span>      <span class="p">}</span>
+<span class="linenos"> 55</span>    <span class="p">}</span>
+<span class="linenos"> 56</span>  <span class="p">};</span>
+<span class="linenos"> 57</span>
+<span class="linenos"> 58</span>  <span class="k">return</span> <span class="p">(</span>
+<span class="linenos"> 59</span>    <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos"> 60</span>      <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+<span class="linenos"> 61</span>        <span class="o">&lt;</span><span class="n">form</span>
+<span class="linenos"> 62</span>          <span class="n">noValidate</span>
+<span class="linenos"> 63</span>          <span class="n">onSubmit</span><span class="o">=</span><span class="p">{(</span><span class="n">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="linenos"> 64</span>            <span class="n">e</span><span class="o">.</span><span class="n">preventDefault</span><span class="p">();</span>
+<span class="linenos"> 65</span>            <span class="n">handleSubmit</span><span class="p">(</span><span class="n">onFormSubmit</span><span class="p">)()</span><span class="o">.</span><span class="n">catch</span><span class="p">((</span><span class="n">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="linenos"> 66</span>              <span class="n">console</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Form submission error:&quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">);</span>
+<span class="linenos"> 67</span>            <span class="p">});</span>
+<span class="linenos"> 68</span>          <span class="p">}}</span>
+<span class="linenos"> 69</span>        <span class="o">&gt;</span>
+<span class="linenos"> 70</span>          <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span> <span class="n">marginTop</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}}</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;form-group&quot;</span><span class="o">&gt;</span>
+<span class="linenos"> 71</span>            <span class="o">&lt;</span><span class="n">label</span> <span class="n">htmlFor</span><span class="o">=</span><span class="s2">&quot;name&quot;</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="n">labelStyle</span><span class="p">}</span><span class="o">&gt;</span>
+<span class="linenos"> 72</span>              <span class="n">Name</span>
+<span class="linenos"> 73</span>            <span class="o">&lt;/</span><span class="n">label</span><span class="o">&gt;</span>
+<span class="linenos"> 74</span>            <span class="o">&lt;</span><span class="nb">input</span>
+<span class="linenos"> 75</span>              <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span>
+<span class="linenos"> 76</span>              <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;name&quot;</span>
+<span class="linenos"> 77</span>              <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Enter name&quot;</span>
+<span class="linenos"> 78</span>              <span class="p">{</span><span class="o">...</span><span class="n">register</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="p">{</span>
+<span class="linenos"> 79</span>                <span class="n">required</span><span class="p">:</span> <span class="s2">&quot;You must enter a name&quot;</span><span class="p">,</span>
+<span class="linenos"> 80</span>                <span class="n">minLength</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos"> 81</span>                  <span class="n">value</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+<span class="linenos"> 82</span>                  <span class="n">message</span><span class="p">:</span> <span class="s2">&quot;Name must be at least 4 characters&quot;</span><span class="p">,</span>
+<span class="linenos"> 83</span>                <span class="p">},</span>
+<span class="linenos"> 84</span>                <span class="n">maxLength</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos"> 85</span>                  <span class="n">value</span><span class="p">:</span> <span class="mi">128</span><span class="p">,</span>
+<span class="linenos"> 86</span>                  <span class="n">message</span><span class="p">:</span> <span class="s2">&quot;Name must be at most 128 characters&quot;</span><span class="p">,</span>
+<span class="linenos"> 87</span>                <span class="p">},</span>
+<span class="linenos"> 88</span>              <span class="p">})}</span>
+<span class="linenos"> 89</span>              <span class="n">onChange</span><span class="o">=</span><span class="p">{</span><span class="n">handleChange</span><span class="p">}</span>
+<span class="linenos"> 90</span>            <span class="o">/&gt;</span>
+<span class="linenos"> 91</span>            <span class="p">{</span><span class="o">/*&lt;</span><span class="n">p</span><span class="o">&gt;&lt;</span><span class="n">ErrorMessage</span> <span class="n">errors</span><span class="o">=</span><span class="p">{</span><span class="n">errors</span><span class="p">}</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;name&quot;</span> <span class="o">/&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;*/</span><span class="p">}</span>
+<span class="linenos"> 92</span>            <span class="p">{</span><span class="n">errors</span><span class="o">.</span><span class="n">name</span> <span class="o">&amp;&amp;</span> <span class="n">typeof</span> <span class="n">errors</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">message</span> <span class="o">===</span> <span class="s2">&quot;string&quot;</span> <span class="o">&amp;&amp;</span> <span class="p">(</span>
+<span class="linenos"> 93</span>              <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;red-color&quot;</span><span class="o">&gt;</span><span class="p">{</span><span class="n">errors</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">message</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos"> 94</span>            <span class="p">)}</span>
+<span class="linenos"> 95</span>          <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos"> 96</span>          <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span> <span class="n">marginTop</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}}</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;form-group&quot;</span><span class="o">&gt;</span>
+<span class="linenos"> 97</span>            <span class="o">&lt;</span><span class="n">label</span> <span class="n">htmlFor</span><span class="o">=</span><span class="s2">&quot;age&quot;</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="n">labelStyle</span><span class="p">}</span><span class="o">&gt;</span>
+<span class="linenos"> 98</span>              <span class="n">Age</span>
+<span class="linenos"> 99</span>            <span class="o">&lt;/</span><span class="n">label</span><span class="o">&gt;</span>
+<span class="linenos">100</span>            <span class="o">&lt;</span><span class="nb">input</span>
+<span class="linenos">101</span>              <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;number&quot;</span>
+<span class="linenos">102</span>              <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;age&quot;</span>
+<span class="linenos">103</span>              <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Enter age&quot;</span>
+<span class="linenos">104</span>              <span class="p">{</span><span class="o">...</span><span class="n">register</span><span class="p">(</span><span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="p">{</span>
+<span class="linenos">105</span>                <span class="n">valueAsNumber</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+<span class="linenos">106</span>                <span class="nb">min</span><span class="p">:</span> <span class="p">{</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="s2">&quot;Age must be at least 1 years old&quot;</span> <span class="p">},</span>
+<span class="linenos">107</span>                <span class="nb">max</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos">108</span>                  <span class="n">value</span><span class="p">:</span> <span class="mi">150</span><span class="p">,</span>
+<span class="linenos">109</span>                  <span class="n">message</span><span class="p">:</span> <span class="s2">&quot;Age must be at most 150 years old&quot;</span><span class="p">,</span>
+<span class="linenos">110</span>                <span class="p">},</span>
+<span class="linenos">111</span>              <span class="p">})}</span>
+<span class="linenos">112</span>              <span class="n">onChange</span><span class="o">=</span><span class="p">{</span><span class="n">handleChange</span><span class="p">}</span>
+<span class="linenos">113</span>            <span class="o">/&gt;</span>
+<span class="linenos">114</span>            <span class="p">{</span><span class="n">errors</span><span class="o">.</span><span class="n">age</span> <span class="o">&amp;&amp;</span> <span class="n">typeof</span> <span class="n">errors</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">message</span> <span class="o">===</span> <span class="s2">&quot;string&quot;</span> <span class="o">&amp;&amp;</span> <span class="p">(</span>
+<span class="linenos">115</span>              <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;red-color&quot;</span><span class="o">&gt;</span><span class="p">{</span><span class="n">errors</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">message</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos">116</span>            <span class="p">)}</span>
+<span class="linenos">117</span>          <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos">118</span>          <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span> <span class="n">marginTop</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}}</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;form-group&quot;</span><span class="o">&gt;</span>
+<span class="linenos">119</span>            <span class="o">&lt;</span><span class="n">label</span> <span class="n">htmlFor</span><span class="o">=</span><span class="s2">&quot;location&quot;</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="n">labelStyle</span><span class="p">}</span><span class="o">&gt;</span>
+<span class="linenos">120</span>              <span class="n">Location</span>
+<span class="linenos">121</span>            <span class="o">&lt;/</span><span class="n">label</span><span class="o">&gt;</span>
+<span class="linenos">122</span>            <span class="o">&lt;</span><span class="nb">input</span>
+<span class="linenos">123</span>              <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span>
+<span class="linenos">124</span>              <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;location&quot;</span>
+<span class="linenos">125</span>              <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Enter location&quot;</span>
+<span class="linenos">126</span>              <span class="p">{</span><span class="o">...</span><span class="n">register</span><span class="p">(</span><span class="s2">&quot;location&quot;</span><span class="p">,</span> <span class="p">{</span>
+<span class="linenos">127</span>                <span class="n">required</span><span class="p">:</span> <span class="s2">&quot;You must enter a location&quot;</span><span class="p">,</span>
+<span class="linenos">128</span>                <span class="n">minLength</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos">129</span>                  <span class="n">value</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+<span class="linenos">130</span>                  <span class="n">message</span><span class="p">:</span> <span class="s2">&quot;Location must be at least 2 characters&quot;</span><span class="p">,</span>
+<span class="linenos">131</span>                <span class="p">},</span>
+<span class="linenos">132</span>                <span class="n">maxLength</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos">133</span>                  <span class="n">value</span><span class="p">:</span> <span class="mi">128</span><span class="p">,</span>
+<span class="linenos">134</span>                  <span class="n">message</span><span class="p">:</span> <span class="s2">&quot;Location must be at most 128 characters&quot;</span><span class="p">,</span>
+<span class="linenos">135</span>                <span class="p">},</span>
+<span class="linenos">136</span>              <span class="p">})}</span>
+<span class="linenos">137</span>              <span class="n">onChange</span><span class="o">=</span><span class="p">{</span><span class="n">handleChange</span><span class="p">}</span>
+<span class="linenos">138</span>            <span class="o">/&gt;</span>
+<span class="linenos">139</span>            <span class="p">{</span><span class="n">errors</span><span class="o">.</span><span class="n">location</span> <span class="o">&amp;&amp;</span> <span class="n">typeof</span> <span class="n">errors</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">message</span> <span class="o">===</span> <span class="s2">&quot;string&quot;</span> <span class="o">&amp;&amp;</span> <span class="p">(</span>
+<span class="linenos">140</span>              <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;red-color&quot;</span><span class="o">&gt;</span><span class="p">{</span><span class="n">errors</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">message</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos">141</span>            <span class="p">)}</span>
+<span class="linenos">142</span>          <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos">143</span>          <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span> <span class="n">marginTop</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}}</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;form-group&quot;</span><span class="o">&gt;</span>
+<span class="linenos">144</span>            <span class="o">&lt;</span><span class="nb">input</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;Submit&quot;</span> <span class="o">/&gt;</span>
+<span class="linenos">145</span>          <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos">146</span>        <span class="o">&lt;/</span><span class="n">form</span><span class="o">&gt;</span>
+<span class="linenos">147</span>      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos">148</span>      <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos">149</span>        <span class="o">&lt;</span><span class="n">h4</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span> <span class="n">marginBottom</span><span class="p">:</span> <span class="s2">&quot;0px&quot;</span> <span class="p">}}</span><span class="o">&gt;</span>
+<span class="linenos">150</span>          <span class="n">Name</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">span</span> <span class="n">ref</span><span class="o">=</span><span class="p">{</span><span class="n">labelNameRef</span><span class="p">}</span><span class="o">&gt;&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+<span class="linenos">151</span>        <span class="o">&lt;/</span><span class="n">h4</span><span class="o">&gt;</span>
+<span class="linenos">152</span>        <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos">153</span>          <span class="n">Age</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">span</span> <span class="n">ref</span><span class="o">=</span><span class="p">{</span><span class="n">labelAgeRef</span><span class="p">}</span><span class="o">&gt;&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+<span class="linenos">154</span>        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos">155</span>        <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos">156</span>          <span class="n">Location</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">span</span> <span class="n">ref</span><span class="o">=</span><span class="p">{</span><span class="n">labelLocationRef</span><span class="p">}</span><span class="o">&gt;&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+<span class="linenos">157</span>        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos">158</span>      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos">159</span>    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="linenos">160</span>  <span class="p">);</span>
+<span class="linenos">161</span><span class="p">};</span>
+<span class="linenos">162</span>
+<span class="linenos">163</span><span class="n">export</span> <span class="n">default</span> <span class="n">ReactHookFormInputsValidation</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="function-component-the-user-interface">
+<h3><span class="section-number">6.3.5. </span>Function Component - the User Interface<a class="headerlink" href="#function-component-the-user-interface" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul>
+<li><p>Create a function component to show the user interface</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-number">Listing 6.9 </span><span class="caption-text">src/FunctionComponentsDisplay.tsx</span><a class="headerlink" href="#id10" title="Link to this code"></a></div>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s2">&quot;./list-style.css&quot;</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="nx">ReactHookFormInputsValidation</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./ReactHookFormInputsValidation&quot;</span><span class="p">;</span>
+<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="nx">ReactFormControlledComponent</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./ReactFormControlledComponent&quot;</span><span class="p">;</span>
+<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="nx">ReactFormUncontrolledComponent</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./ReactFormUncontrolledComponent&quot;</span><span class="p">;</span>
+<span class="linenos"> 5</span><span class="k">import</span><span class="w"> </span><span class="nx">ReactHookFormComponent</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./ReactHookFormComponent&quot;</span><span class="p">;</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="kd">const</span><span class="w"> </span><span class="nx">FunctionComponentsDisplay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 8</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-container&quot;</span><span class="p">&gt;</span>
+<span class="linenos">10</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span><span class="nx">React</span><span class="w"> </span><span class="nx">Form</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="linenos">11</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">ol</span><span class="p">&gt;</span>
+<span class="linenos">12</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">li</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item&quot;</span><span class="p">&gt;</span>
+<span class="linenos">13</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-number&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">14</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-content&quot;</span><span class="p">&gt;</span>
+<span class="linenos">15</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span><span class="nx">Controlled</span><span class="w"> </span><span class="nx">Component</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="linenos">16</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">17</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">ReactFormControlledComponent</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="linenos">18</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">19</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">20</span><span class="w">        </span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos">21</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">li</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item&quot;</span><span class="p">&gt;</span>
+<span class="linenos">22</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-number&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">23</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-content&quot;</span><span class="p">&gt;</span>
+<span class="linenos">24</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span><span class="nx">Uncontrolled</span><span class="w"> </span><span class="nx">Component</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="linenos">25</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">26</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">ReactFormUncontrolledComponent</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="linenos">27</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">28</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">29</span><span class="w">        </span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos">30</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">li</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item&quot;</span><span class="p">&gt;</span>
+<span class="linenos">31</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-number&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">32</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-content&quot;</span><span class="p">&gt;</span>
+<span class="linenos">33</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span><span class="nx">The</span><span class="w"> </span><span class="nx">useForm</span><span class="w"> </span><span class="nx">Library</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="linenos">34</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">35</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">ReactHookFormComponent</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="linenos">36</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">37</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">38</span><span class="w">        </span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos">39</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">li</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item&quot;</span><span class="p">&gt;</span>
+<span class="linenos">40</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-number&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">41</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-content&quot;</span><span class="p">&gt;</span>
+<span class="linenos">42</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span><span class="nx">useForm</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="nx">Validation</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="linenos">43</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">44</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">ReactHookFormInputsValidation</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="linenos">45</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">46</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">47</span><span class="w">        </span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos">48</span><span class="w">      </span><span class="p">&lt;/</span><span class="nt">ol</span><span class="p">&gt;</span>
+<span class="linenos">49</span><span class="w">    </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">50</span><span class="w">  </span><span class="p">);</span>
+<span class="linenos">51</span><span class="p">};</span>
+<span class="linenos">52</span>
+<span class="linenos">53</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">FunctionComponentsDisplay</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Edit <code class="docutils literal notranslate"><span class="pre">App.tsx</span></code> to render the component</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-number">Listing 6.10 </span><span class="caption-text">src/App.tsx</span><a class="headerlink" href="#id11" title="Link to this code"></a></div>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">import</span><span class="w"> </span><span class="nx">FunctionComponentsDisplay</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./FunctionComponentsDisplay&quot;</span><span class="p">;</span>
+<span class="linenos">2</span><span class="k">import</span><span class="w"> </span><span class="s2">&quot;./App.css&quot;</span><span class="p">;</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="kd">function</span><span class="w"> </span><span class="nx">App</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">5</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">&lt;</span><span class="nt">FunctionComponentsDisplay</span><span class="w"> </span><span class="p">/&gt;;</span>
+<span class="linenos">6</span><span class="p">}</span>
+<span class="linenos">7</span>
+<span class="linenos">8</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">App</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="run-the-development-app">
+<h2><span class="section-number">6.4. </span>Run the development app<a class="headerlink" href="#run-the-development-app" title="Link to this heading"></a></h2>
+<blockquote>
+<div><ul>
+<li><p>Run dev</p>
+<blockquote>
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>yarn<span class="w"> </span>dev
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="hosting-the-react-app-on-github-pages">
+<h2><span class="section-number">6.5. </span>Hosting the React App on GitHub Pages<a class="headerlink" href="#hosting-the-react-app-on-github-pages" title="Link to this heading"></a></h2>
+<section id="build-the-app">
+<h3><span class="section-number">6.5.1. </span>Build the App<a class="headerlink" href="#build-the-app" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul>
+<li><p>Configure the build base url:</p>
+<blockquote>
+<div><ul>
+<li><p>open vite.config.js file</p></li>
+<li><p>set base to <code class="docutils literal notranslate"><span class="pre">/react-projects/react-projects-with-typescript/tut06-react-form/</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">default</span> <span class="n">defineConfig</span><span class="p">({</span>
+    <span class="n">plugins</span><span class="p">:</span> <span class="p">[</span><span class="n">react</span><span class="p">()],</span>
+    <span class="n">base</span><span class="p">:</span> <span class="s2">&quot;/react-projects/react-projects-with-typescript/tut06-react-form/&quot;</span><span class="p">,</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Build the app</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">run</span> <span class="n">build</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="hosting-the-app">
+<h3><span class="section-number">6.5.2. </span>Hosting the App<a class="headerlink" href="#hosting-the-app" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>Hosting address: <a class="reference external" href="https://&lt;USERNAME&gt;.github.io/react-projects/react-projects-with-typescript/tut06-react-form/">https://&lt;USERNAME&gt;.github.io/react-projects/react-projects-with-typescript/tut06-react-form/</a></p></li>
+<li><p>Github login as &lt;USERNAME&gt;</p></li>
+<li><p>Create the <code class="docutils literal notranslate"><span class="pre">react-projects</span></code> repo if not exist</p></li>
+<li><p>Create the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch in the <code class="docutils literal notranslate"><span class="pre">react-projects</span></code> repo if not exist</p></li>
+<li><p>Push the &lt;dist&gt; folder contents to the deploying folder <code class="docutils literal notranslate"><span class="pre">react-projects-with-typescript/tut06-react-form/</span></code> in the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="sources-and-demos">
+<h2><span class="section-number">6.6. </span>Sources and Demos<a class="headerlink" href="#sources-and-demos" title="Link to this heading"></a></h2>
+<blockquote>
+<div><ul>
+<li><p>Sources: <a class="reference external" href="https://github.com/david-ggs-230/react-projects/tree/main/react-projects-with-typescript/tut06-react-form">https://github.com/david-ggs-230/react-projects/tree/main/react-projects-with-typescript/tut06-react-form</a></p></li>
+<li><p>Live Demo: <a class="reference external" href="https://david-ggs-230.github.io/react-projects/react-projects-with-typescript/tut06-react-form/">https://david-ggs-230.github.io/react-projects/react-projects-with-typescript/tut06-react-form/</a></p></li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><figure class="align-center" id="id12">
+<a class="sd-my-2 reference internal image-reference" href="../_images/tut06-react-form.png"><img alt="React Forms" class="sd-my-2" src="../_images/tut06-react-form.png" style="width: 60%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 6.1 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React Forms</span></span><a class="headerlink" href="#id12" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tut05-function-components-hooks-usecallback.html" class="btn btn-neutral float-left" title="5.5.7. React Hooks - useCallback" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tut07-react-restapi.html" class="btn btn-neutral float-right" title="7. React RESTful API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, David G..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

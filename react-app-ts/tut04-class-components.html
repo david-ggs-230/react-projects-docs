@@ -1,0 +1,177 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4. Tut04-React Class Components &mdash; React Tutorial with Typescript 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom-theme.css?v=e6852a23" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.1. Class Components - Props" href="tut04-class-components-props.html" />
+    <link rel="prev" title="3. Tut03-React Components" href="tut03-react-components.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            React Tutorial with Typescript
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">React Projects with Typescript</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tut01-create-reactjs-app.html">1. Tut01-Create a React App on Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut02-writing-markup-with-jsx.html">2. Tut02-Writing Markup with JSX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut03-react-components.html">3. Tut03-React Components</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. Tut04-React Class Components</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tut04-class-components-props.html">4.1. Class Components - Props</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut04-class-components-state.html">4.2. Class Components - State</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut04-class-components-event.html">4.3. Class Components - Event</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut04-class-components-life-cycle.html">4.4. Class Components - Life Cycle</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tut05-function-components.html">5. Tut05-React Function Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut06-react-form.html">6. React Form</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut07-react-restapi.html">7. React RESTful API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut08-react-router.html">8. React Router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut09-react-component-styling.html">9. React Component Styling</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">React Tutorial with Typescript</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4. </span>Tut04-React Class Components</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="title-center h1" id="tut04-react-class-components">
+<span id="tut04-class-components"></span><h1><span class="section-number">4. </span>Tut04-React Class Components<a class="headerlink" href="#tut04-react-class-components" title="Link to this heading"></a></h1>
+<p>A React class component is a way to define a component using a JavaScript/TypeScript class. React class components extend from React.Component and typically include methods such as render() to define what the component should display. In React class components, lifecycle methods are used to handle various stages of a component’s lifecycle. These methods are triggered at different times, such as when the component is first mounted (added to the DOM), updated due to changes in state or props, and unmounted (removed from the DOM).</p>
+<blockquote>
+<div><ul>
+<li><p>Class components are ES6 classes that extend React.Component.</p></li>
+<li><p>In React class components, the render() method is mandatory and returns JSX that defines the component’s display.</p></li>
+<li><p>In a React class component, <code class="docutils literal notranslate"><span class="pre">this</span></code> is used to access the component’s props, state, and methods.</p></li>
+<li><p>React class components include features like state management and lifecycle methods.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>State Management: State is managed using the this.state property.</p></li>
+<li><p>Lifecycle Methods: Includes methods like componentDidMount, componentDidUpdate, etc.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tut04-class-components-props.html">4.1. Class Components - Props</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tut04-class-components-props.html#create-a-react-project-structure">4.1.1. Create a React Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut04-class-components-props.html#create-class-components-using-props">4.1.2. Create Class Components Using Props</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut04-class-components-props.html#run-the-development-app">4.1.3. Run the development app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut04-class-components-props.html#hosting-the-react-app-on-github-pages">4.1.4. Hosting the React App on GitHub Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut04-class-components-props.html#sources-and-demos">4.1.5. Sources and Demos</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tut04-class-components-state.html">4.2. Class Components - State</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tut04-class-components-state.html#create-a-react-project-structure">4.2.1. Create a React Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut04-class-components-state.html#create-class-components-using-state">4.2.2. Create Class Components Using State</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut04-class-components-state.html#run-the-development-app">4.2.3. Run the development app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut04-class-components-state.html#hosting-the-react-app-on-github-pages">4.2.4. Hosting the React App on GitHub Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut04-class-components-state.html#sources-and-demos">4.2.5. Sources and Demos</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tut04-class-components-event.html">4.3. Class Components - Event</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tut04-class-components-event.html#create-a-react-project-structure">4.3.1. Create a React Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut04-class-components-event.html#create-class-components-using-event-handler">4.3.2. Create Class Components Using Event Handler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut04-class-components-event.html#run-the-development-app">4.3.3. Run the development app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut04-class-components-event.html#hosting-the-react-app-on-github-pages">4.3.4. Hosting the React App on GitHub Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut04-class-components-event.html#sources-and-demos">4.3.5. Sources and Demos</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tut04-class-components-life-cycle.html">4.4. Class Components - Life Cycle</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tut04-class-components-life-cycle.html#create-a-react-project-structure">4.4.1. Create a React Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut04-class-components-life-cycle.html#create-class-components-showing-life-cycles">4.4.2. Create Class Components Showing Life Cycles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut04-class-components-life-cycle.html#run-the-development-app">4.4.3. Run the development app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut04-class-components-life-cycle.html#hosting-the-react-app-on-github-pages">4.4.4. Hosting the React App on GitHub Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut04-class-components-life-cycle.html#sources-and-demos">4.4.5. Sources and Demos</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tut03-react-components.html" class="btn btn-neutral float-left" title="3. Tut03-React Components" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tut04-class-components-props.html" class="btn btn-neutral float-right" title="4.1. Class Components - Props" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, David G..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

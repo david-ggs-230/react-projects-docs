@@ -1,0 +1,233 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5.5. Function Components - Hooks &mdash; React Tutorial with Typescript 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom-theme.css?v=e6852a23" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5.5.1. React Hooks - useState" href="tut05-function-components-hooks-usestate.html" />
+    <link rel="prev" title="5.4. Function Component - Life Cycle" href="tut05-function-components-life-cycle.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            React Tutorial with Typescript
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">React Projects with Typescript</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tut01-create-reactjs-app.html">1. Tut01-Create a React App on Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut02-writing-markup-with-jsx.html">2. Tut02-Writing Markup with JSX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut03-react-components.html">3. Tut03-React Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut04-class-components.html">4. Tut04-React Class Components</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="tut05-function-components.html">5. Tut05-React Function Components</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-props.html">5.1. Function Components - Props</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-state.html">5.2. Function Components - State</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-event.html">5.3. Function Components - Event</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-life-cycle.html">5.4. Function Component - Life Cycle</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5.5. Function Components - Hooks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tut05-function-components-hooks-usestate.html">5.5.1. React Hooks - useState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tut05-function-components-hooks-useeffect.html">5.5.2. React Hooks - useEffect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tut05-function-components-hooks-usecontext.html">5.5.3. React Hooks - useContext</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tut05-function-components-hooks-useref.html">5.5.4. React Hooks - useRef</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tut05-function-components-hooks-usereducer.html">5.5.5. React Hooks - useReducer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tut05-function-components-hooks-usememo.html">5.5.6. React Hooks - useMemo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tut05-function-components-hooks-usecallback.html">5.5.7. React Hooks - useCallback</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tut06-react-form.html">6. React Form</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut07-react-restapi.html">7. React RESTful API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut08-react-router.html">8. React Router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut09-react-component-styling.html">9. React Component Styling</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">React Tutorial with Typescript</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="tut05-function-components.html"><span class="section-number">5. </span>Tut05-React Function Components</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">5.5. </span>Function Components - Hooks</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="title-center h1" id="function-components-hooks">
+<span id="tut05-function-components-hooks"></span><h1><span class="section-number">5.5. </span>Function Components - Hooks<a class="headerlink" href="#function-components-hooks" title="Link to this heading"></a></h1>
+<p>React Hooks are functions that let you <strong>“hook into”</strong> React state and lifecycle features from function components. Hooks were added to React in version 16.8. React hooks are a powerful feature that allow you to use state, lifecycle methods, and other React features in functional components.</p>
+<p>React Hooks are powerful tools, but they come with certain rules to ensure that they work as expected. These rules must be followed to avoid unexpected behavior in your components. Here are the core rules for using React Hooks:</p>
+<blockquote>
+<div><ul>
+<li><p>Only Call Hooks at the Top Level</p>
+<blockquote>
+<div><p>Hooks must be called at the top level of your component or custom hook. They cannot be called conditionally or inside loops or nested functions. This ensures that hooks are always called in the same order on every render. Calling hooks conditionally or inside loops could result in them being invoked in a different order on different renders, leading to bugs and unpredictable behavior.</p>
+</div></blockquote>
+</li>
+<li><p>Only Call Hooks from React Functions</p>
+<blockquote>
+<div><p>You can only call hooks from React function components or custom hooks. You cannot use hooks in regular JavaScript functions or class components. Hooks rely on the React rendering lifecycle. Using hooks outside of React components means React can’t keep track of them properly.</p>
+</div></blockquote>
+</li>
+<li><p>Use Hooks in Custom Hooks</p>
+<blockquote>
+<div><p>If you are building custom hooks, you can call other hooks within them, but they must still follow the same rules: hooks must be called at the top level and only inside function components or other custom hooks. Custom hooks must still follow the rules of hooks. Calling hooks conditionally or in loops will break React’s rules and lead to unpredictable results.</p>
+</div></blockquote>
+</li>
+<li><p>Hooks Must Be Called in the Same Order</p>
+<blockquote>
+<div><p>Each hook call must be executed in the same order every time the component renders. This means you cannot call hooks based on conditions, such as inside if statements or loops. React needs to track the order in which hooks are called, so skipping or reordering hooks can break React’s internal state tracking.</p>
+</div></blockquote>
+</li>
+<li><p>Calling hooks conditionally</p>
+<blockquote>
+<div><p>If you need conditional logic, you can use hooks, but make sure the hooks themselves are not called conditionally. You can use conditionals inside the hook function.</p>
+</div></blockquote>
+</li>
+<li><p>Custom Hook names</p>
+<blockquote>
+<div><p>By convention, custom hook names should start with use (e.g., useCounter, useFetch), which ensures that React can enforce the rules of hooks.</p>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<p>The main hooks include useState, useEffect, useContext, useReducer, useCallback, useMemo, useRef, and useImperativeHandle, among others. These hooks provide ways to access React features, allowing you to better organize and reuse your code.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tut05-function-components-hooks-usestate.html">5.5.1. React Hooks - useState</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-usestate.html#create-a-react-project-structure">5.5.1.1. Create a React Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-usestate.html#component-usestate">5.5.1.2. Component - useState</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-usestate.html#run-the-development-app">5.5.1.3. Run the development app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-usestate.html#hosting-the-react-app-on-github-pages">5.5.1.4. Hosting the React App on GitHub Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-usestate.html#sources-and-demos">5.5.1.5. Sources and Demos</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tut05-function-components-hooks-useeffect.html">5.5.2. React Hooks - useEffect</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-useeffect.html#create-a-react-project-structure">5.5.2.1. Create a React Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-useeffect.html#component-useeffect">5.5.2.2. Component - useEffect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-useeffect.html#run-the-development-app">5.5.2.3. Run the development app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-useeffect.html#hosting-the-react-app-on-github-pages">5.5.2.4. Hosting the React App on GitHub Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-useeffect.html#sources-and-demos">5.5.2.5. Sources and Demos</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tut05-function-components-hooks-usecontext.html">5.5.3. React Hooks - useContext</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-usecontext.html#create-a-react-project-structure">5.5.3.1. Create a React Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-usecontext.html#component-usecontext">5.5.3.2. Component - useContext</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-usecontext.html#run-the-development-app">5.5.3.3. Run the development app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-usecontext.html#hosting-the-react-app-on-github-pages">5.5.3.4. Hosting the React App on GitHub Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-usecontext.html#sources-and-demos">5.5.3.5. Sources and Demos</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tut05-function-components-hooks-useref.html">5.5.4. React Hooks - useRef</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-useref.html#create-a-react-project-structure">5.5.4.1. Create a React Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-useref.html#component-useref">5.5.4.2. Component - useRef</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-useref.html#run-the-development-app">5.5.4.3. Run the development app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-useref.html#hosting-the-react-app-on-github-pages">5.5.4.4. Hosting the React App on GitHub Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-useref.html#sources-and-demos">5.5.4.5. Sources and Demos</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tut05-function-components-hooks-usereducer.html">5.5.5. React Hooks - useReducer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-usereducer.html#create-a-react-project-structure">5.5.5.1. Create a React Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-usereducer.html#component-usereducer">5.5.5.2. Component - useReducer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-usereducer.html#run-the-development-app">5.5.5.3. Run the development app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-usereducer.html#hosting-the-react-app-on-github-pages">5.5.5.4. Hosting the React App on GitHub Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-usereducer.html#sources-and-demos">5.5.5.5. Sources and Demos</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tut05-function-components-hooks-usememo.html">5.5.6. React Hooks - useMemo</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-usememo.html#create-a-react-project-structure">5.5.6.1. Create a React Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-usememo.html#component-usememo">5.5.6.2. Component - useMemo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-usememo.html#run-the-development-app">5.5.6.3. Run the development app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-usememo.html#hosting-the-react-app-on-github-pages">5.5.6.4. Hosting the React App on GitHub Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-usememo.html#sources-and-demos">5.5.6.5. Sources and Demos</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tut05-function-components-hooks-usecallback.html">5.5.7. React Hooks - useCallback</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-usecallback.html#create-a-react-project-structure">5.5.7.1. Create a React Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-usecallback.html#component-usecallback">5.5.7.2. Component - useCallback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-usecallback.html#run-the-development-app">5.5.7.3. Run the development app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-usecallback.html#hosting-the-react-app-on-github-pages">5.5.7.4. Hosting the React App on GitHub Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks-usecallback.html#sources-and-demos">5.5.7.5. Sources and Demos</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tut05-function-components-life-cycle.html" class="btn btn-neutral float-left" title="5.4. Function Component - Life Cycle" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tut05-function-components-hooks-usestate.html" class="btn btn-neutral float-right" title="5.5.1. React Hooks - useState" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, David G..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
