@@ -1,0 +1,737 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5.1. Function Components - Props &mdash; React Tutorial with Typescript 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom-theme.css?v=e6852a23" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5.2. Function Components - State" href="tut05-function-components-state.html" />
+    <link rel="prev" title="5. Tut05-React Function Components" href="tut05-function-components.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            React Tutorial with Typescript
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">React Projects with Typescript</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tut01-create-reactjs-app.html">1. Tut01-Create a React App on Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut02-writing-markup-with-jsx.html">2. Tut02-Writing Markup with JSX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut03-react-components.html">3. Tut03-React Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut04-class-components.html">4. Tut04-React Class Components</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="tut05-function-components.html">5. Tut05-React Function Components</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5.1. Function Components - Props</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-a-react-project-structure">5.1.1. Create a React Project Structure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#create-a-react-project">5.1.1.1. Create a React Project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eslint-and-prettier-configuration">5.1.1.2. ESLint and Prettier Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#create-project-css-styles">5.1.1.3. Create Project CSS Styles</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#create-function-components-using-props">5.1.2. Create Function Components Using Props</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#creating-typescript-object-types">5.1.2.1. Creating TypeScript object types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#passing-and-accessing-props">5.1.2.2. Passing and Accessing Props</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#render-the-component">5.1.2.3. Render the component</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#run-the-development-app">5.1.3. Run the development app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hosting-the-react-app-on-github-pages">5.1.4. Hosting the React App on GitHub Pages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#build-the-app">5.1.4.1. Build the App</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hosting-the-app">5.1.4.2. Hosting the App</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sources-and-demos">5.1.5. Sources and Demos</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-state.html">5.2. Function Components - State</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-event.html">5.3. Function Components - Event</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-life-cycle.html">5.4. Function Component - Life Cycle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut05-function-components-hooks.html">5.5. Function Components - Hooks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tut06-react-form.html">6. React Form</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut07-react-restapi.html">7. React RESTful API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut08-react-router.html">8. React Router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut09-react-component-styling.html">9. React Component Styling</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">React Tutorial with Typescript</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="tut05-function-components.html"><span class="section-number">5. </span>Tut05-React Function Components</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">5.1. </span>Function Components - Props</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="title-center h1" id="function-components-props">
+<span id="tut05-function-components-props"></span><h1><span class="section-number">5.1. </span>Function Components - Props<a class="headerlink" href="#function-components-props" title="Link to this heading"></a></h1>
+<p>In React, props (short for “properties”) are used to pass data from a parent component to a child component. In function components, props are simply passed as arguments to the function. Props allow components to be dynamic and reusable by passing different values to the same component. Props are read-only, meaning that a component cannot modify its own props directly. They are used to configure and customize the behavior and display of a component.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Props are passed down from the parent: A parent component can pass data to a child component through props as attributes.</p></li>
+<li><p>Props are immutable: In the child component, props cannot be modified. They are treated as read-only data.</p></li>
+<li><p>Accessing props: Props are passed as an argument to the function. Props can be accessed either directly or by using destructuring to extract specific values.</p></li>
+<li><p>Default props can be defined to ensure a value is available even when not passed by the parent. This ensures that the component still behaves as expected even if no value is passed for a prop.</p></li>
+</ul>
+</div></blockquote>
+<section id="create-a-react-project-structure">
+<h2><span class="section-number">5.1.1. </span>Create a React Project Structure<a class="headerlink" href="#create-a-react-project-structure" title="Link to this heading"></a></h2>
+<section id="create-a-react-project">
+<h3><span class="section-number">5.1.1.1. </span>Create a React Project<a class="headerlink" href="#create-a-react-project" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul>
+<li><p>Create a ReactJS Project</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">create</span> <span class="n">vite</span> <span class="n">tut05</span><span class="o">-</span><span class="n">function</span><span class="o">-</span><span class="n">components</span><span class="o">-</span><span class="n">props</span> <span class="o">--</span><span class="n">template</span> <span class="n">react</span><span class="o">-</span><span class="n">ts</span>
+</pre></div>
+</div>
+</li>
+<li><p>Move inside the ReactJS project folder &lt;tut05-function-components-props&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut05</span><span class="o">-</span><span class="n">function</span><span class="o">-</span><span class="n">components</span><span class="o">-</span><span class="n">props</span>
+</pre></div>
+</div>
+</li>
+<li><p>Install the dependencies</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">install</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="eslint-and-prettier-configuration">
+<h3><span class="section-number">5.1.1.2. </span>ESLint and Prettier Configuration<a class="headerlink" href="#eslint-and-prettier-configuration" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul>
+<li><p>Install the <code class="docutils literal notranslate"><span class="pre">EditorConfig</span></code> extension for VS Code if you haven’t already.</p></li>
+<li><p>Add .editorconfig (<a class="reference external" href="https://editorconfig.org">https://editorconfig.org</a>) to the root of the project</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 5.1 </span><span class="caption-text">contents of .editorconfig</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-cfg notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="na">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="k">[*]</span>
+<span class="linenos">4</span><span class="na">indent_style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">space</span>
+<span class="linenos">5</span><span class="na">indent_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">2</span>
+<span class="linenos">6</span><span class="na">end_of_line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">lf</span>
+<span class="linenos">7</span><span class="na">insert_final_newline</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<span class="linenos">8</span><span class="na">trim_trailing_whitespace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Reload VS Code (open the command palette, find and use <code class="docutils literal notranslate"><span class="pre">Reload</span> <span class="pre">Window</span></code>).</p></li>
+<li><p>Install dependencies</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">add</span> <span class="o">--</span><span class="n">dev</span> <span class="n">prettier</span> <span class="n">eslint</span><span class="o">-</span><span class="n">plugin</span><span class="o">-</span><span class="n">prettier</span> <span class="n">eslint</span><span class="o">-</span><span class="n">config</span><span class="o">-</span><span class="n">prettier</span> <span class="n">eslint</span><span class="o">-</span><span class="n">plugin</span><span class="o">-</span><span class="n">react</span>
+</pre></div>
+</div>
+</li>
+<li><p>Modify the eslint.config.js file with following contents:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 5.2 </span><span class="caption-text">contents of eslint.config.js</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="nx">js</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@eslint/js&quot;</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="nx">globals</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;globals&quot;</span><span class="p">;</span>
+<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="nx">reactHooks</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;eslint-plugin-react-hooks&quot;</span><span class="p">;</span>
+<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="nx">reactRefresh</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;eslint-plugin-react-refresh&quot;</span><span class="p">;</span>
+<span class="linenos"> 5</span><span class="k">import</span><span class="w"> </span><span class="nx">tseslint</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;typescript-eslint&quot;</span><span class="p">;</span>
+<span class="linenos"> 6</span><span class="k">import</span><span class="w"> </span><span class="nx">react</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;eslint-plugin-react&quot;</span><span class="p">;</span>
+<span class="linenos"> 7</span><span class="k">import</span><span class="w"> </span><span class="nx">eslintPluginPrettier</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;eslint-plugin-prettier/recommended&quot;</span><span class="p">;</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">tseslint</span>
+<span class="linenos">10</span><span class="w">  </span><span class="p">.</span><span class="nx">config</span><span class="p">(</span>
+<span class="linenos">11</span><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">ignores</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;dist&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="linenos">12</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">13</span><span class="w">      </span><span class="c1">//extends: [js.configs.recommended, ...tseslint.configs.recommended],</span>
+<span class="linenos">14</span><span class="w">      </span><span class="k">extends</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="linenos">15</span><span class="w">        </span><span class="nx">js</span><span class="p">.</span><span class="nx">configs</span><span class="p">.</span><span class="nx">recommended</span><span class="p">,</span>
+<span class="linenos">16</span><span class="w">        </span><span class="p">...</span><span class="nx">tseslint</span><span class="p">.</span><span class="nx">configs</span><span class="p">.</span><span class="nx">recommendedTypeChecked</span><span class="p">,</span>
+<span class="linenos">17</span><span class="w">      </span><span class="p">],</span>
+<span class="linenos">18</span><span class="w">      </span><span class="nx">files</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;**/*.{ts,tsx}&quot;</span><span class="p">],</span>
+<span class="linenos">19</span><span class="w">      </span><span class="nx">languageOptions</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">20</span><span class="w">        </span><span class="nx">ecmaVersion</span><span class="o">:</span><span class="w"> </span><span class="mf">2020</span><span class="p">,</span>
+<span class="linenos">21</span><span class="w">        </span><span class="nx">globals</span><span class="o">:</span><span class="w"> </span><span class="nx">globals</span><span class="p">.</span><span class="nx">browser</span><span class="p">,</span>
+<span class="linenos">22</span><span class="w">        </span><span class="nx">parserOptions</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">23</span><span class="w">          </span><span class="nx">project</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;./tsconfig.node.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;./tsconfig.app.json&quot;</span><span class="p">],</span>
+<span class="linenos">24</span><span class="w">          </span><span class="nx">tsconfigRootDir</span><span class="o">:</span><span class="w"> </span><span class="k">import</span><span class="p">.</span><span class="nx">meta</span><span class="p">.</span><span class="nx">dirname</span><span class="p">,</span>
+<span class="linenos">25</span><span class="w">        </span><span class="p">},</span>
+<span class="linenos">26</span><span class="w">      </span><span class="p">},</span>
+<span class="linenos">27</span><span class="w">      </span><span class="nx">settings</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">28</span><span class="w">        </span><span class="nx">react</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">29</span><span class="w">          </span><span class="nx">version</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;detect&quot;</span><span class="p">,</span>
+<span class="linenos">30</span><span class="w">        </span><span class="p">},</span>
+<span class="linenos">31</span><span class="w">      </span><span class="p">},</span>
+<span class="linenos">32</span><span class="w">      </span><span class="nx">plugins</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">33</span><span class="w">        </span><span class="s2">&quot;react-hooks&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">reactHooks</span><span class="p">,</span>
+<span class="linenos">34</span><span class="w">        </span><span class="s2">&quot;react-refresh&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">reactRefresh</span><span class="p">,</span>
+<span class="linenos">35</span><span class="w">        </span><span class="nx">react</span><span class="o">:</span><span class="w"> </span><span class="nx">react</span><span class="p">,</span>
+<span class="linenos">36</span><span class="w">      </span><span class="p">},</span>
+<span class="linenos">37</span><span class="w">      </span><span class="nx">rules</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">38</span><span class="w">        </span><span class="p">...</span><span class="nx">reactHooks</span><span class="p">.</span><span class="nx">configs</span><span class="p">.</span><span class="nx">recommended</span><span class="p">.</span><span class="nx">rules</span><span class="p">,</span>
+<span class="linenos">39</span><span class="w">        </span><span class="s2">&quot;react-refresh/only-export-components&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="linenos">40</span><span class="w">          </span><span class="s2">&quot;warn&quot;</span><span class="p">,</span>
+<span class="linenos">41</span><span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nx">allowConstantExport</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">},</span>
+<span class="linenos">42</span><span class="w">        </span><span class="p">],</span>
+<span class="linenos">43</span><span class="w">        </span><span class="p">...</span><span class="nx">react</span><span class="p">.</span><span class="nx">configs</span><span class="p">.</span><span class="nx">recommended</span><span class="p">.</span><span class="nx">rules</span><span class="p">,</span>
+<span class="linenos">44</span><span class="w">        </span><span class="p">...</span><span class="nx">react</span><span class="p">.</span><span class="nx">configs</span><span class="p">[</span><span class="s2">&quot;jsx-runtime&quot;</span><span class="p">].</span><span class="nx">rules</span><span class="p">,</span>
+<span class="linenos">45</span><span class="w">      </span><span class="p">},</span>
+<span class="linenos">46</span><span class="w">    </span><span class="p">},</span>
+<span class="linenos">47</span><span class="w">  </span><span class="p">)</span>
+<span class="linenos">48</span><span class="w">  </span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">eslintPluginPrettier</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Edit the eslint scripts in the package.json file:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 5.3 </span><span class="caption-text">contents of package.json</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="highlight-cfg notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="na">&quot;scripts&quot;</span><span class="o">:</span><span class="w"> </span><span class="s">{</span>
+<span class="linenos">2</span><span class="w">  </span><span class="na">... ,</span>
+<span class="linenos">3</span><span class="w">  </span><span class="na">&quot;lint&quot;</span><span class="o">:</span><span class="w"> </span><span class="s">&quot;eslint src ./*.js ./*.ts --ext ts,tsx --report-unused-disable-directives --max-warnings 0&quot;</span><span class="na">,</span>
+<span class="linenos">4</span><span class="w">  </span><span class="na">&quot;lint:fix&quot;</span><span class="o">:</span><span class="w"> </span><span class="s">&quot;eslint src ./*.js ./*.ts --ext ts,tsx --fix&quot;</span><span class="na">,</span>
+<span class="linenos">5</span><span class="na">},</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Run ESLint:</p>
+<blockquote>
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>yarn<span class="w"> </span>lint
+<span class="linenos">2</span>yarn<span class="w"> </span>lint:fix
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="create-project-css-styles">
+<h3><span class="section-number">5.1.1.3. </span>Create Project CSS Styles<a class="headerlink" href="#create-project-css-styles" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>Create the src/list-styles.css file with the following contents:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 5.4 </span><span class="caption-text">src/list-styles.css</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="p">.</span><span class="nc">list-container</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 2</span><span class="w">  </span><span class="k">max-width</span><span class="p">:</span><span class="w"> </span><span class="mi">600</span><span class="kt">px</span><span class="p">;</span>
+<span class="linenos"> 3</span><span class="w">  </span><span class="k">width</span><span class="p">:</span><span class="n">max-content</span><span class="p">;</span>
+<span class="linenos"> 4</span><span class="w">  </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span>
+<span class="linenos"> 5</span><span class="w">  </span><span class="k">font-family</span><span class="p">:</span><span class="w"> </span><span class="n">Arial</span><span class="p">,</span><span class="w"> </span><span class="kc">sans-serif</span><span class="p">;</span>
+<span class="linenos"> 6</span><span class="p">}</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="nt">ol</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="k">padding-left</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">10</span><span class="w">  </span><span class="k">counter-reset</span><span class="p">:</span><span class="w"> </span><span class="n">list-counter</span><span class="p">;</span>
+<span class="linenos">11</span><span class="p">}</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="p">.</span><span class="nc">list-item</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">14</span><span class="w">  </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
+<span class="linenos">15</span><span class="w">  </span><span class="k">align-items</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+<span class="linenos">16</span><span class="w">  </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">17</span><span class="p">}</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="p">.</span><span class="nc">list-item</span><span class="w"> </span><span class="nt">div</span><span class="w"> </span><span class="nt">button</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">20</span><span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="kt">px</span><span class="p">;</span>
+<span class="linenos">21</span><span class="w">  </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="nb">rgb</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span><span class="w"> </span><span class="mi">95</span><span class="p">,</span><span class="w"> </span><span class="mi">82</span><span class="p">);</span>
+<span class="linenos">22</span><span class="p">}</span>
+<span class="linenos">23</span><span class="p">.</span><span class="nc">list-item-number</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">24</span><span class="w">  </span><span class="k">font-weight</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="p">;</span>
+<span class="linenos">25</span><span class="w">  </span><span class="k">margin-right</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+<span class="linenos">26</span><span class="w">  </span><span class="k">counter-increment</span><span class="p">:</span><span class="w"> </span><span class="n">list-counter</span><span class="p">;</span>
+<span class="linenos">27</span><span class="p">}</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span><span class="p">.</span><span class="nc">list-item-number</span><span class="p">::</span><span class="nd">before</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">30</span><span class="w">  </span><span class="k">content</span><span class="p">:</span><span class="w"> </span><span class="nb">counter</span><span class="p">(</span><span class="n">list</span><span class="nv">-counter</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;. &quot;</span><span class="p">;</span>
+<span class="linenos">31</span><span class="p">}</span>
+<span class="linenos">32</span>
+<span class="linenos">33</span><span class="p">.</span><span class="nc">list-item-content</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">34</span><span class="w">  </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="mh">#ccc</span><span class="p">;</span>
+<span class="linenos">35</span><span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+<span class="linenos">36</span><span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+<span class="linenos">37</span><span class="w">  </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#f9f9f9</span><span class="p">;</span>
+<span class="linenos">38</span><span class="w">  </span><span class="k">flex-grow</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">39</span><span class="p">}</span>
+<span class="linenos">40</span>
+<span class="linenos">41</span><span class="p">.</span><span class="nc">list-item-content</span><span class="w"> </span><span class="nt">h3</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">42</span><span class="w">  </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">43</span><span class="w">  </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">em</span><span class="p">;</span>
+<span class="linenos">44</span><span class="p">}</span>
+<span class="linenos">45</span>
+<span class="linenos">46</span><span class="p">.</span><span class="nc">list-item-content</span><span class="w"> </span><span class="nt">p</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">47</span><span class="w">  </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">48</span><span class="w">  </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9</span><span class="kt">em</span><span class="p">;</span>
+<span class="linenos">49</span><span class="p">}</span>
+<span class="linenos">50</span>
+<span class="linenos">51</span><span class="p">.</span><span class="nc">red-color</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">52</span><span class="w">  </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#ff0000</span><span class="p">;</span>
+<span class="linenos">53</span><span class="p">}</span>
+<span class="linenos">54</span>
+<span class="linenos">55</span><span class="p">.</span><span class="nc">blue-color</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">56</span><span class="w">  </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#0011ff</span><span class="p">;</span>
+<span class="linenos">57</span><span class="p">}</span>
+<span class="linenos">58</span>
+<span class="linenos">59</span><span class="p">.</span><span class="nc">bg-red</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">60</span><span class="w">  </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#ff0000</span><span class="p">;</span>
+<span class="linenos">61</span><span class="p">}</span>
+<span class="linenos">62</span>
+<span class="linenos">63</span><span class="p">.</span><span class="nc">bg-blue</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">64</span><span class="w">  </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#0011ff</span><span class="p">;</span>
+<span class="linenos">65</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</div></blockquote>
+</section>
+</section>
+<section id="create-function-components-using-props">
+<h2><span class="section-number">5.1.2. </span>Create Function Components Using Props<a class="headerlink" href="#create-function-components-using-props" title="Link to this heading"></a></h2>
+<section id="creating-typescript-object-types">
+<h3><span class="section-number">5.1.2.1. </span>Creating TypeScript object types<a class="headerlink" href="#creating-typescript-object-types" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul>
+<li><p>TypeScript enhances JavaScript by providing a comprehensive type system, and its type checking can detect errors at an early stage.</p></li>
+<li><p>A TypeScript Person object is created to store a person’s properties, such as name, age, and location. Its type structure is defined as follows:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">Listing 5.5 </span><span class="caption-text">src/Person.tsx</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kr">type</span><span class="w"> </span><span class="nx">Person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">2</span><span class="w">  </span><span class="nx">name?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="linenos">3</span><span class="w">  </span><span class="nx">age?</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="linenos">4</span><span class="w">  </span><span class="nx">location?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="linenos">5</span><span class="p">};</span>
+<span class="linenos">6</span>
+<span class="linenos">7</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">Person</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="passing-and-accessing-props">
+<h3><span class="section-number">5.1.2.2. </span>Passing and Accessing Props<a class="headerlink" href="#passing-and-accessing-props" title="Link to this heading"></a></h3>
+<p>In React, passing and accessing props in a function component is simple and straightforward:</p>
+<blockquote>
+<div><ul>
+<li><p>Passing Props to a Function Component (Passing props from a parent component to a child component)</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The props are passed as attributes in the JSX, and the child component can access them.</p></li>
+<li><p>The destructuring props are passed as attributes in the JSX, and the child component can access them.</p></li>
+<li><p>If a prop is not passed, the child component will use default values.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Accessing Props to a Function Component (a child component access props passed from a parent component)</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>ChildComponent accesses the props object.</p></li>
+<li><p>ChildComponent accesses the destructured props object</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Create a child function Component accessing the props object.</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-number">Listing 5.6 </span><span class="caption-text">src/ChildComponentWithPropsArgs.tsx</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="nx">Person</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./Person&quot;</span><span class="p">;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="kd">const</span><span class="w"> </span><span class="nx">ChildComponentWithPropsArgs</span><span class="o">:</span><span class="w"> </span><span class="kt">React.FC</span><span class="p">&lt;</span><span class="nt">Person</span><span class="p">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">props</span><span class="o">:</span><span class="w"> </span><span class="kt">Person</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 4</span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 5</span><span class="w">    </span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Unknown Name&quot;</span><span class="p">,</span>
+<span class="linenos"> 6</span><span class="w">    </span><span class="nx">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NaN</span><span class="p">,</span>
+<span class="linenos"> 7</span><span class="w">    </span><span class="nx">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Unknown Location&quot;</span><span class="p">,</span>
+<span class="linenos"> 8</span><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="nx">props</span><span class="w"> </span><span class="p">};</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="linenos">10</span><span class="w">    </span><span class="p">&lt;&gt;</span>
+<span class="linenos">11</span><span class="w">      </span><span class="p">{</span><span class="cm">/*&lt;div&gt;Name: {props.name ? props.name : &quot;Unknown Name&quot;}&lt;/div&gt;*/</span><span class="p">}</span>
+<span class="linenos">12</span><span class="w">      </span><span class="p">{</span><span class="cm">/*&lt;div&gt;Age: {props.age ? props.age : &quot;NaN&quot;}&lt;/div&gt;*/</span><span class="p">}</span>
+<span class="linenos">13</span><span class="w">      </span><span class="p">{</span><span class="cm">/*&lt;div&gt;</span>
+<span class="linenos">14</span><span class="cm">        Location: {props.location ? props.location : &quot;Unknown Location&quot;}</span>
+<span class="linenos">15</span><span class="cm">      &lt;/div&gt; */</span><span class="p">}</span>
+<span class="linenos">16</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span><span class="nx">Name</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">17</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span><span class="nx">Age</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">age</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">18</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span><span class="nx">Location</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">location</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">19</span><span class="w">    </span><span class="p">&lt;/&gt;</span>
+<span class="linenos">20</span><span class="w">  </span><span class="p">);</span>
+<span class="linenos">21</span><span class="p">};</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">ChildComponentWithPropsArgs</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Create a child function Component accessing the destructured props object</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-number">Listing 5.7 </span><span class="caption-text">src/ChildComponentWithDestrucingPropsArgs.tsx</span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="nx">React</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;react&quot;</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="nx">Person</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./Person&quot;</span><span class="p">;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="kd">const</span><span class="w"> </span><span class="nx">ChildComponentWithDestrucingPropsArgs</span><span class="o">:</span><span class="w"> </span><span class="kt">React.FC</span><span class="p">&lt;</span><span class="nt">Person</span><span class="p">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">({</span>
+<span class="linenos"> 5</span><span class="w">  </span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Unknown Name&quot;</span><span class="p">,</span>
+<span class="linenos"> 6</span><span class="w">  </span><span class="nx">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NaN</span><span class="p">,</span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="nx">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Unknown Location&quot;</span><span class="p">,</span>
+<span class="linenos"> 8</span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="linenos">10</span><span class="w">    </span><span class="p">&lt;&gt;</span>
+<span class="linenos">11</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span><span class="nx">Name</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">12</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span><span class="nx">Age</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">age</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">13</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span><span class="nx">Location</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">location</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">14</span><span class="w">    </span><span class="p">&lt;/&gt;</span>
+<span class="linenos">15</span><span class="w">  </span><span class="p">);</span>
+<span class="linenos">16</span><span class="p">};</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">ChildComponentWithDestrucingPropsArgs</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Create a parent function Component passing props to its child component</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-number">Listing 5.8 </span><span class="caption-text">src/FunctionComponentsDisplay.tsx</span><a class="headerlink" href="#id8" title="Link to this code"></a></div>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">FC</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;react&quot;</span><span class="p">;</span>
+<span class="linenos">  2</span><span class="k">import</span><span class="w"> </span><span class="nx">ChildComponentWithDestrucingPropsArgs</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./ChildComponentWithDestrucingPropsArgs&quot;</span><span class="p">;</span>
+<span class="linenos">  3</span><span class="k">import</span><span class="w"> </span><span class="nx">ChildComponentWithPropsArgs</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./ChildComponentWithPropsArgs&quot;</span><span class="p">;</span>
+<span class="linenos">  4</span><span class="k">import</span><span class="w"> </span><span class="nx">Person</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./Person&quot;</span><span class="p">;</span>
+<span class="linenos">  5</span><span class="k">import</span><span class="w"> </span><span class="s2">&quot;./list-style.css&quot;</span><span class="p">;</span>
+<span class="linenos">  6</span>
+<span class="linenos">  7</span><span class="kd">const</span><span class="w"> </span><span class="nx">FunctionComponentsDisplay</span><span class="o">:</span><span class="w"> </span><span class="kt">FC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">  8</span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">person</span><span class="o">:</span><span class="w"> </span><span class="kt">Person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">  9</span><span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;John Doe&quot;</span><span class="p">,</span>
+<span class="linenos"> 10</span><span class="w">    </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="kt">30</span><span class="p">,</span>
+<span class="linenos"> 11</span><span class="w">    </span><span class="nx">location</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;New York&quot;</span><span class="p">,</span>
+<span class="linenos"> 12</span><span class="w">  </span><span class="p">};</span>
+<span class="linenos"> 13</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="linenos"> 14</span><span class="w">    </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-container&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 15</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span><span class="nx">Using</span><span class="w"> </span><span class="nx">Props</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">React</span><span class="w"> </span><span class="nb">Function</span><span class="w"> </span><span class="nx">Component</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="linenos"> 16</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">ol</span><span class="p">&gt;</span>
+<span class="linenos"> 17</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">li</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 18</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-number&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 19</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-content&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 20</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span><span class="nx">Parent</span><span class="o">:</span><span class="w"> </span><span class="kt">Passing</span><span class="w"> </span><span class="nx">props</span><span class="w"> </span><span class="nx">arguments</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="linenos"> 21</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">h5</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;blue-color&quot;</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">marginTop</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0px&quot;</span><span class="w"> </span><span class="p">}}&gt;</span>
+<span class="linenos"> 22</span><span class="w">              </span><span class="nx">Child</span><span class="o">:</span><span class="w"> </span><span class="kt">Accessing</span><span class="w"> </span><span class="nx">arguments</span><span class="w"> </span><span class="nx">using</span><span class="w"> </span><span class="nx">props</span>
+<span class="linenos"> 23</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
+<span class="linenos"> 24</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">textAlign</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;left&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">paddingLeft</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;20px&quot;</span><span class="w"> </span><span class="p">}}&gt;</span>
+<span class="linenos"> 25</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;{</span><span class="sb">`&lt;ChildComponentWithPropsArgs`</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 26</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">textAlign</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;left&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">marginLeft</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;20px&quot;</span><span class="w"> </span><span class="p">}}&gt;</span>
+<span class="linenos"> 27</span><span class="w">                </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;{</span><span class="sb">`name=&quot;John Doe&quot;`</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 28</span><span class="w">                </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;{</span><span class="sb">`age={30}`</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 29</span><span class="w">                </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;{</span><span class="sb">`location=&quot;New York&quot;`</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 30</span><span class="w">              </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 31</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;{</span><span class="sb">`/&gt;`</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 32</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 33</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 34</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">ChildComponentWithPropsArgs</span>
+<span class="linenos"> 35</span><span class="w">                </span><span class="na">name</span><span class="o">=</span><span class="s">&quot;John Doe&quot;</span>
+<span class="linenos"> 36</span><span class="w">                </span><span class="na">age</span><span class="o">=</span><span class="p">{</span><span class="mf">30</span><span class="p">}</span>
+<span class="linenos"> 37</span><span class="w">                </span><span class="na">location</span><span class="o">=</span><span class="s">&quot;New York&quot;</span>
+<span class="linenos"> 38</span><span class="w">              </span><span class="p">/&gt;</span>
+<span class="linenos"> 39</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 40</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 41</span><span class="w">        </span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos"> 42</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">li</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 43</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-number&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 44</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-content&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 45</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span><span class="nx">Parent</span><span class="o">:</span><span class="w"> </span><span class="kt">Passing</span><span class="w"> </span><span class="nx">destructuring</span><span class="w"> </span><span class="nx">props</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="linenos"> 46</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">h5</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;blue-color&quot;</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">marginTop</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0px&quot;</span><span class="w"> </span><span class="p">}}&gt;</span>
+<span class="linenos"> 47</span><span class="w">              </span><span class="nx">Child</span><span class="o">:</span><span class="w"> </span><span class="kt">Accessing</span><span class="w"> </span><span class="nx">arguments</span><span class="w"> </span><span class="nx">using</span><span class="w"> </span><span class="nx">props</span>
+<span class="linenos"> 48</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
+<span class="linenos"> 49</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">textAlign</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;left&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">paddingLeft</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;20px&quot;</span><span class="w"> </span><span class="p">}}&gt;</span>
+<span class="linenos"> 50</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;{</span><span class="sb">`&lt;ChildComponentWithPropsArgs {...person} /&gt;`</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 51</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 52</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 53</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">ChildComponentWithPropsArgs</span><span class="w"> </span><span class="p">{</span><span class="na">...person</span><span class="p">}</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="linenos"> 54</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 55</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 56</span><span class="w">        </span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos"> 57</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">li</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 58</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-number&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 59</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-content&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 60</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span><span class="nx">Parent</span><span class="o">:</span><span class="w"> </span><span class="kt">Passing</span><span class="w"> </span><span class="nx">props</span><span class="w"> </span><span class="nx">arguments</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="linenos"> 61</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">h5</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;blue-color&quot;</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">marginTop</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0px&quot;</span><span class="w"> </span><span class="p">}}&gt;</span>
+<span class="linenos"> 62</span><span class="w">              </span><span class="nx">Child</span><span class="o">:</span><span class="w"> </span><span class="kt">Accessing</span><span class="w"> </span><span class="nx">arguments</span><span class="w"> </span><span class="nx">using</span><span class="w"> </span><span class="nx">destrucing</span><span class="w"> </span><span class="nx">props</span>
+<span class="linenos"> 63</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
+<span class="linenos"> 64</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">textAlign</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;left&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">paddingLeft</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;20px&quot;</span><span class="w"> </span><span class="p">}}&gt;</span>
+<span class="linenos"> 65</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;{</span><span class="sb">`&lt;ChildComponentWithDestrucingPropsArgs`</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 66</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">textAlign</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;left&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">marginLeft</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;20px&quot;</span><span class="w"> </span><span class="p">}}&gt;</span>
+<span class="linenos"> 67</span><span class="w">                </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;{</span><span class="sb">`name=&quot;John Doe&quot;`</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 68</span><span class="w">                </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;{</span><span class="sb">`age={30}`</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 69</span><span class="w">                </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;{</span><span class="sb">`location=&quot;New York&quot;`</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 70</span><span class="w">              </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 71</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;{</span><span class="sb">`/&gt;`</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 72</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 73</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 74</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">ChildComponentWithDestrucingPropsArgs</span>
+<span class="linenos"> 75</span><span class="w">                </span><span class="na">name</span><span class="o">=</span><span class="s">&quot;John Doe&quot;</span>
+<span class="linenos"> 76</span><span class="w">                </span><span class="na">age</span><span class="o">=</span><span class="p">{</span><span class="mf">30</span><span class="p">}</span>
+<span class="linenos"> 77</span><span class="w">                </span><span class="na">location</span><span class="o">=</span><span class="s">&quot;New York&quot;</span>
+<span class="linenos"> 78</span><span class="w">              </span><span class="p">/&gt;</span>
+<span class="linenos"> 79</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 80</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 81</span><span class="w">        </span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos"> 82</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">li</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 83</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-number&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 84</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-content&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 85</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span><span class="nx">Parent</span><span class="o">:</span><span class="w"> </span><span class="kt">Passing</span><span class="w"> </span><span class="nx">destructuring</span><span class="w"> </span><span class="nx">props</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="linenos"> 86</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">h5</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;blue-color&quot;</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">marginTop</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0px&quot;</span><span class="w"> </span><span class="p">}}&gt;</span>
+<span class="linenos"> 87</span><span class="w">              </span><span class="nx">Child</span><span class="o">:</span><span class="w"> </span><span class="kt">Accessing</span><span class="w"> </span><span class="nx">arguments</span><span class="w"> </span><span class="nx">using</span><span class="w"> </span><span class="nx">destrucing</span><span class="w"> </span><span class="nx">props</span>
+<span class="linenos"> 88</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
+<span class="linenos"> 89</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">textAlign</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;left&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">paddingLeft</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;20px&quot;</span><span class="w"> </span><span class="p">}}&gt;</span>
+<span class="linenos"> 90</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;{</span><span class="sb">`&lt;ChildComponentWithDestrucingPropsArgs`</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 91</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">textAlign</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;left&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">marginLeft</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;20px&quot;</span><span class="w"> </span><span class="p">}}&gt;</span>
+<span class="linenos"> 92</span><span class="w">                </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;{</span><span class="sb">`{...person}`</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 93</span><span class="w">              </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 94</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;{</span><span class="sb">`/&gt;`</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 95</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 96</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 97</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">ChildComponentWithDestrucingPropsArgs</span><span class="w"> </span><span class="p">{</span><span class="na">...person</span><span class="p">}</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="linenos"> 98</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 99</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">100</span><span class="w">        </span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos">101</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">li</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item&quot;</span><span class="p">&gt;</span>
+<span class="linenos">102</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-number&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">103</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-content&quot;</span><span class="p">&gt;</span>
+<span class="linenos">104</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span><span class="nx">Parent</span><span class="o">:</span><span class="w"> </span><span class="kt">Passing</span><span class="w"> </span><span class="nx">no</span><span class="w"> </span><span class="nx">arguments</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="linenos">105</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">h5</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;blue-color&quot;</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">marginTop</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0px&quot;</span><span class="w"> </span><span class="p">}}&gt;</span>
+<span class="linenos">106</span><span class="w">              </span><span class="nx">Child</span><span class="o">:</span><span class="w"> </span><span class="kt">Accessing</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">arguments</span><span class="w"> </span><span class="nx">using</span><span class="w"> </span><span class="nx">props</span>
+<span class="linenos">107</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
+<span class="linenos">108</span>
+<span class="linenos">109</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">textAlign</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;left&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">paddingLeft</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;20px&quot;</span><span class="w"> </span><span class="p">}}&gt;</span>
+<span class="linenos">110</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;{</span><span class="sb">`&lt;ChildComponentWithPropsArgs /&gt;`</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">111</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">112</span>
+<span class="linenos">113</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">114</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">ChildComponentWithPropsArgs</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="linenos">115</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">116</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">117</span><span class="w">        </span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos">118</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">li</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item&quot;</span><span class="p">&gt;</span>
+<span class="linenos">119</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-number&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">120</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-content&quot;</span><span class="p">&gt;</span>
+<span class="linenos">121</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span><span class="nx">Parent</span><span class="o">:</span><span class="w"> </span><span class="kt">Passing</span><span class="w"> </span><span class="nx">no</span><span class="w"> </span><span class="nx">arguments</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="linenos">122</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">h5</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;blue-color&quot;</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">marginTop</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0px&quot;</span><span class="w"> </span><span class="p">}}&gt;</span>
+<span class="linenos">123</span><span class="w">              </span><span class="nx">Child</span><span class="o">:</span><span class="w"> </span><span class="kt">Accessing</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">arguments</span><span class="w"> </span><span class="nx">using</span><span class="w"> </span><span class="nx">destrucing</span><span class="w"> </span><span class="nx">props</span>
+<span class="linenos">124</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">h5</span><span class="p">&gt;</span>
+<span class="linenos">125</span>
+<span class="linenos">126</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">textAlign</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;left&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">paddingLeft</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;20px&quot;</span><span class="w"> </span><span class="p">}}&gt;</span>
+<span class="linenos">127</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;{</span><span class="sb">`&lt;ChildComponentWithDestrucingPropsArgs /&gt;`</span><span class="p">}&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">128</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">129</span>
+<span class="linenos">130</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">131</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">ChildComponentWithDestrucingPropsArgs</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="linenos">132</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">133</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">134</span><span class="w">        </span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos">135</span><span class="w">      </span><span class="p">&lt;/</span><span class="nt">ol</span><span class="p">&gt;</span>
+<span class="linenos">136</span><span class="w">    </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">137</span><span class="w">  </span><span class="p">);</span>
+<span class="linenos">138</span><span class="p">};</span>
+<span class="linenos">139</span>
+<span class="linenos">140</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">FunctionComponentsDisplay</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="render-the-component">
+<h3><span class="section-number">5.1.2.3. </span>Render the component<a class="headerlink" href="#render-the-component" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul>
+<li><p>Edit <code class="docutils literal notranslate"><span class="pre">App.tsx</span></code> to render the component</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-number">Listing 5.9 </span><span class="caption-text">src/App.tsx</span><a class="headerlink" href="#id9" title="Link to this code"></a></div>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">import</span><span class="w"> </span><span class="nx">FunctionComponentsDisplay</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./FunctionComponentDisplay&quot;</span><span class="p">;</span>
+<span class="linenos">2</span><span class="k">import</span><span class="w"> </span><span class="s2">&quot;./App.css&quot;</span><span class="p">;</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="kd">function</span><span class="w"> </span><span class="nx">App</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">5</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">&lt;</span><span class="nt">FunctionComponentsDisplay</span><span class="w"> </span><span class="p">/&gt;;</span>
+<span class="linenos">6</span><span class="p">}</span>
+<span class="linenos">7</span>
+<span class="linenos">8</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">App</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="run-the-development-app">
+<h2><span class="section-number">5.1.3. </span>Run the development app<a class="headerlink" href="#run-the-development-app" title="Link to this heading"></a></h2>
+<blockquote>
+<div><ul>
+<li><p>Run dev</p>
+<blockquote>
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>yarn<span class="w"> </span>dev
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Build</p>
+<blockquote>
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>yarn<span class="w"> </span>build
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="hosting-the-react-app-on-github-pages">
+<h2><span class="section-number">5.1.4. </span>Hosting the React App on GitHub Pages<a class="headerlink" href="#hosting-the-react-app-on-github-pages" title="Link to this heading"></a></h2>
+<section id="build-the-app">
+<h3><span class="section-number">5.1.4.1. </span>Build the App<a class="headerlink" href="#build-the-app" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul>
+<li><p>Configure the build base url:</p>
+<blockquote>
+<div><ul>
+<li><p>open vite.config.js file</p></li>
+<li><p>set base to <code class="docutils literal notranslate"><span class="pre">/react-projects/react-projects-with-typescript/tut05-function-components-props/</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">default</span> <span class="n">defineConfig</span><span class="p">({</span>
+    <span class="n">plugins</span><span class="p">:</span> <span class="p">[</span><span class="n">react</span><span class="p">()],</span>
+    <span class="n">base</span><span class="p">:</span> <span class="s2">&quot;/react-projects/react-projects-with-typescript/tut05-function-components-props/&quot;</span><span class="p">,</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Build the app</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">run</span> <span class="n">build</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="hosting-the-app">
+<h3><span class="section-number">5.1.4.2. </span>Hosting the App<a class="headerlink" href="#hosting-the-app" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>Hosting address: <a class="reference external" href="https://&lt;USERNAME&gt;.github.io/react-projects/react-projects-with-typescript/tut05-function-components-props/">https://&lt;USERNAME&gt;.github.io/react-projects/react-projects-with-typescript/tut05-function-components-props/</a></p></li>
+<li><p>Github login as &lt;USERNAME&gt;</p></li>
+<li><p>Create the <code class="docutils literal notranslate"><span class="pre">react-projects</span></code> repo if not exist</p></li>
+<li><p>Create the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch in the <code class="docutils literal notranslate"><span class="pre">react-projects</span></code> repo if not exist</p></li>
+<li><p>Push the &lt;dist&gt; folder contents to the deploying folder <code class="docutils literal notranslate"><span class="pre">react-projects-with-typescript/tut05-function-components-props/</span></code> in the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="sources-and-demos">
+<h2><span class="section-number">5.1.5. </span>Sources and Demos<a class="headerlink" href="#sources-and-demos" title="Link to this heading"></a></h2>
+<blockquote>
+<div><ul>
+<li><p>Sources: <a class="reference external" href="https://github.com/david-ggs-230/react-projects/tree/main/react-projects-with-typescript/tut05-function-components-props">https://github.com/david-ggs-230/react-projects/tree/main/react-projects-with-typescript/tut05-function-components-props</a></p></li>
+<li><p>Live Demo: <a class="reference external" href="https://david-ggs-230.github.io/react-projects/react-projects-with-typescript/tut05-function-components-props/">https://david-ggs-230.github.io/react-projects/react-projects-with-typescript/tut05-function-components-props/</a></p></li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><figure class="align-center" id="id10">
+<a class="sd-my-2 reference internal image-reference" href="../_images/tut05-function-components-props.png"><img alt="React Function Components - Props" class="sd-my-2" src="../_images/tut05-function-components-props.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 5.1 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React Function Components - Props</span></span><a class="headerlink" href="#id10" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tut05-function-components.html" class="btn btn-neutral float-left" title="5. Tut05-React Function Components" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tut05-function-components-state.html" class="btn btn-neutral float-right" title="5.2. Function Components - State" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, David G..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

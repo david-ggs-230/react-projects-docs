@@ -1,0 +1,879 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>9. React Component Styling &mdash; React Tutorial with Typescript 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom-theme.css?v=e6852a23" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="tut10-vitest-react-testing.html" />
+    <link rel="prev" title="8. React Router" href="tut08-react-router.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            React Tutorial with Typescript
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">React Projects with Typescript</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tut01-create-reactjs-app.html">1. Tut01-Create a React App on Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut02-writing-markup-with-jsx.html">2. Tut02-Writing Markup with JSX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut03-react-components.html">3. Tut03-React Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut04-class-components.html">4. Tut04-React Class Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut05-function-components.html">5. Tut05-React Function Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut06-react-form.html">6. React Form</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut07-react-restapi.html">7. React RESTful API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut08-react-router.html">8. React Router</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">9. React Component Styling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-a-react-project-structure">9.1. Create a React Project Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-a-react-project">9.1.1. Create a React Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eslint-and-prettier-configuration">9.1.2. ESLint and Prettier Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#react-components-with-styling">9.2. React Components with Styling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#traditional-plain-css">9.2.1. Traditional Plain CSS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#inline-styling">9.2.2. Inline Styling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#css-modules">9.2.3. CSS Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tailwind-css">9.2.4. Tailwind CSS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-svg">9.2.5. Using SVG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#function-component-the-user-interface">9.2.6. Function Component - the User Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#run-the-development-app">9.3. Run the development app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hosting-the-react-app-on-github-pages">9.4. Hosting the React App on GitHub Pages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#build-the-app">9.4.1. Build the App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hosting-the-app">9.4.2. Hosting the App</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#sources-and-demos">9.5. Sources and Demos</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">React Tutorial with Typescript</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">9. </span>React Component Styling</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="title-center h1" id="react-component-styling">
+<span id="tut09-react-component-styling"></span><h1><span class="section-number">9. </span>React Component Styling<a class="headerlink" href="#react-component-styling" title="Link to this heading"></a></h1>
+<p>In general, React allows component to be styled using CSS class through className attribute. Since, the React JSX supports JavaScript expression, a lot of common CSS methodology can be used.</p>
+<p>In React, there are several ways to style components, including traditional CSS, inline styles, CSS Modules, styled-components, and Emotion.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Traditional plain CSS − regular CSS files for styling.</p></li>
+<li><p>Inline Styles − CSS styles as JavaScript objects to the style attribute. The keys of the object are camelCase CSS properties, and the values are strings.</p></li>
+<li><p>CSS Modules − write CSS that is scoped locally to the component, avoiding global style clashes</p></li>
+<li><p>Styled-components (CSS-in-JS) − Styled-components is a popular CSS-in-JS library allowing to define styled components using JavaScript. Performance might be an issue in large apps due to runtime styling</p></li>
+<li><p>Emotion (CSS-in-JS) - Emotion is another popular CSS-in-JS library similar to styled-components. It provides powerful styling capabilities, like the ability to style with JavaScript objects or template literals. Slightly more verbose syntax than styled-components.</p></li>
+<li><p>Sass stylesheet − Supports Sass based CSS styles by converting the styles to normal css at build time.</p></li>
+<li><p>Tailwind CSS - Tailwind provides a large set of low-level utility classes that can apply directly to HTML elements to achieve the desired design without needing to write CSS. Tailwind CSS has become very popular due to its flexibility, speed, and the ability to apply styles directly to HTML/JSX elements without writing custom CSS.</p></li>
+</ul>
+</div></blockquote>
+<section id="create-a-react-project-structure">
+<h2><span class="section-number">9.1. </span>Create a React Project Structure<a class="headerlink" href="#create-a-react-project-structure" title="Link to this heading"></a></h2>
+<section id="create-a-react-project">
+<h3><span class="section-number">9.1.1. </span>Create a React Project<a class="headerlink" href="#create-a-react-project" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul>
+<li><p>Create a ReactJS Project</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">create</span> <span class="n">vite</span> <span class="n">tut09</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">component</span><span class="o">-</span><span class="n">styling</span> <span class="o">--</span><span class="n">template</span> <span class="n">react</span><span class="o">-</span><span class="n">ts</span>
+</pre></div>
+</div>
+</li>
+<li><p>Move inside the ReactJS project folder &lt;tut09-react-component-styling&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut09</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">component</span><span class="o">-</span><span class="n">styling</span>
+</pre></div>
+</div>
+</li>
+<li><p>Install the dependencies</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">install</span>
+</pre></div>
+</div>
+</li>
+<li><p>Install Tailwind CSS dependencies</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install</span>
+<span class="n">yarn</span> <span class="n">add</span> <span class="o">--</span><span class="n">dev</span> <span class="n">tailwindcss</span> <span class="nd">@tailwindcss</span><span class="o">/</span><span class="n">vite</span>
+</pre></div>
+</div>
+</li>
+<li><p>Configure the Vite plugin (edit vite.config.ts): Add the &#64;tailwindcss/vite plugin to Vite configuration.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">vite</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">ts</span>
+<span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">defineConfig</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;vite&#39;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tailwindcss</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@tailwindcss/vite&#39;</span>
+<span class="n">export</span> <span class="n">default</span> <span class="n">defineConfig</span><span class="p">({</span>
+  <span class="n">plugins</span><span class="p">:</span> <span class="p">[</span><span class="n">tailwindcss</span><span class="p">()],</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</li>
+<li><p>Add Tailwind Directives to CSS Styles. Create a new CSS file (e.g., src/index.css or src/tailwind.css) and add the Tailwind CSS directives</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span> <span class="n">src</span><span class="o">/</span><span class="n">tailwind</span><span class="o">.</span><span class="n">css</span> <span class="o">*/</span>
+<span class="nd">@import</span> <span class="s2">&quot;tailwindcss&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Import the CSS File into the React component.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./tailwind.css&#39;</span><span class="p">;</span>  <span class="o">//</span> <span class="n">Import</span> <span class="n">the</span> <span class="n">CSS</span> <span class="n">file</span> <span class="n">here</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="eslint-and-prettier-configuration">
+<h3><span class="section-number">9.1.2. </span>ESLint and Prettier Configuration<a class="headerlink" href="#eslint-and-prettier-configuration" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul>
+<li><p>Install the <code class="docutils literal notranslate"><span class="pre">EditorConfig</span></code> extension for VS Code if you haven’t already.</p></li>
+<li><p>Add .editorconfig (<a class="reference external" href="https://editorconfig.org">https://editorconfig.org</a>) to the root of the project</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 9.1 </span><span class="caption-text">contents of .editorconfig</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-cfg notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="na">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="k">[*]</span>
+<span class="linenos">4</span><span class="na">indent_style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">space</span>
+<span class="linenos">5</span><span class="na">indent_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">2</span>
+<span class="linenos">6</span><span class="na">end_of_line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">lf</span>
+<span class="linenos">7</span><span class="na">insert_final_newline</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<span class="linenos">8</span><span class="na">trim_trailing_whitespace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Reload VS Code (open the command palette, find and use <code class="docutils literal notranslate"><span class="pre">Reload</span> <span class="pre">Window</span></code>).</p></li>
+<li><p>Install dependencies</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">add</span> <span class="o">--</span><span class="n">dev</span> <span class="n">prettier</span> <span class="n">eslint</span><span class="o">-</span><span class="n">plugin</span><span class="o">-</span><span class="n">prettier</span> <span class="n">eslint</span><span class="o">-</span><span class="n">config</span><span class="o">-</span><span class="n">prettier</span> <span class="n">eslint</span><span class="o">-</span><span class="n">plugin</span><span class="o">-</span><span class="n">react</span>
+</pre></div>
+</div>
+</li>
+<li><p>Modify the eslint.config.js file with following contents:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Listing 9.2 </span><span class="caption-text">contents of eslint.config.js</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="nx">js</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@eslint/js&quot;</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="nx">globals</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;globals&quot;</span><span class="p">;</span>
+<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="nx">reactHooks</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;eslint-plugin-react-hooks&quot;</span><span class="p">;</span>
+<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="nx">reactRefresh</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;eslint-plugin-react-refresh&quot;</span><span class="p">;</span>
+<span class="linenos"> 5</span><span class="k">import</span><span class="w"> </span><span class="nx">tseslint</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;typescript-eslint&quot;</span><span class="p">;</span>
+<span class="linenos"> 6</span><span class="k">import</span><span class="w"> </span><span class="nx">react</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;eslint-plugin-react&quot;</span><span class="p">;</span>
+<span class="linenos"> 7</span><span class="k">import</span><span class="w"> </span><span class="nx">eslintPluginPrettier</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;eslint-plugin-prettier/recommended&quot;</span><span class="p">;</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">tseslint</span>
+<span class="linenos">10</span><span class="w">  </span><span class="p">.</span><span class="nx">config</span><span class="p">(</span>
+<span class="linenos">11</span><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">ignores</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;dist&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">},</span>
+<span class="linenos">12</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">13</span><span class="w">      </span><span class="c1">//extends: [js.configs.recommended, ...tseslint.configs.recommended],</span>
+<span class="linenos">14</span><span class="w">      </span><span class="k">extends</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="linenos">15</span><span class="w">        </span><span class="nx">js</span><span class="p">.</span><span class="nx">configs</span><span class="p">.</span><span class="nx">recommended</span><span class="p">,</span>
+<span class="linenos">16</span><span class="w">        </span><span class="p">...</span><span class="nx">tseslint</span><span class="p">.</span><span class="nx">configs</span><span class="p">.</span><span class="nx">recommendedTypeChecked</span><span class="p">,</span>
+<span class="linenos">17</span><span class="w">      </span><span class="p">],</span>
+<span class="linenos">18</span><span class="w">      </span><span class="nx">files</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;**/*.{ts,tsx}&quot;</span><span class="p">],</span>
+<span class="linenos">19</span><span class="w">      </span><span class="nx">languageOptions</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">20</span><span class="w">        </span><span class="nx">ecmaVersion</span><span class="o">:</span><span class="w"> </span><span class="mf">2020</span><span class="p">,</span>
+<span class="linenos">21</span><span class="w">        </span><span class="nx">globals</span><span class="o">:</span><span class="w"> </span><span class="nx">globals</span><span class="p">.</span><span class="nx">browser</span><span class="p">,</span>
+<span class="linenos">22</span><span class="w">        </span><span class="nx">parserOptions</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">23</span><span class="w">          </span><span class="nx">project</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;./tsconfig.node.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;./tsconfig.app.json&quot;</span><span class="p">],</span>
+<span class="linenos">24</span><span class="w">          </span><span class="nx">tsconfigRootDir</span><span class="o">:</span><span class="w"> </span><span class="k">import</span><span class="p">.</span><span class="nx">meta</span><span class="p">.</span><span class="nx">dirname</span><span class="p">,</span>
+<span class="linenos">25</span><span class="w">        </span><span class="p">},</span>
+<span class="linenos">26</span><span class="w">      </span><span class="p">},</span>
+<span class="linenos">27</span><span class="w">      </span><span class="nx">settings</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">28</span><span class="w">        </span><span class="nx">react</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">29</span><span class="w">          </span><span class="nx">version</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;detect&quot;</span><span class="p">,</span>
+<span class="linenos">30</span><span class="w">        </span><span class="p">},</span>
+<span class="linenos">31</span><span class="w">      </span><span class="p">},</span>
+<span class="linenos">32</span><span class="w">      </span><span class="nx">plugins</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">33</span><span class="w">        </span><span class="s2">&quot;react-hooks&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">reactHooks</span><span class="p">,</span>
+<span class="linenos">34</span><span class="w">        </span><span class="s2">&quot;react-refresh&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">reactRefresh</span><span class="p">,</span>
+<span class="linenos">35</span><span class="w">        </span><span class="nx">react</span><span class="o">:</span><span class="w"> </span><span class="nx">react</span><span class="p">,</span>
+<span class="linenos">36</span><span class="w">      </span><span class="p">},</span>
+<span class="linenos">37</span><span class="w">      </span><span class="nx">rules</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">38</span><span class="w">        </span><span class="p">...</span><span class="nx">reactHooks</span><span class="p">.</span><span class="nx">configs</span><span class="p">.</span><span class="nx">recommended</span><span class="p">.</span><span class="nx">rules</span><span class="p">,</span>
+<span class="linenos">39</span><span class="w">        </span><span class="s2">&quot;react-refresh/only-export-components&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="linenos">40</span><span class="w">          </span><span class="s2">&quot;warn&quot;</span><span class="p">,</span>
+<span class="linenos">41</span><span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nx">allowConstantExport</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">},</span>
+<span class="linenos">42</span><span class="w">        </span><span class="p">],</span>
+<span class="linenos">43</span><span class="w">        </span><span class="p">...</span><span class="nx">react</span><span class="p">.</span><span class="nx">configs</span><span class="p">.</span><span class="nx">recommended</span><span class="p">.</span><span class="nx">rules</span><span class="p">,</span>
+<span class="linenos">44</span><span class="w">        </span><span class="p">...</span><span class="nx">react</span><span class="p">.</span><span class="nx">configs</span><span class="p">[</span><span class="s2">&quot;jsx-runtime&quot;</span><span class="p">].</span><span class="nx">rules</span><span class="p">,</span>
+<span class="linenos">45</span><span class="w">      </span><span class="p">},</span>
+<span class="linenos">46</span><span class="w">    </span><span class="p">},</span>
+<span class="linenos">47</span><span class="w">  </span><span class="p">)</span>
+<span class="linenos">48</span><span class="w">  </span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">eslintPluginPrettier</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Edit the eslint scripts in the package.json file:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Listing 9.3 </span><span class="caption-text">contents of package.json</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="highlight-cfg notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="na">&quot;scripts&quot;</span><span class="o">:</span><span class="w"> </span><span class="s">{</span>
+<span class="linenos">2</span><span class="w">  </span><span class="na">... ,</span>
+<span class="linenos">3</span><span class="w">  </span><span class="na">&quot;lint&quot;</span><span class="o">:</span><span class="w"> </span><span class="s">&quot;eslint src ./*.js ./*.ts --ext ts,tsx --report-unused-disable-directives --max-warnings 0&quot;</span><span class="na">,</span>
+<span class="linenos">4</span><span class="w">  </span><span class="na">&quot;lint:fix&quot;</span><span class="o">:</span><span class="w"> </span><span class="s">&quot;eslint src ./*.js ./*.ts --ext ts,tsx --fix&quot;</span><span class="na">,</span>
+<span class="linenos">5</span><span class="na">},</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Run ESLint:</p>
+<blockquote>
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>yarn<span class="w"> </span>lint
+<span class="linenos">2</span>yarn<span class="w"> </span>lint:fix
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="react-components-with-styling">
+<h2><span class="section-number">9.2. </span>React Components with Styling<a class="headerlink" href="#react-components-with-styling" title="Link to this heading"></a></h2>
+<section id="traditional-plain-css">
+<h3><span class="section-number">9.2.1. </span>Traditional Plain CSS<a class="headerlink" href="#traditional-plain-css" title="Link to this heading"></a></h3>
+<p>CSS stylesheet is usual, common and time-tested methodology. Simply create a CSS stylesheet for a component and enter all your styles for that particular component. Then, in the component, use className to refer the styles.</p>
+<blockquote>
+<div><ul>
+<li><p>Add a CSS file called <code class="docutils literal notranslate"><span class="pre">list-style.css</span></code> in the src folder:</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 9.4 </span><span class="caption-text">src/list-styles.css</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="p">.</span><span class="nc">list-container</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 2</span><span class="w">  </span><span class="k">max-width</span><span class="p">:</span><span class="w"> </span><span class="mi">800</span><span class="kt">px</span><span class="p">;</span>
+<span class="linenos"> 3</span><span class="w">  </span><span class="k">width</span><span class="p">:</span><span class="n">max-content</span><span class="p">;</span>
+<span class="linenos"> 4</span><span class="w">  </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span>
+<span class="linenos"> 5</span><span class="w">  </span><span class="k">font-family</span><span class="p">:</span><span class="w"> </span><span class="n">Arial</span><span class="p">,</span><span class="w"> </span><span class="kc">sans-serif</span><span class="p">;</span>
+<span class="linenos"> 6</span><span class="p">}</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="nt">ol</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="k">padding-left</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">10</span><span class="w">  </span><span class="k">counter-reset</span><span class="p">:</span><span class="w"> </span><span class="n">list-counter</span><span class="p">;</span>
+<span class="linenos">11</span><span class="p">}</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="p">.</span><span class="nc">list-item</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">14</span><span class="w">  </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
+<span class="linenos">15</span><span class="w">  </span><span class="k">align-items</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+<span class="linenos">16</span><span class="w">  </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">17</span><span class="p">}</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="p">.</span><span class="nc">list-item</span><span class="w"> </span><span class="nt">div</span><span class="w"> </span><span class="nt">button</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">20</span><span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="kt">px</span><span class="p">;</span>
+<span class="linenos">21</span><span class="w">  </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="nb">rgb</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span><span class="w"> </span><span class="mi">95</span><span class="p">,</span><span class="w"> </span><span class="mi">82</span><span class="p">);</span>
+<span class="linenos">22</span><span class="p">}</span>
+<span class="linenos">23</span><span class="p">.</span><span class="nc">list-item-number</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">24</span><span class="w">  </span><span class="k">font-weight</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="p">;</span>
+<span class="linenos">25</span><span class="w">  </span><span class="k">margin-right</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+<span class="linenos">26</span><span class="w">  </span><span class="k">counter-increment</span><span class="p">:</span><span class="w"> </span><span class="n">list-counter</span><span class="p">;</span>
+<span class="linenos">27</span><span class="p">}</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span><span class="p">.</span><span class="nc">list-item-number</span><span class="p">::</span><span class="nd">before</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">30</span><span class="w">  </span><span class="k">content</span><span class="p">:</span><span class="w"> </span><span class="nb">counter</span><span class="p">(</span><span class="n">list</span><span class="nv">-counter</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;. &quot;</span><span class="p">;</span>
+<span class="linenos">31</span><span class="p">}</span>
+<span class="linenos">32</span>
+<span class="linenos">33</span><span class="p">.</span><span class="nc">list-item-content</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">34</span><span class="w">  </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="mh">#ccc</span><span class="p">;</span>
+<span class="linenos">35</span><span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+<span class="linenos">36</span><span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+<span class="linenos">37</span><span class="w">  </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#f9f9f9</span><span class="p">;</span>
+<span class="linenos">38</span><span class="w">  </span><span class="k">flex-grow</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos">39</span><span class="p">}</span>
+<span class="linenos">40</span>
+<span class="linenos">41</span><span class="p">.</span><span class="nc">list-item-content</span><span class="w"> </span><span class="nt">h3</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">42</span><span class="w">  </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">43</span><span class="w">  </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">em</span><span class="p">;</span>
+<span class="linenos">44</span><span class="p">}</span>
+<span class="linenos">45</span>
+<span class="linenos">46</span><span class="p">.</span><span class="nc">list-item-content</span><span class="w"> </span><span class="nt">p</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">47</span><span class="w">  </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">48</span><span class="w">  </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9</span><span class="kt">em</span><span class="p">;</span>
+<span class="linenos">49</span><span class="p">}</span>
+<span class="linenos">50</span>
+<span class="linenos">51</span><span class="p">.</span><span class="nc">red-color</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">52</span><span class="w">  </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#ff0000</span><span class="p">;</span>
+<span class="linenos">53</span><span class="p">}</span>
+<span class="linenos">54</span>
+<span class="linenos">55</span><span class="p">.</span><span class="nc">blue-color</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">56</span><span class="w">  </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#0011ff</span><span class="p">;</span>
+<span class="linenos">57</span><span class="p">}</span>
+<span class="linenos">58</span>
+<span class="linenos">59</span><span class="p">.</span><span class="nc">bg-red</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">60</span><span class="w">  </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#ff0000</span><span class="p">;</span>
+<span class="linenos">61</span><span class="p">}</span>
+<span class="linenos">62</span>
+<span class="linenos">63</span><span class="p">.</span><span class="nc">bg-blue</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">64</span><span class="w">  </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#0011ff</span><span class="p">;</span>
+<span class="linenos">65</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Define a component using the regular plain CSS file <code class="docutils literal notranslate"><span class="pre">list-style.css</span></code>.</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">Listing 9.5 </span><span class="caption-text">src/ComponentUsingPlainCSS.tsx</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s2">&quot;./list-style.css&quot;</span><span class="p">;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="kd">const</span><span class="w"> </span><span class="nx">ComponentUsingPlainCSS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 4</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="linenos"> 5</span><span class="w">    </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;App&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 6</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">h4</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;blue-color&quot;</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">Using</span><span class="w"> </span><span class="nx">Plain</span><span class="w"> </span><span class="nx">CSS</span><span class="w"> </span><span class="nx">File</span><span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
+<span class="linenos"> 7</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 8</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;red-color bg-blue&quot;</span><span class="p">&gt;</span><span class="nx">Blue</span><span class="w"> </span><span class="nx">background</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="nx">red</span><span class="w"> </span><span class="nx">text</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 9</span><span class="w">      </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">10</span><span class="w">    </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">11</span><span class="w">  </span><span class="p">);</span>
+<span class="linenos">12</span><span class="p">};</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">ComponentUsingPlainCSS</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="inline-styling">
+<h3><span class="section-number">9.2.2. </span>Inline Styling<a class="headerlink" href="#inline-styling" title="Link to this heading"></a></h3>
+<p>Inline Styling is one of the safest ways to style the React component. It declares all the styles as JavaScript objects using DOM based css properties and set it to the component through style attributes.</p>
+<p>Declare a variable of type object and set the styles. All css properties can be used by representing it in camelCase format. Set style in the component using curly braces {}. Also, style can be directly set inside the component</p>
+<blockquote>
+<div><ul>
+<li><p>Define a component using inline styles.</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-number">Listing 9.6 </span><span class="caption-text">src/ComponentUsingInlineStyle.tsx</span><a class="headerlink" href="#id6" title="Link to this code"></a></div>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kd">const</span><span class="w"> </span><span class="nx">ComponentUsingInlineStyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 2</span><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">styleObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">backgroundColor</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;red&quot;</span><span class="w"> </span><span class="p">};</span>
+<span class="linenos"> 3</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="linenos"> 4</span><span class="w">    </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;App&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 5</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">h4</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{{</span><span class="w"> </span><span class="nx">marginTop</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0px&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">marginBottom</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;20px&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;blue&quot;</span><span class="w"> </span><span class="p">}}&gt;</span>
+<span class="linenos"> 6</span><span class="w">        </span><span class="nx">Using</span><span class="w"> </span><span class="nx">Inline</span><span class="w"> </span><span class="nx">Style</span>
+<span class="linenos"> 7</span><span class="w">      </span><span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
+<span class="linenos"> 8</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 9</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styleObject</span><span class="p">}&gt;</span><span class="nx">Blue</span><span class="w"> </span><span class="nx">background</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="nx">red</span><span class="w"> </span><span class="nx">text</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">10</span><span class="w">      </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">11</span><span class="w">    </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">12</span><span class="w">  </span><span class="p">);</span>
+<span class="linenos">13</span><span class="p">};</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">ComponentUsingInlineStyle</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="css-modules">
+<h3><span class="section-number">9.2.3. </span>CSS Modules<a class="headerlink" href="#css-modules" title="Link to this heading"></a></h3>
+<p>Css Modules provides safest as well as easiest way to define the style. It uses normal css stylesheet with normal syntax ending with .module.css. While importing the styles, CSS modules converts all the styles into locally scoped styles so that the name conflicts will not happen.</p>
+<p>Create a new stylesheet ending with .module.css and write regular css styles. Here, file naming convention is very important. React toolchain will pre-process the css files ending with .module.css through CSS Module.</p>
+<p>A CSS module file is imported into a React component file, and  a variable is defined to hold CSS class name mapping information</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">styles</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./styles.module.css&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>In the preceding code snippet, the CSS class name information is imported into a variable called styles, but the variable name can be anything we choose. The CSS class name mapping information variable is an object containing property names corresponding to the CSS class names. Each class name property contains a value of a scoped class name to be used on a React component.</p>
+<p>Styles within a CSS module are referenced in a component’s className attribute as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;span className={styles.error}&gt;A bad error&lt;/span&gt;
+&lt;div className={`${styles.container} ${styles[type]}`}&gt;
+className={styles.headerIcon}
+</pre></div>
+</div>
+<p>React components:</p>
+<blockquote>
+<div><ul>
+<li><p>Define a CSS module file <code class="docutils literal notranslate"><span class="pre">custom-style.module.css</span></code>.</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-number">Listing 9.7 </span><span class="caption-text">src/custom-style.module.css</span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="p">.</span><span class="nc">redColor</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 2</span><span class="w">  </span><span class="k">color</span><span class="p">:</span><span class="kc">red</span><span class="p">;</span>
+<span class="linenos"> 3</span><span class="p">}</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="p">.</span><span class="nc">blueColor</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 6</span><span class="w">  </span><span class="k">color</span><span class="p">:</span><span class="kc">blue</span><span class="p">;</span>
+<span class="linenos"> 7</span><span class="p">}</span>
+<span class="linenos"> 8</span><span class="p">.</span><span class="nc">bgBlue</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="kc">blue</span><span class="p">;</span>
+<span class="linenos">10</span><span class="p">}</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="p">.</span><span class="nc">margin-top-0</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">13</span><span class="w">  </span><span class="k">margin-top</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="kt">px</span><span class="p">;</span>
+<span class="linenos">14</span><span class="p">}</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="p">.</span><span class="nc">margin-bottom-20</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">17</span><span class="w">  </span><span class="k">margin-bottom</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+<span class="linenos">18</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Define a component using CSS modules.</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-number">Listing 9.8 </span><span class="caption-text">src/ComponentUsingCSSModules.tsx</span><a class="headerlink" href="#id8" title="Link to this code"></a></div>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="nx">styles</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./custom-style.module.css&quot;</span><span class="p">;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="kd">const</span><span class="w"> </span><span class="nx">ComponentUsingCSSModules</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 4</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="linenos"> 5</span><span class="w">    </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;App&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 6</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">h4</span>
+<span class="linenos"> 7</span><span class="w">        </span><span class="na">className</span><span class="o">=</span><span class="p">{</span><span class="sb">`</span><span class="si">${</span><span class="nx">styles</span><span class="p">.</span><span class="nx">blueColor</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">styles</span><span class="p">[</span><span class="s2">&quot;margin-top-0&quot;</span><span class="p">]</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">styles</span><span class="p">[</span><span class="s2">&quot;margin-bottom-20&quot;</span><span class="p">]</span><span class="si">}</span><span class="sb">`</span><span class="p">}</span>
+<span class="linenos"> 8</span><span class="w">      </span><span class="p">&gt;</span>
+<span class="linenos"> 9</span><span class="w">        </span><span class="nx">Using</span><span class="w"> </span><span class="nx">CSS</span><span class="w"> </span><span class="nx">Modules</span>
+<span class="linenos">10</span><span class="w">      </span><span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
+<span class="linenos">11</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">12</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="p">{</span><span class="sb">`</span><span class="si">${</span><span class="nx">styles</span><span class="p">.</span><span class="nx">bgBlue</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">styles</span><span class="p">.</span><span class="nx">redColor</span><span class="si">}</span><span class="sb">`</span><span class="p">}&gt;</span>
+<span class="linenos">13</span><span class="w">          </span><span class="nx">Blue</span><span class="w"> </span><span class="nx">background</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="nx">red</span><span class="w"> </span><span class="nx">text</span>
+<span class="linenos">14</span><span class="w">        </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">15</span><span class="w">      </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">16</span><span class="w">    </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">17</span><span class="w">  </span><span class="p">);</span>
+<span class="linenos">18</span><span class="p">};</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">ComponentUsingCSSModules</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="tailwind-css">
+<h3><span class="section-number">9.2.4. </span>Tailwind CSS<a class="headerlink" href="#tailwind-css" title="Link to this heading"></a></h3>
+<p>Tailwind CSS is a utility-first CSS framework that allows you to build custom designs directly in your HTML (or JSX/TSX in React) by composing utility classes. Instead of writing custom CSS, you use predefined classes to style your components, which leads to a highly customizable and maintainable design system. Tailwind CSS has become very popular due to its flexibility, speed, and the ability to apply styles directly to HTML/JSX elements without writing custom CSS.</p>
+<p>Key Concepts of Tailwind CSS:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Utility-first: Tailwind provides a large set of low-level utility classes that you can apply directly to your HTML elements to achieve the desired design without needing to write CSS.</p></li>
+<li><p>Customizability: Tailwind allows you to configure and extend your design system using the tailwind.config.js file.</p></li>
+<li><p>Responsive Design: Tailwind includes built-in support for responsive design, allowing you to apply different styles based on the screen size using simple class names.</p></li>
+<li><p>No custom CSS required: You can create fully styled components without writing any traditional CSS.</p></li>
+</ul>
+</div></blockquote>
+<p>Steps to Set Up Tailwind CSS with Yarn:</p>
+<blockquote>
+<div><ul>
+<li><p>Install Tailwind CSS dependencies</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install</span>
+<span class="n">yarn</span> <span class="n">add</span> <span class="o">--</span><span class="n">dev</span> <span class="n">tailwindcss</span> <span class="nd">@tailwindcss</span><span class="o">/</span><span class="n">vite</span>
+</pre></div>
+</div>
+</li>
+<li><p>Configure the Vite plugin (edit vite.config.ts): Add the &#64;tailwindcss/vite plugin to Vite configuration.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">vite</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">ts</span>
+<span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">defineConfig</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;vite&#39;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tailwindcss</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@tailwindcss/vite&#39;</span>
+<span class="n">export</span> <span class="n">default</span> <span class="n">defineConfig</span><span class="p">({</span>
+  <span class="n">plugins</span><span class="p">:</span> <span class="p">[</span><span class="n">tailwindcss</span><span class="p">()],</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</li>
+<li><p>Add Tailwind Directives to CSS Styles. Create a new CSS file (e.g., src/index.css or src/tailwind.css) and add the Tailwind CSS directives</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span> <span class="n">src</span><span class="o">/</span><span class="n">tailwind</span><span class="o">.</span><span class="n">css</span> <span class="o">*/</span>
+<span class="nd">@import</span> <span class="s2">&quot;tailwindcss&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Import the CSS File into the React component.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./tailwind.css&#39;</span><span class="p">;</span>  <span class="o">//</span> <span class="n">Import</span> <span class="n">the</span> <span class="n">CSS</span> <span class="n">file</span> <span class="n">here</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+<p>React components:</p>
+<blockquote>
+<div><ul>
+<li><p>Define a component using Tailwind CSS</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-number">Listing 9.9 </span><span class="caption-text">src/ComponentUsingTailwindCSS.tsx</span><a class="headerlink" href="#id9" title="Link to this code"></a></div>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s2">&quot;./tailwind.css&quot;</span><span class="p">;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="kd">const</span><span class="w"> </span><span class="nx">ComponentUsingTailwindCSS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 4</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="linenos"> 5</span><span class="w">    </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;App&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 6</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;text-sm font-bold underline text-blue-600 mb-4&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 7</span><span class="w">        </span><span class="nx">Using</span><span class="w"> </span><span class="nx">Tailwind</span><span class="w"> </span><span class="nx">CSS</span>
+<span class="linenos"> 8</span><span class="w">      </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 9</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">10</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;text-green-900 bg-blue-300&quot;</span><span class="p">&gt;</span>
+<span class="linenos">11</span><span class="w">          </span><span class="nx">Blue</span><span class="w"> </span><span class="nx">background</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="nx">green</span><span class="w"> </span><span class="nx">text</span>
+<span class="linenos">12</span><span class="w">        </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">13</span><span class="w">      </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">14</span><span class="w">    </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">15</span><span class="w">  </span><span class="p">);</span>
+<span class="linenos">16</span><span class="p">};</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">ComponentUsingTailwindCSS</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="using-svg">
+<h3><span class="section-number">9.2.5. </span>Using SVG<a class="headerlink" href="#using-svg" title="Link to this heading"></a></h3>
+<p>SVG stands for Scalable Vector Graphics and it is made up of points, lines, curves, and shapes based on mathematical formulas rather than specific pixels. This allows them to scale when resized without distortion. The quality of icons is important to get right – if they are distorted, they make the whole app feel unprofessional. Using SVGs for icons is common in modern web development.</p>
+<p>Steps to Set Up SVG support with Yarn:</p>
+<blockquote>
+<div><ul>
+<li><p>Install dependencies</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install</span>
+<span class="n">yarn</span> <span class="n">add</span> <span class="o">-</span><span class="n">D</span> <span class="n">vite</span><span class="o">-</span><span class="n">plugin</span><span class="o">-</span><span class="n">svgr</span>
+</pre></div>
+</div>
+</li>
+<li><p>Configure the Vite plugin (edit vite.config.ts): Add the vite-plugin-svgr plugin to Vite configuration.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">vite</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">ts</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">svgr</span> <span class="kn">from</span><span class="w"> </span><span class="s2">&quot;vite-plugin-svgr&quot;</span><span class="p">;</span>
+<span class="n">export</span> <span class="n">default</span> <span class="n">defineConfig</span><span class="p">({</span>
+  <span class="n">plugins</span><span class="p">:</span> <span class="p">[</span><span class="n">svgr</span><span class="p">()],</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</li>
+<li><p>Configure TypeScript type inference by adding the following to <code class="docutils literal notranslate"><span class="pre">vite-env.d.ts</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">///</span> <span class="o">&lt;</span><span class="n">reference</span> <span class="n">types</span><span class="o">=</span><span class="s2">&quot;vite-plugin-svgr/client&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Import SVG files as React components</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">Logo</span> <span class="kn">from</span><span class="w"> </span><span class="s2">&quot;./logo.svg?react&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Usage:</p>
+<blockquote>
+<div><ul>
+<li><p>Use with &lt;img  /&gt;tag: &lt;img src={svg-file} /&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># import as a path to the SVG file, which is then used on the src attribute on the img element to display the SVG.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logo</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./logo.svg&#39;</span><span class="p">;</span>
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="p">{</span><span class="n">logo</span><span class="p">}</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App-logo&quot;</span> <span class="n">alt</span><span class="o">=</span><span class="s2">&quot;logo&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Import SVG files as React components</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># referencing SVG as a component</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">Logo</span> <span class="kn">from</span><span class="w"> </span><span class="s2">&quot;./logo.svg?react&quot;</span><span class="p">;</span>
+<span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">Logo</span> <span class="o">/&gt;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<p>React Components</p>
+<blockquote>
+<div><ul>
+<li><p>Define a component using SVG</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-number">Listing 9.10 </span><span class="caption-text">src/ComponentUsingTailwindCSS.tsx</span><a class="headerlink" href="#id10" title="Link to this code"></a></div>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s2">&quot;./tailwind.css&quot;</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="nx">logo</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./assets/react.svg&quot;</span><span class="p">;</span>
+<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="nx">ViteLogo</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;../public/vite.svg?react&quot;</span><span class="p">;</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="kd">const</span><span class="w"> </span><span class="nx">ComponentUsingSVG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 6</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="linenos"> 7</span><span class="w">    </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;App&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 8</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;text-sm font-bold underline text-blue-600 mb-1 mt-4&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 9</span><span class="w">        </span><span class="nx">As</span><span class="w"> </span><span class="p">{</span><span class="sb">`&lt;img /&gt;`</span><span class="p">}</span><span class="w"> </span><span class="nx">Element</span>
+<span class="linenos">10</span><span class="w">      </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">11</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;flex justify-center&quot;</span><span class="p">&gt;</span>
+<span class="linenos">12</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">img</span><span class="w"> </span><span class="na">src</span><span class="o">=</span><span class="p">{</span><span class="nx">logo</span><span class="p">}</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;App-logo&quot;</span><span class="w"> </span><span class="na">alt</span><span class="o">=</span><span class="s">&quot;logo&quot;</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="linenos">13</span><span class="w">      </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;text-sm font-bold underline text-blue-600 mb-1 mt-4&quot;</span><span class="p">&gt;</span>
+<span class="linenos">16</span><span class="w">        </span><span class="nx">As</span><span class="w"> </span><span class="nx">ReactComponent</span><span class="w"> </span><span class="p">{</span><span class="sb">`&lt;SvgComponent /&gt;`</span><span class="p">}</span>
+<span class="linenos">17</span><span class="w">      </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">18</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;flex justify-center&quot;</span><span class="p">&gt;</span>
+<span class="linenos">19</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">ViteLogo</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="linenos">20</span><span class="w">      </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">21</span><span class="w">    </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">22</span><span class="w">  </span><span class="p">);</span>
+<span class="linenos">23</span><span class="p">};</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">ComponentUsingSVG</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="function-component-the-user-interface">
+<h3><span class="section-number">9.2.6. </span>Function Component - the User Interface<a class="headerlink" href="#function-component-the-user-interface" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul>
+<li><p>Create a function component to show the user interface</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-number">Listing 9.11 </span><span class="caption-text">src/FunctionComponentsDisplay.tsx</span><a class="headerlink" href="#id11" title="Link to this code"></a></div>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="nx">ComponentUsingCSSModules</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./ComponentUsingCSSModules&quot;</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="nx">ComponentUsingInlineStyle</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./ComponentUsingInlineStyle&quot;</span><span class="p">;</span>
+<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="nx">ComponentUsingPlainCSS</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./ComponentUsingPlainCSS&quot;</span><span class="p">;</span>
+<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="nx">ComponentUsingSVG</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./ComponentUsingSVG&quot;</span><span class="p">;</span>
+<span class="linenos"> 5</span><span class="k">import</span><span class="w"> </span><span class="nx">ComponentUsingTailwindCSS</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./ComponentUsingTailwindCSS&quot;</span><span class="p">;</span>
+<span class="linenos"> 6</span><span class="k">import</span><span class="w"> </span><span class="s2">&quot;./list-style.css&quot;</span><span class="p">;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="kd">const</span><span class="w"> </span><span class="nx">FunctionComponentsDisplay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+<span class="linenos">10</span><span class="w">    </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-container&quot;</span><span class="p">&gt;</span>
+<span class="linenos">11</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span><span class="nx">React</span><span class="w"> </span><span class="nx">Component</span><span class="w"> </span><span class="nx">Styling</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="linenos">12</span><span class="w">      </span><span class="p">&lt;</span><span class="nt">ol</span><span class="p">&gt;</span>
+<span class="linenos">13</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">li</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item&quot;</span><span class="p">&gt;</span>
+<span class="linenos">14</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-number&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">15</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-content&quot;</span><span class="p">&gt;</span>
+<span class="linenos">16</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span><span class="nx">Plain</span><span class="w"> </span><span class="nx">CSS</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="linenos">17</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">18</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">ComponentUsingPlainCSS</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="linenos">19</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">20</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">21</span><span class="w">        </span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos">22</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">li</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item&quot;</span><span class="p">&gt;</span>
+<span class="linenos">23</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-number&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">24</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-content&quot;</span><span class="p">&gt;</span>
+<span class="linenos">25</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span><span class="nx">Inline</span><span class="w"> </span><span class="nx">Styling</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="linenos">26</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">27</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">ComponentUsingInlineStyle</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="linenos">28</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">29</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">30</span><span class="w">        </span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos">31</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">li</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item&quot;</span><span class="p">&gt;</span>
+<span class="linenos">32</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-number&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">33</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-content&quot;</span><span class="p">&gt;</span>
+<span class="linenos">34</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span><span class="nx">CSS</span><span class="w"> </span><span class="nx">Modules</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="linenos">35</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">36</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">ComponentUsingCSSModules</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="linenos">37</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">38</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">39</span><span class="w">        </span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos">40</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">li</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item&quot;</span><span class="p">&gt;</span>
+<span class="linenos">41</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-number&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">42</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-content&quot;</span><span class="p">&gt;</span>
+<span class="linenos">43</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span><span class="nx">Tailwind</span><span class="w"> </span><span class="nx">CSS</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">React</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="linenos">44</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">45</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">ComponentUsingTailwindCSS</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="linenos">46</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">47</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">48</span><span class="w">        </span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos">49</span><span class="w">        </span><span class="p">&lt;</span><span class="nt">li</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item&quot;</span><span class="p">&gt;</span>
+<span class="linenos">50</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-number&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">51</span><span class="w">          </span><span class="p">&lt;</span><span class="nt">div</span><span class="w"> </span><span class="na">className</span><span class="o">=</span><span class="s">&quot;list-item-content&quot;</span><span class="p">&gt;</span>
+<span class="linenos">52</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span><span class="nx">Using</span><span class="w"> </span><span class="nx">SVG</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+<span class="linenos">53</span><span class="w">            </span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">54</span><span class="w">              </span><span class="p">&lt;</span><span class="nt">ComponentUsingSVG</span><span class="w"> </span><span class="p">/&gt;</span>
+<span class="linenos">55</span><span class="w">            </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">56</span><span class="w">          </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">57</span><span class="w">        </span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="linenos">58</span><span class="w">      </span><span class="p">&lt;/</span><span class="nt">ol</span><span class="p">&gt;</span>
+<span class="linenos">59</span><span class="w">    </span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">60</span><span class="w">  </span><span class="p">);</span>
+<span class="linenos">61</span><span class="p">};</span>
+<span class="linenos">62</span>
+<span class="linenos">63</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">FunctionComponentsDisplay</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Edit <code class="docutils literal notranslate"><span class="pre">App.tsx</span></code> to render the component</p>
+<blockquote>
+<div><div class="literal-block-wrapper docutils container" id="id12">
+<div class="code-block-caption"><span class="caption-number">Listing 9.12 </span><span class="caption-text">src/App.tsx</span><a class="headerlink" href="#id12" title="Link to this code"></a></div>
+<div class="highlight-tsx notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">import</span><span class="w"> </span><span class="nx">FunctionComponentsDisplay</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./FunctionComponentsDisplay&quot;</span><span class="p">;</span>
+<span class="linenos">2</span><span class="k">import</span><span class="w"> </span><span class="s2">&quot;./App.css&quot;</span><span class="p">;</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="kd">function</span><span class="w"> </span><span class="nx">App</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">5</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">&lt;</span><span class="nt">FunctionComponentsDisplay</span><span class="w"> </span><span class="p">/&gt;;</span>
+<span class="linenos">6</span><span class="p">}</span>
+<span class="linenos">7</span>
+<span class="linenos">8</span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">App</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="run-the-development-app">
+<h2><span class="section-number">9.3. </span>Run the development app<a class="headerlink" href="#run-the-development-app" title="Link to this heading"></a></h2>
+<blockquote>
+<div><ul>
+<li><p>Run dev</p>
+<blockquote>
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>yarn<span class="w"> </span>dev
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="hosting-the-react-app-on-github-pages">
+<h2><span class="section-number">9.4. </span>Hosting the React App on GitHub Pages<a class="headerlink" href="#hosting-the-react-app-on-github-pages" title="Link to this heading"></a></h2>
+<section id="build-the-app">
+<h3><span class="section-number">9.4.1. </span>Build the App<a class="headerlink" href="#build-the-app" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul>
+<li><p>Configure the build base url:</p>
+<blockquote>
+<div><ul>
+<li><p>open vite.config.js file</p></li>
+<li><p>set base to <code class="docutils literal notranslate"><span class="pre">/react-projects/react-projects-with-typescript/tut09-react-component-styling/</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">default</span> <span class="n">defineConfig</span><span class="p">({</span>
+    <span class="n">plugins</span><span class="p">:</span> <span class="p">[</span><span class="n">react</span><span class="p">()],</span>
+    <span class="n">base</span><span class="p">:</span> <span class="s2">&quot;/react-projects/react-projects-with-typescript/tut09-react-component-styling/&quot;</span><span class="p">,</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Build the app</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">run</span> <span class="n">build</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="hosting-the-app">
+<h3><span class="section-number">9.4.2. </span>Hosting the App<a class="headerlink" href="#hosting-the-app" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>Hosting address: <a class="reference external" href="https://&lt;USERNAME&gt;.github.io/react-projects/react-projects-with-typescript/tut09-react-component-styling/">https://&lt;USERNAME&gt;.github.io/react-projects/react-projects-with-typescript/tut09-react-component-styling/</a></p></li>
+<li><p>Github login as &lt;USERNAME&gt;</p></li>
+<li><p>Create the <code class="docutils literal notranslate"><span class="pre">react-projects</span></code> repo if not exist</p></li>
+<li><p>Create the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch in the <code class="docutils literal notranslate"><span class="pre">react-projects</span></code> repo if not exist</p></li>
+<li><p>Push the &lt;dist&gt; folder contents to the deploying folder <code class="docutils literal notranslate"><span class="pre">react-projects-with-typescript/tut09-react-component-styling/</span></code> in the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="sources-and-demos">
+<h2><span class="section-number">9.5. </span>Sources and Demos<a class="headerlink" href="#sources-and-demos" title="Link to this heading"></a></h2>
+<blockquote>
+<div><ul>
+<li><p>Sources: <a class="reference external" href="https://github.com/david-ggs-230/react-projects/tree/main/react-projects-with-typescript/tut09-react-component-styling">https://github.com/david-ggs-230/react-projects/tree/main/react-projects-with-typescript/tut09-react-component-styling</a></p></li>
+<li><p>Live Demo: <a class="reference external" href="https://david-ggs-230.github.io/react-projects/react-projects-with-typescript/tut09-react-component-styling/">https://david-ggs-230.github.io/react-projects/react-projects-with-typescript/tut09-react-component-styling/</a></p></li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><figure class="align-center" id="id13">
+<a class="sd-my-2 reference internal image-reference" href="../_images/tut09-react-component-styling.png"><img alt="React Component Styling" class="sd-my-2" src="../_images/tut09-react-component-styling.png" style="width: 60%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 9.1 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React Component Styling</span></span><a class="headerlink" href="#id13" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tut08-react-router.html" class="btn btn-neutral float-left" title="8. React Router" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tut10-vitest-react-testing.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, David G..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
