@@ -21,5 +21,5 @@ React Tutorial with Typescript documentation
    react-app-ts/tut07-react-restapi
    react-app-ts/tut08-react-router
    react-app-ts/tut09-react-component-styling
-   
+   react-app-ts/tut10-vitest-react-testing
    
